@@ -1,0 +1,32 @@
+[
+  {
+    "requested_static_mu": 0.2,
+    "requested_dynamic_mu": 0.1,
+    "mass_kg": 1.0,
+    "measured_dynamic_mu": 0.10002983940972221,
+    "initial_velocity_x_m_s": 1.983795404434204,
+    "final_velocity_x_m_s": 1.902771234512329,
+    "measurement_duration_s": 0.5,
+    "passed": true
+  },
+  {
+    "requested_static_mu": 0.6,
+    "requested_dynamic_mu": 0.5,
+    "mass_kg": 1.0,
+    "measured_dynamic_mu": 0.500043233235677,
+    "initial_velocity_x_m_s": 1.9189941883087158,
+    "final_velocity_x_m_s": 1.5139591693878174,
+    "measurement_duration_s": 0.5,
+    "passed": true
+  },
+  {
+    "requested_static_mu": 0.6,
+    "requested_dynamic_mu": 0.5,
+    "mass_kg": 5.0,
+    "measured_dynamic_mu": 0.500043233235677,
+    "initial_velocity_x_m_s": 1.9189949035644531,
+    "final_velocity_x_m_s": 1.5139598846435547,
+    "measurement_duration_s": 0.5,
+    "passed": true
+  }
+]

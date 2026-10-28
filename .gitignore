@@ -1,0 +1,12 @@
+__pycache__/
+*.py[cod]
+.pytest_cache/
+env/reports/**/*.npy
+env/reports/*.log
+env/reports/**/contacts.json
+env/.runtime/
+outputs/
+assets/lunar_training/
+assets/lunar/Lunar_training_*/
+env/generated/*_training_*.usda
+env/generated/*_training_*.manifest.json

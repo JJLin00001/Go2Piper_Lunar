@@ -1,0 +1,60 @@
+{
+  "close": {
+    "prim_path": "/World/Cameras/Close",
+    "resolution": [
+      1280,
+      720
+    ],
+    "rgb_std": 24.240658308744326
+  },
+  "overview": {
+    "prim_path": "/World/Cameras/Overview",
+    "resolution": [
+      1280,
+      720
+    ],
+    "rgb_std": 12.796406902184975
+  },
+  "head": {
+    "prim_path": "/World/Robot/base/HeadCameraOpticalFrame/Camera",
+    "resolution": [
+      640,
+      480
+    ],
+    "rgb_std": 18.625187615001618,
+    "valid_depth_fraction": 0.9944140625,
+    "depth_range_m": [
+      0.4439633786678314,
+      29.998334884643555
+    ],
+    "intrinsics": {
+      "fx": 465.6028828225301,
+      "fy": 465.6028686959573,
+      "cx": 320.0,
+      "cy": 240.0
+    },
+    "depth_convention": "Optical Z distance in metres; nonfinite/<=0 values invalid",
+    "model": "Ideal pinhole; CAD nominal pose; no active IR/stereo/noise simulation"
+  },
+  "wrist": {
+    "prim_path": "/World/Robot/link6/WristCameraOpticalFrame/Camera",
+    "resolution": [
+      640,
+      480
+    ],
+    "rgb_std": 31.91238372394739,
+    "valid_depth_fraction": 0.69384765625,
+    "depth_range_m": [
+      0.06638073921203613,
+      29.998815536499023
+    ],
+    "intrinsics": {
+      "fx": 465.6028828225301,
+      "fy": 465.6028686959573,
+      "cx": 320.0,
+      "cy": 240.0
+    },
+    "depth_convention": "Optical Z distance in metres; nonfinite/<=0 values invalid",
+    "model": "Ideal pinhole; CAD nominal pose; no active IR/stereo/noise simulation"
+  }
+}

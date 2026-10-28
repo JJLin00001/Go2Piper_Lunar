@@ -1,0 +1,111 @@
+{
+  "scene": "env/generated/lunar_scene.usda",
+  "config_sha256": "8c4f292d142afc4ec6be6ffce6ec3ea25166b06f2ab5abba2d6b4176bd76e6fc",
+  "robot_usd_sha256": "a8bc597a5c69a6d136d9cc0c79f35e90323ca5432ec6cc3a77df103b7b5ff8d8",
+  "gravity_m_s2": 1.62,
+  "physics_dt_s": 0.004166666666666667,
+  "terrain": {
+    "vertices": 132496,
+    "triangles": 263538,
+    "craters": 24,
+    "static_rocks": 100,
+    "work_area_radius_m": 1.5,
+    "near_field_size_m": 40.0,
+    "total_extent_m": 200.0,
+    "height_range_m": [
+      -0.4277274012565613,
+      0.17873108386993408
+    ]
+  },
+  "robot": {
+    "prim_path": "/World/Robot",
+    "articulation_root": "/World/Robot/base",
+    "rigid_bodies": 25,
+    "moving_joints": 20,
+    "initial_base_position_m": [
+      0.0,
+      0.0,
+      0.33150256875980433
+    ],
+    "initial_joint_positions": {
+      "FL_hip_joint": 0.1,
+      "FL_thigh_joint": 0.8,
+      "FL_calf_joint": -1.5,
+      "FR_hip_joint": -0.1,
+      "FR_thigh_joint": 0.8,
+      "FR_calf_joint": -1.5,
+      "RL_hip_joint": 0.1,
+      "RL_thigh_joint": 0.8,
+      "RL_calf_joint": -1.5,
+      "RR_hip_joint": -0.1,
+      "RR_thigh_joint": 0.8,
+      "RR_calf_joint": -1.5,
+      "joint1": 0.0,
+      "joint2": 0.8,
+      "joint3": -1.25,
+      "joint4": 0.0,
+      "joint5": 0.45,
+      "joint6": 0.0,
+      "joint7": 0.03,
+      "joint8": -0.03
+    },
+    "mass_kg": 18.84541329368949,
+    "self_collisions": true,
+    "drive_effort_limits": {
+      "FL_hip_joint": 23.7,
+      "FL_thigh_joint": 23.7,
+      "FL_calf_joint": 45.43,
+      "FR_hip_joint": 23.7,
+      "FR_thigh_joint": 23.7,
+      "FR_calf_joint": 45.43,
+      "RL_hip_joint": 23.7,
+      "RL_thigh_joint": 23.7,
+      "RL_calf_joint": 45.43,
+      "RR_hip_joint": 23.7,
+      "RR_thigh_joint": 23.7,
+      "RR_calf_joint": 45.43,
+      "joint1": 32.0,
+      "joint2": 32.0,
+      "joint3": 32.0,
+      "joint4": 8.0,
+      "joint5": 8.0,
+      "joint6": 8.0,
+      "joint7": 10.0,
+      "joint8": 10.0
+    },
+    "camera_paths": {
+      "head": "/World/Robot/base/HeadCameraOpticalFrame/Camera",
+      "wrist": "/World/Robot/link6/WristCameraOpticalFrame/Camera"
+    }
+  },
+  "ore": {
+    "mass_kg": 2.0,
+    "volume_m3": 0.0008052286868971515,
+    "effective_density_kg_m3": 2483.7664536105276,
+    "dimensions_m": [
+      0.18,
+      0.065,
+      0.15
+    ],
+    "center_of_mass_m": [
+      0.001964299908757727,
+      0.002225197080853883,
+      -0.0007608341390399543
+    ],
+    "principal_inertia_kg_m2": [
+      0.0023022362528711407,
+      0.0036487905892393477,
+      0.005164699987646035
+    ],
+    "prim_path": "/World/Ores/Target"
+  },
+  "dependency_layer_count": 4,
+  "unresolved_assets": [],
+  "limitations": [
+    "Procedural terrain, not a measured lunar DEM.",
+    "Rigid Coulomb contact, not deformable or granular regolith.",
+    "PD standing preview only; no WBC or grasp success claim.",
+    "Ideal pinhole RGB/depth cameras, not a calibrated D435 hardware model.",
+    "Effort limits inherited from supplied model; hardware qualification is separate."
+  ]
+}

@@ -1,0 +1,25 @@
+Portable Go2 + Piper + dual D435 asset bundle, exported 2026-10-22.
+
+Source robot assembly and meshes: Go2PiperD435 / go2piper_real_description,
+with historical Go2/Piper geometry documented in SOURCES.md. Original
+licenses are retained in this directory, including the project and
+LeggedManip notices. Official RealSense D435 geometry originates from
+realsenseai/realsense-ros at commit
+60c850958d651130fc2cc3d10efb37ff5be93da5; see SOURCES.md and
+RealSense_D435_LICENSE.txt. The wrist bracket is from the operator's CAD
+assembly documented by that source project.
+
+Changes made for this distribution:
+- USD is copied byte for byte from the active v4 project asset.
+- The MJCF uses relative paths and restores the USD camera/collider overlay.
+- OBJ mtllib/usemtl directives were removed; description colors are used.
+- Official D435 COLLADA components were converted to OBJ for MuJoCo.
+- Compiled mesh coordinates were exported to STL for URDF and SDFormat;
+  mesh collisions were exported as convex hulls.
+- URDF and SDFormat descriptions, preview world, resource metadata and
+  validation utilities were generated or added for standalone use.
+- The Isaac Lab configuration copy uses a local USD path.
+
+Asset version, original hashes and individual mesh provenance are recorded
+in ../asset_manifest.json. Do not omit these license and attribution files
+when sharing the bundle. This notice does not replace the original licenses.

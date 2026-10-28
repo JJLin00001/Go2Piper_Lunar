@@ -1,0 +1,119 @@
+{
+  "seed": 20261022,
+  "physics": {
+    "gravity_m_s2": 1.62,
+    "dt_s": 0.004166666666666667,
+    "solver_position_iterations": 16,
+    "solver_velocity_iterations": 4
+  },
+  "terrain": {
+    "size_m": 40.0,
+    "spacing_m": 0.12,
+    "horizon_extent_m": 1500.0,
+    "roughness_m": 0.002,
+    "flat_radius_m": 1.5,
+    "flat_blend_m": 1.0,
+    "slope_deg": 0.0,
+    "crater_count": 0,
+    "rock_count": 100,
+    "restitution": 0.0,
+    "type": "dem",
+    "data_dir": "assets/terrain_data/apollo17",
+    "pebble_count": 1800,
+    "detail_texture_period_m": 4.0
+  },
+  "robot": {
+    "xy_m": [
+      0.0,
+      0.0
+    ],
+    "yaw_deg": 0.0,
+    "foot_clearance_m": 0.008,
+    "hip_rad": 0.1,
+    "thigh_rad": 0.8,
+    "calf_rad": -1.5,
+    "arm_rad": [
+      0.0,
+      0.8,
+      -1.25,
+      0.0,
+      0.45,
+      0.0
+    ],
+    "gripper_opening_m": 0.06,
+    "self_collisions": true,
+    "foot_static_friction": 0.8,
+    "foot_dynamic_friction": 0.65,
+    "pad_static_friction": 0.8,
+    "pad_dynamic_friction": 0.65,
+    "pd": {
+      "legs": [
+        80.0,
+        4.0
+      ],
+      "arm": [
+        60.0,
+        3.0
+      ],
+      "arm_load_bearing": [
+        360.0,
+        20.0
+      ],
+      "gripper": [
+        800.0,
+        5.0
+      ]
+    },
+    "body_static_friction": 0.8,
+    "body_dynamic_friction": 0.65
+  },
+  "ore": {
+    "mass_kg": 2.0,
+    "dimensions_m": [
+      0.18,
+      0.065,
+      0.15
+    ],
+    "xy_m": [
+      0.72,
+      0.0
+    ],
+    "clearance_m": 0.003,
+    "static_friction": 0.8,
+    "dynamic_friction": 0.65
+  },
+  "lighting": {
+    "sun_elevation_deg": 18.0,
+    "sun_azimuth_deg": 140.0,
+    "sun_intensity": 900.0,
+    "fill_intensity": 12.0
+  },
+  "camera": {
+    "width": 1280,
+    "height": 720,
+    "sensor_width": 640,
+    "sensor_height": 480,
+    "sensor_horizontal_fov_deg": 69.0,
+    "overview_eye_m": [
+      6.5,
+      -7.0,
+      4.5
+    ],
+    "overview_target_m": [
+      0.5,
+      0.0,
+      0.25
+    ],
+    "close_eye_m": [
+      2.0,
+      -2.3,
+      1.35
+    ],
+    "close_target_m": [
+      0.2,
+      0.0,
+      0.4
+    ]
+  },
+  "environment": "Lunar"
+}

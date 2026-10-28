@@ -1,0 +1,357 @@
+{
+  "joints": [
+    {
+      "name": "FL_hip_joint",
+      "type": "revolute",
+      "axis": [
+        1.0,
+        0.0,
+        0.0
+      ],
+      "range": [
+        -1.0472,
+        1.0472
+      ],
+      "effort": 23.7,
+      "velocity": 30.0,
+      "damping": 0.1531,
+      "friction": 0.2884
+    },
+    {
+      "name": "FL_thigh_joint",
+      "type": "revolute",
+      "axis": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "range": [
+        -1.5708,
+        3.4907
+      ],
+      "effort": 23.7,
+      "velocity": 30.0,
+      "damping": 0.2406,
+      "friction": 0.1739
+    },
+    {
+      "name": "FL_calf_joint",
+      "type": "revolute",
+      "axis": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "range": [
+        -2.7227,
+        -0.83776
+      ],
+      "effort": 45.43,
+      "velocity": 30.0,
+      "damping": 0.145,
+      "friction": 1.0151
+    },
+    {
+      "name": "FR_hip_joint",
+      "type": "revolute",
+      "axis": [
+        1.0,
+        0.0,
+        0.0
+      ],
+      "range": [
+        -1.0472,
+        1.0472
+      ],
+      "effort": 23.7,
+      "velocity": 30.0,
+      "damping": 0.2628,
+      "friction": 0.1835
+    },
+    {
+      "name": "FR_thigh_joint",
+      "type": "revolute",
+      "axis": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "range": [
+        -1.5708,
+        3.4907
+      ],
+      "effort": 23.7,
+      "velocity": 30.0,
+      "damping": 0.142,
+      "friction": 0.2386
+    },
+    {
+      "name": "FR_calf_joint",
+      "type": "revolute",
+      "axis": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "range": [
+        -2.7227,
+        -0.83776
+      ],
+      "effort": 45.43,
+      "velocity": 30.0,
+      "damping": 0.1728,
+      "friction": 0.4912
+    },
+    {
+      "name": "RL_hip_joint",
+      "type": "revolute",
+      "axis": [
+        1.0,
+        0.0,
+        0.0
+      ],
+      "range": [
+        -1.0472,
+        1.0472
+      ],
+      "effort": 23.7,
+      "velocity": 30.0,
+      "damping": 0.2243,
+      "friction": 0.155
+    },
+    {
+      "name": "RL_thigh_joint",
+      "type": "revolute",
+      "axis": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "range": [
+        -0.5236,
+        4.5379
+      ],
+      "effort": 23.7,
+      "velocity": 30.0,
+      "damping": 0.2352,
+      "friction": 0.1388
+    },
+    {
+      "name": "RL_calf_joint",
+      "type": "revolute",
+      "axis": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "range": [
+        -2.7227,
+        -0.83776
+      ],
+      "effort": 45.43,
+      "velocity": 30.0,
+      "damping": 0.1201,
+      "friction": 1.3573
+    },
+    {
+      "name": "RR_hip_joint",
+      "type": "revolute",
+      "axis": [
+        1.0,
+        0.0,
+        0.0
+      ],
+      "range": [
+        -1.0472,
+        1.0472
+      ],
+      "effort": 23.7,
+      "velocity": 30.0,
+      "damping": 0.2989,
+      "friction": 0.2488
+    },
+    {
+      "name": "RR_thigh_joint",
+      "type": "revolute",
+      "axis": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "range": [
+        -0.5236,
+        4.5379
+      ],
+      "effort": 23.7,
+      "velocity": 30.0,
+      "damping": 0.1983,
+      "friction": 0.2484
+    },
+    {
+      "name": "RR_calf_joint",
+      "type": "revolute",
+      "axis": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "range": [
+        -2.7227,
+        -0.83776
+      ],
+      "effort": 45.43,
+      "velocity": 30.0,
+      "damping": 0.1,
+      "friction": 0.7893
+    },
+    {
+      "name": "joint1",
+      "type": "revolute",
+      "axis": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "range": [
+        -2.618,
+        2.618
+      ],
+      "effort": 32.0,
+      "velocity": 5.0,
+      "damping": 0.1,
+      "friction": 0.1
+    },
+    {
+      "name": "joint2",
+      "type": "revolute",
+      "axis": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "range": [
+        0.0,
+        3.14
+      ],
+      "effort": 32.0,
+      "velocity": 5.0,
+      "damping": 0.1,
+      "friction": 0.1
+    },
+    {
+      "name": "joint3",
+      "type": "revolute",
+      "axis": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "range": [
+        -2.967,
+        0.0
+      ],
+      "effort": 32.0,
+      "velocity": 5.0,
+      "damping": 0.1,
+      "friction": 0.1
+    },
+    {
+      "name": "joint4",
+      "type": "revolute",
+      "axis": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "range": [
+        -1.745,
+        1.745
+      ],
+      "effort": 8.0,
+      "velocity": 5.0,
+      "damping": 0.1,
+      "friction": 0.1
+    },
+    {
+      "name": "joint5",
+      "type": "revolute",
+      "axis": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "range": [
+        -1.22,
+        1.22
+      ],
+      "effort": 8.0,
+      "velocity": 5.0,
+      "damping": 0.1,
+      "friction": 0.1
+    },
+    {
+      "name": "joint6",
+      "type": "revolute",
+      "axis": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "range": [
+        -2.0944,
+        2.0944
+      ],
+      "effort": 8.0,
+      "velocity": 5.0,
+      "damping": 0.1,
+      "friction": 0.1
+    },
+    {
+      "name": "joint7",
+      "type": "prismatic",
+      "axis": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "range": [
+        0.0,
+        0.05
+      ],
+      "effort": 10.0,
+      "velocity": 1.0,
+      "damping": 0.2,
+      "friction": 0.0
+    },
+    {
+      "name": "joint8",
+      "type": "prismatic",
+      "axis": [
+        0.0,
+        0.0,
+        -1.0
+      ],
+      "range": [
+        -0.05,
+        0.0
+      ],
+      "effort": 10.0,
+      "velocity": 1.0,
+      "damping": 0.2,
+      "friction": 0.0
+    }
+  ],
+  "limits_source": "MJCF effort limits; velocity limits are project simulation settings, not hardware specifications",
+  "gripper_command": "joint7 = opening_m / 2; joint8 = -opening_m / 2",
+  "recommended_opening_range_m": [
+    0,
+    0.076
+  ],
+  "model_opening_range_m": [
+    0,
+    0.1
+  ],
+  "sdf_gripper_coupling": "Command BOTH fingers; SDF 1.9 export has no mimic constraint",
+  "floating_base": true,
+  "source_total_mass_kg": 18.84541365240226
+}

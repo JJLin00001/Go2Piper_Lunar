@@ -1,0 +1,78 @@
+{
+  "scene": "/home/jjlin/Go2Piper_Lunar/env/generated/lunar_mass_5kg.usda",
+  "physics_steps": 1200,
+  "simulated_time_s": 5.0,
+  "elapsed_wall_s": 2.7812211839991505,
+  "gravity_configured_m_s2": 1.62,
+  "gravity_measured_m_s2": 1.6200003027915955,
+  "joint_count": 20,
+  "joint_names": [
+    "FL_hip_joint",
+    "FR_hip_joint",
+    "RL_hip_joint",
+    "RR_hip_joint",
+    "joint1",
+    "FL_thigh_joint",
+    "FR_thigh_joint",
+    "RL_thigh_joint",
+    "RR_thigh_joint",
+    "joint2",
+    "FL_calf_joint",
+    "FR_calf_joint",
+    "RL_calf_joint",
+    "RR_calf_joint",
+    "joint3",
+    "joint4",
+    "joint5",
+    "joint6",
+    "joint7",
+    "joint8"
+  ],
+  "base_final_position_m": [
+    0.0039034150540828705,
+    0.0006201229989528656,
+    0.3212442398071289
+  ],
+  "base_peak_tilt_deg": 0.5109894923601366,
+  "max_joint_speed_rad_or_m_s": 1.9300651550292969,
+  "max_joint_error_rad_or_m": 0.038637638092041016,
+  "foot_paths": [
+    "/World/Robot/FL_foot",
+    "/World/Robot/FR_foot",
+    "/World/Robot/RL_foot",
+    "/World/Robot/RR_foot"
+  ],
+  "mean_final_foot_force_world_N": [
+    [
+      0.0,
+      0.0,
+      8.023010444641113
+    ],
+    [
+      0.0,
+      0.0,
+      8.269837284088135
+    ],
+    [
+      0.0,
+      0.0,
+      7.144319629669189
+    ],
+    [
+      0.0,
+      0.0,
+      7.0925048828125
+    ]
+  ],
+  "base_ground_clearance_m": 0.3212442398071289,
+  "ore_lowest_ground_gap_m": -4.4617696100257564e-09,
+  "ore_final_position_m": [
+    0.7386412620544434,
+    -0.08606474846601486,
+    0.029939329251646996
+  ],
+  "ore_final_speed_m_s": 2.3277207219507545e-05,
+  "control": "Bounded joint PD preview; no WBC or grasp execution",
+  "validation_passed": true,
+  "validation_failures": []
+}

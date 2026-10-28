@@ -1,0 +1,333 @@
+{
+  "task": "Go2_Piper_Lunar_Tracking",
+  "unit_tests_passed": 17,
+  "environments": {
+    "Lunar": {
+      "passed": true,
+      "num_envs": 2,
+      "steps": 120,
+      "joint_names": [
+        "FL_hip_joint",
+        "FL_thigh_joint",
+        "FL_calf_joint",
+        "FR_hip_joint",
+        "FR_thigh_joint",
+        "FR_calf_joint",
+        "RL_hip_joint",
+        "RL_thigh_joint",
+        "RL_calf_joint",
+        "RR_hip_joint",
+        "RR_thigh_joint",
+        "RR_calf_joint",
+        "joint1",
+        "joint2",
+        "joint3",
+        "joint4",
+        "joint5",
+        "joint6"
+      ],
+      "observation_shape": [
+        2,
+        919
+      ],
+      "gravity": [
+        0,
+        0,
+        -1.62
+      ],
+      "measured_gravity_m_s2": 1.619999647140503,
+      "source_mesh_crop_exact": true,
+      "missing_usd_dependencies": [],
+      "physics_dt": 0.004166666666666667,
+      "policy_dt": 0.016666666666666666,
+      "source_scene": "env/generated/Lunar.usda",
+      "terrain_bounds_m": [
+        -7.904191493988037,
+        7.904191493988037
+      ],
+      "effort_limits": [
+        23.700000762939453,
+        23.700000762939453,
+        45.43000030517578,
+        23.700000762939453,
+        23.700000762939453,
+        45.43000030517578,
+        23.700000762939453,
+        23.700000762939453,
+        45.43000030517578,
+        23.700000762939453,
+        23.700000762939453,
+        45.43000030517578,
+        32.0,
+        32.0,
+        32.0,
+        8.0,
+        8.0,
+        8.0
+      ],
+      "ore_mass_kg": 2.0,
+      "material_coefficients_unique": [
+        [
+          0.800000011920929,
+          0.6499999761581421,
+          0.0
+        ]
+      ],
+      "partial_timeout_reset": true,
+      "tcp_reward_sensitivity": true,
+      "last_metrics": {
+        "velocity_rmse_m_s": 0.04518945887684822,
+        "yaw_rmse_rad_s": 0.0528445802628994,
+        "tcp_rmse_m": 0.04426654800772667,
+        "base_height_m": 0.3216702938079834,
+        "mean_foot_contacts": 4.0,
+        "curriculum_scale": 0.2
+      },
+      "initial_base_positions": [
+        [
+          9.0,
+          0.0,
+          0.34264084696769714
+        ],
+        [
+          -9.0,
+          0.0,
+          0.34264084696769714
+        ]
+      ]
+    },
+    "Lunar_baseline": {
+      "passed": true,
+      "num_envs": 2,
+      "steps": 120,
+      "joint_names": [
+        "FL_hip_joint",
+        "FL_thigh_joint",
+        "FL_calf_joint",
+        "FR_hip_joint",
+        "FR_thigh_joint",
+        "FR_calf_joint",
+        "RL_hip_joint",
+        "RL_thigh_joint",
+        "RL_calf_joint",
+        "RR_hip_joint",
+        "RR_thigh_joint",
+        "RR_calf_joint",
+        "joint1",
+        "joint2",
+        "joint3",
+        "joint4",
+        "joint5",
+        "joint6"
+      ],
+      "observation_shape": [
+        2,
+        919
+      ],
+      "gravity": [
+        0,
+        0,
+        -1.62
+      ],
+      "measured_gravity_m_s2": 1.619999647140503,
+      "source_mesh_crop_exact": true,
+      "missing_usd_dependencies": [],
+      "physics_dt": 0.004166666666666667,
+      "policy_dt": 0.016666666666666666,
+      "source_scene": "env/generated/Lunar_baseline.usda",
+      "terrain_bounds_m": [
+        -7.865168571472168,
+        7.865168571472168
+      ],
+      "effort_limits": [
+        23.700000762939453,
+        23.700000762939453,
+        45.43000030517578,
+        23.700000762939453,
+        23.700000762939453,
+        45.43000030517578,
+        23.700000762939453,
+        23.700000762939453,
+        45.43000030517578,
+        23.700000762939453,
+        23.700000762939453,
+        45.43000030517578,
+        32.0,
+        32.0,
+        32.0,
+        8.0,
+        8.0,
+        8.0
+      ],
+      "ore_mass_kg": 2.0,
+      "material_coefficients_unique": [
+        [
+          0.800000011920929,
+          0.6499999761581421,
+          0.0
+        ]
+      ],
+      "partial_timeout_reset": true,
+      "tcp_reward_sensitivity": true,
+      "last_metrics": {
+        "velocity_rmse_m_s": 0.042768772691488266,
+        "yaw_rmse_rad_s": 0.04609369486570358,
+        "tcp_rmse_m": 0.02598288096487522,
+        "base_height_m": 0.32127803564071655,
+        "mean_foot_contacts": 4.0,
+        "curriculum_scale": 0.2
+      },
+      "initial_base_positions": [
+        [
+          9.0,
+          0.0,
+          0.3315025568008423
+        ],
+        [
+          -9.0,
+          0.0,
+          0.3315025568008423
+        ]
+      ]
+    },
+    "Lunar_variant": {
+      "passed": true,
+      "num_envs": 2,
+      "steps": 120,
+      "joint_names": [
+        "FL_hip_joint",
+        "FL_thigh_joint",
+        "FL_calf_joint",
+        "FR_hip_joint",
+        "FR_thigh_joint",
+        "FR_calf_joint",
+        "RL_hip_joint",
+        "RL_thigh_joint",
+        "RL_calf_joint",
+        "RR_hip_joint",
+        "RR_thigh_joint",
+        "RR_calf_joint",
+        "joint1",
+        "joint2",
+        "joint3",
+        "joint4",
+        "joint5",
+        "joint6"
+      ],
+      "observation_shape": [
+        2,
+        919
+      ],
+      "gravity": [
+        0,
+        0,
+        -1.62
+      ],
+      "measured_gravity_m_s2": 1.619999647140503,
+      "source_mesh_crop_exact": true,
+      "missing_usd_dependencies": [],
+      "physics_dt": 0.004166666666666667,
+      "policy_dt": 0.016666666666666666,
+      "source_scene": "env/generated/Lunar_training_65e4d12aa89d.usda",
+      "terrain_bounds_m": [
+        -7.904191493988037,
+        7.904191493988037
+      ],
+      "effort_limits": [
+        23.700000762939453,
+        23.700000762939453,
+        45.43000030517578,
+        23.700000762939453,
+        23.700000762939453,
+        45.43000030517578,
+        23.700000762939453,
+        23.700000762939453,
+        45.43000030517578,
+        23.700000762939453,
+        23.700000762939453,
+        45.43000030517578,
+        32.0,
+        32.0,
+        32.0,
+        8.0,
+        8.0,
+        8.0
+      ],
+      "ore_mass_kg": 5.0,
+      "material_coefficients_unique": [
+        [
+          0.6000000238418579,
+          0.5,
+          0.0
+        ],
+        [
+          0.800000011920929,
+          0.6499999761581421,
+          0.0
+        ]
+      ],
+      "partial_timeout_reset": true,
+      "tcp_reward_sensitivity": true,
+      "last_metrics": {
+        "velocity_rmse_m_s": 0.034046024084091187,
+        "yaw_rmse_rad_s": 0.03850578889250755,
+        "tcp_rmse_m": 0.08149545639753342,
+        "base_height_m": 0.3221297264099121,
+        "mean_foot_contacts": 4.0,
+        "curriculum_scale": 0.2
+      },
+      "initial_base_positions": [
+        [
+          9.0,
+          0.0,
+          0.35733601450920105
+        ],
+        [
+          -9.0,
+          0.0,
+          0.35733601450920105
+        ]
+      ]
+    }
+  },
+  "training": {
+    "training": {
+      "iterations_completed": 22,
+      "iteration": 22,
+      "parameter_l1_change": 992.6631817994639,
+      "finite": true,
+      "task": "Go2_Piper_Lunar_Tracking"
+    },
+    "resume": {
+      "iterations_completed": 2,
+      "iteration": 24,
+      "parameter_l1_change": 80.18537705391645,
+      "finite": true,
+      "task": "Go2_Piper_Lunar_Tracking"
+    },
+    "batch64": {
+      "iterations_completed": 2,
+      "iteration": 2,
+      "parameter_l1_change": 488.1009479756467,
+      "finite": true,
+      "task": "Go2_Piper_Lunar_Tracking"
+    }
+  },
+  "play": {
+    "checkpoint_iteration": 24,
+    "steps": 60,
+    "finite": true,
+    "policy_encoding": "history",
+    "metrics_mean": {
+      "resets": 0.0,
+      "velocity_rmse_m_s": 0.05583174145625283,
+      "yaw_rmse_rad_s": 0.07400193875849558,
+      "tcp_rmse_m": 0.03602967257611454,
+      "base_height_m": 0.31576122095187503,
+      "mean_foot_contacts": 1.9333333333333333,
+      "curriculum_scale": 0.2096
+    }
+  },
+  "policy_checkpoint_sha256": "de2d768a1f714e7a4495181f0b3d47e5140dc30697fd58df096f07dbd5806475",
+  "source_robot_usd_sha256": "a8bc597a5c69a6d136d9cc0c79f35e90323ca5432ec6cc3a77df103b7b5ff8d8"
+}

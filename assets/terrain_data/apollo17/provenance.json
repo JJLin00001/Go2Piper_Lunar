@@ -1,0 +1,109 @@
+{
+  "dataset": "Apollo 17 LROC NAC DTM / orthomosaic (Haase et al.)",
+  "catalog_url": "https://astrogeology.usgs.gov/search/map/moon_apollo_17_lroc_nac_landing_site_orthomosaic_50cm",
+  "citation": "Haase et al. (2019), Coordinates and Maps of the Apollo 17 Landing Site, Earth and Space Science, doi:10.1029/2018EA000408",
+  "doi": "https://doi.org/10.1029/2018EA000408",
+  "producer": "Technical University Berlin / DLR / LROC Team; distributed by USGS",
+  "retrieved_utc": "2026-10-22T12:50:40.313786+00:00",
+  "requested_center_lon_lat_deg": [
+    30.7717,
+    20.1908
+  ],
+  "reference_radius_m": 1737400.0,
+  "height_datum": "Metres above lunar reference sphere of radius 1737400 m",
+  "sources": {
+    "dem": {
+      "url": "https://planetarymaps.usgs.gov/mosaic/Apollo17/APOLLO17_DTM_150CM.TIFF",
+      "etag": "\"c53bd27eb39544e6d5b93f4c4dd9ae62-35\"",
+      "last_modified": "Tue, 08 Nov 2022 18:22:52 GMT",
+      "remote_size_bytes": 288351599,
+      "source_shape_rows_cols": [
+        7800,
+        9240
+      ],
+      "pixel_size_m": [
+        1.5,
+        1.5
+      ],
+      "window_col_row_width_height": [
+        5478,
+        2472,
+        2049,
+        2049
+      ],
+      "crop_transform": [
+        1.5,
+        0.0,
+        503.25,
+        0.0,
+        -1.5,
+        613790.25
+      ],
+      "nodata": -1.0000000331813535e+32,
+      "crop_sha256": "d837a3985458f7d86f2ee18732c667f8067c38c4ff39b8d54ba73ea8db332ade"
+    },
+    "ortho": {
+      "url": "https://asc-astropedia.s3.us-west-2.amazonaws.com/Moon/Apollo/Traverse/Apollo17/ancillary/APOLLO17_ORTHOMOSAIC_50CM.TIFF",
+      "etag": "\"90a48a03f399d998469cc522ceeae3c1-79\"",
+      "last_modified": "Sun, 18 Jun 2023 02:29:31 GMT",
+      "remote_size_bytes": 661533852,
+      "source_shape_rows_cols": [
+        23437,
+        28218
+      ],
+      "pixel_size_m": [
+        0.5,
+        0.5
+      ],
+      "window_col_row_width_height": [
+        16922,
+        7437,
+        6145,
+        6145
+      ],
+      "crop_transform": [
+        0.5,
+        0.0,
+        503.75,
+        0.0,
+        -0.5,
+        613789.75
+      ],
+      "nodata": 0.0,
+      "crop_sha256": "949b315f1b4b9f4146310d657e8cc261ad42661c339402764feb72e0aa9c664b"
+    }
+  },
+  "files": {
+    "dem_crop.tif": "d837a3985458f7d86f2ee18732c667f8067c38c4ff39b8d54ba73ea8db332ade",
+    "ortho_crop.tif": "949b315f1b4b9f4146310d657e8cc261ad42661c339402764feb72e0aa9c664b",
+    "dem.npz": "6dd8c2386bef1a16fbfa5b42419e19919ac0056b6440da2e553bf3f31ef41ace",
+    "ortho_reference.png": "7ba4e2c46e0af37d80ea467c9f137b17b95344fbad55a1ee918395d9b6b6efdb"
+  },
+  "processing": [
+    "Native-grid rectangular crops; no fabricated samples, no inpainting.",
+    "DEM NPZ retains native float32 elevations and north-up georeferencing.",
+    "Origin snaps to a DEM pixel center. Local X is projected east, Y is projected north.",
+    "Orthomosaic PNG is reduced for visual reference; orbital shadows are not calibrated albedo."
+  ],
+  "center_projected_m": [
+    2040.0,
+    612253.5
+  ],
+  "center_lon_lat_deg": [
+    30.771679708385776,
+    20.190811734324953
+  ],
+  "crs_wkt": "PROJCS[\"TRANSVERSE_MERCATOR MOON\",GEOGCS[\"GCS_Moon_2000\",DATUM[\"D_Moon_2000\",SPHEROID[\"Moon_2000_IAU_IAG\",1737400,0]],PRIMEM[\"Reference_Meridian\",0],UNIT[\"degree\",0.0174532925199433,AUTHORITY[\"EPSG\",\"9122\"]]],PROJECTION[\"Transverse_Mercator\"],PARAMETER[\"latitude_of_origin\",0],PARAMETER[\"central_meridian\",30.7],PARAMETER[\"scale_factor\",1],PARAMETER[\"false_easting\",0],PARAMETER[\"false_northing\",0],UNIT[\"metre\",1,AUTHORITY[\"EPSG\",\"9001\"]],AXIS[\"Easting\",EAST],AXIS[\"Northing\",NORTH]]",
+  "center_elevation_m": -2626.199951171875,
+  "dem_range_m": [
+    -2727.400146484375,
+    -2585.5
+  ],
+  "ortho_reference_bounds_local_m": [
+    -1536.25,
+    -1536.25,
+    1536.25,
+    1536.25
+  ],
+  "coverage_half_extent_m": 1536.0
+}

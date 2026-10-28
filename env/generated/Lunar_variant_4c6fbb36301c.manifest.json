@@ -1,0 +1,169 @@
+{
+  "scene": "env/generated/Lunar_variant_4c6fbb36301c.usda",
+  "environment": "Lunar",
+  "experiment_parameters": {
+    "slope_deg": 5.0,
+    "slope_convention": "additive height tilt along projected/world +X; 0 preserves native DEM relief",
+    "foot_ground_static_friction": 0.6,
+    "foot_ground_dynamic_friction": 0.5,
+    "ore_mass_kg": 5.0
+  },
+  "config_sha256": "4c6fbb36301c258c7373afdf645a409811f680bcd6a7d9389ee52852a56f5d30",
+  "build_sha256": "65e4d12aa89dd3c00078bfa64ae943ee80cabf54f2823e778878a0367270fc32",
+  "robot_usd_sha256": "a8bc597a5c69a6d136d9cc0c79f35e90323ca5432ec6cc3a77df103b7b5ff8d8",
+  "gravity_m_s2": 1.62,
+  "physics_dt_s": 0.004166666666666667,
+  "terrain": {
+    "vertices": 388129,
+    "triangles": 773768,
+    "craters": 0,
+    "static_rocks": 100,
+    "collidable_pebbles": 1800,
+    "initialization_area_radius_m": 1.5,
+    "central_area_flattened": false,
+    "near_field_size_m": 40.0,
+    "total_extent_m": 3000.0,
+    "height_range_m": [
+      -149.4385223388672,
+      114.93294525146484
+    ],
+    "ground_material": {
+      "static_friction": 1.0,
+      "dynamic_friction": 1.0,
+      "combine": "multiply"
+    },
+    "type": "measured_dem_with_declared_synthetic_detail",
+    "dataset": "Apollo 17 LROC NAC DTM / orthomosaic (Haase et al.)",
+    "catalog_url": "https://astrogeology.usgs.gov/search/map/moon_apollo_17_lroc_nac_landing_site_orthomosaic_50cm",
+    "citation": "Haase et al. (2019), Coordinates and Maps of the Apollo 17 Landing Site, Earth and Space Science, doi:10.1029/2018EA000408",
+    "source_pixel_size_m": [
+      1.5,
+      1.5
+    ],
+    "center_lon_lat_deg": [
+      30.771679708385776,
+      20.190811734324953
+    ],
+    "center_projected_m": [
+      2040.0,
+      612253.5
+    ],
+    "height_origin_above_reference_sphere_m": -2626.199951171875,
+    "local_axes": "X projected easting, Y projected northing, Z elevation; units metres",
+    "native_plane_gradient_xy": [
+      -0.002544504273446431,
+      0.06225174108591046
+    ],
+    "configured_plane_gradient_xy": [
+      0.08510689308170835,
+      0.06174741071056011
+    ],
+    "configured_local_plane_slope_deg": 6.002432718237945,
+    "source_files_sha256": {
+      "dem_crop.tif": "d837a3985458f7d86f2ee18732c667f8067c38c4ff39b8d54ba73ea8db332ade",
+      "ortho_crop.tif": "949b315f1b4b9f4146310d657e8cc261ad42661c339402764feb72e0aa9c664b",
+      "dem.npz": "6dd8c2386bef1a16fbfa5b42419e19919ac0056b6440da2e553bf3f31ef41ace",
+      "ortho_reference.png": "7ba4e2c46e0af37d80ea467c9f137b17b95344fbad55a1ee918395d9b6b6efdb"
+    },
+    "synthetic_height_amplitude_parameter_m": 0.002,
+    "synthetic_components": [
+      "millimetre height detail",
+      "regolith material detail",
+      "scattered rocks and pebbles",
+      "grasp target"
+    ],
+    "image_usage": "Smoothed, contrast-limited orbital brightness modulates tint; not calibrated lunar albedo",
+    "height_processing": "Bilinear DEM sampling, subtract center elevation, add declared synthetic detail and X tilt; no flattening"
+  },
+  "robot": {
+    "prim_path": "/World/Robot",
+    "articulation_root": "/World/Robot/base",
+    "rigid_bodies": 25,
+    "moving_joints": 20,
+    "initial_base_position_m": [
+      0.0,
+      0.0,
+      0.3573360105291319
+    ],
+    "initial_joint_positions": {
+      "FL_hip_joint": 0.1,
+      "FL_thigh_joint": 0.8,
+      "FL_calf_joint": -1.5,
+      "FR_hip_joint": -0.1,
+      "FR_thigh_joint": 0.8,
+      "FR_calf_joint": -1.5,
+      "RL_hip_joint": 0.1,
+      "RL_thigh_joint": 0.8,
+      "RL_calf_joint": -1.5,
+      "RR_hip_joint": -0.1,
+      "RR_thigh_joint": 0.8,
+      "RR_calf_joint": -1.5,
+      "joint1": 0.0,
+      "joint2": 0.8,
+      "joint3": -1.25,
+      "joint4": 0.0,
+      "joint5": 0.45,
+      "joint6": 0.0,
+      "joint7": 0.03,
+      "joint8": -0.03
+    },
+    "mass_kg": 18.84541329368949,
+    "self_collisions": true,
+    "drive_effort_limits": {
+      "FL_hip_joint": 23.7,
+      "FL_thigh_joint": 23.7,
+      "FL_calf_joint": 45.43,
+      "FR_hip_joint": 23.7,
+      "FR_thigh_joint": 23.7,
+      "FR_calf_joint": 45.43,
+      "RL_hip_joint": 23.7,
+      "RL_thigh_joint": 23.7,
+      "RL_calf_joint": 45.43,
+      "RR_hip_joint": 23.7,
+      "RR_thigh_joint": 23.7,
+      "RR_calf_joint": 45.43,
+      "joint1": 32.0,
+      "joint2": 32.0,
+      "joint3": 32.0,
+      "joint4": 8.0,
+      "joint5": 8.0,
+      "joint6": 8.0,
+      "joint7": 10.0,
+      "joint8": 10.0
+    },
+    "camera_paths": {
+      "head": "/World/Robot/base/HeadCameraOpticalFrame/Camera",
+      "wrist": "/World/Robot/link6/WristCameraOpticalFrame/Camera"
+    }
+  },
+  "ore": {
+    "mass_kg": 5.0,
+    "volume_m3": 0.0008052286868971515,
+    "effective_density_kg_m3": 6209.416134026319,
+    "dimensions_m": [
+      0.18,
+      0.065,
+      0.15
+    ],
+    "center_of_mass_m": [
+      0.001964299908757727,
+      0.002225197080853883,
+      -0.0007608341390399543
+    ],
+    "principal_inertia_kg_m2": [
+      0.005755590632177853,
+      0.009121976473098375,
+      0.012911749969115083
+    ],
+    "prim_path": "/World/Ores/Target"
+  },
+  "dependency_layer_count": 4,
+  "unresolved_assets": [],
+  "limitations": [
+    "DEM is measured at 1.5 m grid spacing; interpolated/synthetic small-scale detail is not a measurement.",
+    "Rigid Coulomb contact, not deformable or granular regolith.",
+    "PD standing preview only; no WBC or grasp success claim.",
+    "Ideal pinhole RGB/depth cameras, not a calibrated D435 hardware model.",
+    "Effort limits inherited from supplied model; hardware qualification is separate."
+  ]
+}

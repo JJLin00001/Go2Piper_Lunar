@@ -1,0 +1,1512 @@
+<?xml version='1.0' encoding='utf-8'?>
+<robot name="go2_piper_d435">
+  <!-- Generated v4 robot: 20 moving joints, floating base, corrected gripper axes. -->
+  <link name="base">
+    <inertial>
+      <origin xyz="0.021112 0 -0.005366" rpy="-2.964932233208188 -1.552525858501301 -0.1783493718198756" />
+      <mass value="6.921" />
+      <inertia ixx="0.107027" iyy="0.0980771" izz="0.0244531" ixy="0" ixz="0" iyz="0" />
+    </inertial>
+    <visual name="geom_0">
+      <origin xyz="0.2925517034184035 -0.0002590739362348498 -0.06178330863121884" rpy="-1.577868417508115 -1.30902207518529 -3.134271144600119" />
+      <geometry>
+        <mesh filename="package://go2_piper_d435_assets/meshes/compiled/mesh_00.stl" />
+      </geometry>
+      <material name="base_geom_0_material">
+        <color rgba="0 0 0 1" />
+      </material>
+    </visual>
+    <visual name="geom_1">
+      <origin xyz="0.2918599350957063 -0.0002121566032262463 -0.0592020603088427" rpy="-1.573120207656151 -1.308991952707685 -3.139186792184547" />
+      <geometry>
+        <mesh filename="package://go2_piper_d435_assets/meshes/compiled/mesh_01.stl" />
+      </geometry>
+      <material name="base_geom_1_material">
+        <color rgba="0 0 0 1" />
+      </material>
+    </visual>
+    <visual name="geom_2">
+      <origin xyz="0.3259808453169655 -0.000231679993972757 0.03263958321275429" rpy="0 -0.04749423409380671 0" />
+      <geometry>
+        <mesh filename="package://go2_piper_d435_assets/meshes/compiled/mesh_02.stl" />
+      </geometry>
+      <material name="base_geom_2_material">
+        <color rgba="0 0 0 1" />
+      </material>
+    </visual>
+    <visual name="geom_3">
+      <origin xyz="0.05817074846794355 0.007873205491129959 0.03203657815855001" rpy="0.519313110959452 -1.554545407976618 2.636681648064474" />
+      <geometry>
+        <mesh filename="package://go2_piper_d435_assets/meshes/compiled/mesh_03.stl" />
+      </geometry>
+      <material name="base_geom_3_material">
+        <color rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <visual name="geom_4">
+      <origin xyz="0.07740924582307729 -0.0005989088806415643 -0.0007924309096680257" rpy="-0.2677342872930191 -1.521263774502915 -2.877117721000916" />
+      <geometry>
+        <mesh filename="package://go2_piper_d435_assets/meshes/compiled/mesh_04.stl" />
+      </geometry>
+      <material name="base_geom_4_material">
+        <color rgba="0.6717050075531006 0.6924260258674622 0.7742699980735779 1" />
+      </material>
+    </visual>
+    <visual name="geom_5">
+      <origin xyz="-0.02 0 0.06" rpy="0 0 0" />
+      <geometry>
+        <box size="0.14 0.08 0.02" />
+      </geometry>
+      <material name="base_geom_5_material">
+        <color rgba="0.6717050075531006 0.6924260258674622 0.7742699980735779 1" />
+      </material>
+    </visual>
+    <collision name="geom_6">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <box size="0.26 0.0935 0.12" />
+      </geometry>
+    </collision>
+    <collision name="geom_7">
+      <origin xyz="-0.02 0 0.06" rpy="0 0 0" />
+      <geometry>
+        <box size="0.14 0.08 0.02" />
+      </geometry>
+    </collision>
+    <collision name="geom_8">
+      <origin xyz="0.18 0 0.055" rpy="0 0 0" />
+      <geometry>
+        <box size="0.09 0.04 0.04" />
+      </geometry>
+    </collision>
+    <collision name="geom_9">
+      <origin xyz="0 0.05 0.01" rpy="-0 1.570796326794897 0" />
+      <geometry>
+        <cylinder radius="0.045" length="0.16" />
+      </geometry>
+    </collision>
+    <collision name="geom_9_end_-1">
+      <origin xyz="-0.08000000000000002 0.05 0.01" rpy="-0 1.570796326794897 0" />
+      <geometry>
+        <sphere radius="0.045" />
+      </geometry>
+    </collision>
+    <collision name="geom_9_end_+1">
+      <origin xyz="0.08000000000000002 0.05 0.01" rpy="-0 1.570796326794897 0" />
+      <geometry>
+        <sphere radius="0.045" />
+      </geometry>
+    </collision>
+    <collision name="geom_10">
+      <origin xyz="0 -0.05 0.01" rpy="-0 1.570796326794897 0" />
+      <geometry>
+        <cylinder radius="0.045" length="0.16" />
+      </geometry>
+    </collision>
+    <collision name="geom_10_end_-1">
+      <origin xyz="-0.08000000000000002 -0.05 0.01" rpy="-0 1.570796326794897 0" />
+      <geometry>
+        <sphere radius="0.045" />
+      </geometry>
+    </collision>
+    <collision name="geom_10_end_+1">
+      <origin xyz="0.08000000000000002 -0.05 0.01" rpy="-0 1.570796326794897 0" />
+      <geometry>
+        <sphere radius="0.045" />
+      </geometry>
+    </collision>
+    <collision name="geom_11">
+      <origin xyz="0.285 0 0.01" rpy="0 0 0" />
+      <geometry>
+        <cylinder radius="0.05" length="0.036" />
+      </geometry>
+    </collision>
+    <collision name="geom_11_end_-1">
+      <origin xyz="0.285 0 -0.007999999999999998" rpy="0 0 0" />
+      <geometry>
+        <sphere radius="0.05" />
+      </geometry>
+    </collision>
+    <collision name="geom_11_end_+1">
+      <origin xyz="0.285 0 0.028" rpy="0 0 0" />
+      <geometry>
+        <sphere radius="0.05" />
+      </geometry>
+    </collision>
+    <collision name="geom_12">
+      <origin xyz="0.293 0 -0.06" rpy="0 0 0" />
+      <geometry>
+        <sphere radius="0.047" />
+      </geometry>
+    </collision>
+    <visual name="geom_13">
+      <origin xyz="-0.009278127840227168 -2.735914773830003e-06 0.1098312584860358" rpy="1.357718715513232 0.0003348320257043902 1.571092094192665" />
+      <geometry>
+        <mesh filename="package://go2_piper_d435_assets/meshes/compiled/mesh_16.stl" />
+      </geometry>
+      <material name="base_geom_13_material">
+        <color rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <visual name="head_d435_visual_00">
+      <origin xyz="0.2967296533472538 -0.03943653688281253 0.115116338249229" rpy="2.094395102393195 2.220446049250313e-16 1.570796326794896" />
+      <geometry>
+        <mesh filename="package://go2_piper_d435_assets/meshes/compiled/mesh_26.stl" />
+      </geometry>
+      <material name="base_head_d435_visual_00_material">
+        <color rgba="0.749019980430603 0.749019980430603 0.749019980430603 1" />
+      </material>
+    </visual>
+    <visual name="head_d435_visual_01">
+      <origin xyz="0.2841891550608947 0.007250017994437216 0.1283352735018364" rpy="2.094395102393195 2.220446049250313e-16 1.570796326794896" />
+      <geometry>
+        <mesh filename="package://go2_piper_d435_assets/meshes/compiled/mesh_27.stl" />
+      </geometry>
+      <material name="base_head_d435_visual_01_material">
+        <color rgba="0.749019980430603 0.749019980430603 0.749019980430603 1" />
+      </material>
+    </visual>
+    <visual name="head_d435_visual_02">
+      <origin xyz="0.2841891550402468 -0.007249982209259711 0.1283352735353501" rpy="2.094395102393195 2.220446049250313e-16 1.570796326794896" />
+      <geometry>
+        <mesh filename="package://go2_piper_d435_assets/meshes/compiled/mesh_28.stl" />
+      </geometry>
+      <material name="base_head_d435_visual_02_material">
+        <color rgba="0.749019980430603 0.749019980430603 0.749019980430603 1" />
+      </material>
+    </visual>
+    <visual name="head_d435_visual_03">
+      <origin xyz="0.2862639066268071 0.002678678379233299 0.1095413458639619" rpy="2.094395102393195 2.220446049250313e-16 1.570796326794896" />
+      <geometry>
+        <mesh filename="package://go2_piper_d435_assets/meshes/compiled/mesh_29.stl" />
+      </geometry>
+      <material name="base_head_d435_visual_03_material">
+        <color rgba="0.749019980430603 0.749019980430603 0.749019980430603 1" />
+      </material>
+    </visual>
+    <visual name="head_d435_visual_04">
+      <origin xyz="0.2866979436422251 -0.03275000002401612 0.1134996410259448" rpy="2.094395102393195 2.220446049250313e-16 1.570796326794896" />
+      <geometry>
+        <mesh filename="package://go2_piper_d435_assets/meshes/compiled/mesh_30.stl" />
+      </geometry>
+      <material name="base_head_d435_visual_04_material">
+        <color rgba="0.749019980430603 0.749019980430603 0.749019980430603 1" />
+      </material>
+    </visual>
+    <visual name="head_d435_visual_05">
+      <origin xyz="0.2902739221074629 -0.03943678601075794 0.1039344250401879" rpy="2.094395102393195 2.220446049250313e-16 1.570796326794896" />
+      <geometry>
+        <mesh filename="package://go2_piper_d435_assets/meshes/compiled/mesh_31.stl" />
+      </geometry>
+      <material name="base_head_d435_visual_05_material">
+        <color rgba="0.749019980430603 0.749019980430603 0.749019980430603 1" />
+      </material>
+    </visual>
+    <visual name="head_d435_visual_06">
+      <origin xyz="0.2908926546231996 0.04008145647681995 0.1045535539991053" rpy="2.094395102393195 2.220446049250313e-16 1.570796326794896" />
+      <geometry>
+        <mesh filename="package://go2_piper_d435_assets/meshes/compiled/mesh_32.stl" />
+      </geometry>
+      <material name="base_head_d435_visual_06_material">
+        <color rgba="0.749019980430603 0.749019980430603 0.749019980430603 1" />
+      </material>
+    </visual>
+    <visual name="head_d435_visual_07">
+      <origin xyz="0.2966295575983315 -0.03150001433225677 0.1189396891332818" rpy="2.094395102393195 2.220446049250313e-16 1.570796326794896" />
+      <geometry>
+        <mesh filename="package://go2_piper_d435_assets/meshes/compiled/mesh_33.stl" />
+      </geometry>
+      <material name="base_head_d435_visual_07_material">
+        <color rgba="0.749019980430603 0.749019980430603 0.749019980430603 1" />
+      </material>
+    </visual>
+    <visual name="head_d435_visual_08">
+      <origin xyz="0.2966295884070719 0.02549996689857947 0.1189396668677395" rpy="2.094395102393195 2.220446049250313e-16 1.570796326794896" />
+      <geometry>
+        <mesh filename="package://go2_piper_d435_assets/meshes/compiled/mesh_34.stl" />
+      </geometry>
+      <material name="base_head_d435_visual_08_material">
+        <color rgba="0.749019980430603 0.749019980430603 0.749019980430603 1" />
+      </material>
+    </visual>
+    <visual name="head_d435_visual_09">
+      <origin xyz="0.2938487889473038 -0.03951506132918976 0.1093242958840919" rpy="2.094395102393195 2.220446049250313e-16 1.570796326794896" />
+      <geometry>
+        <mesh filename="package://go2_piper_d435_assets/meshes/compiled/mesh_35.stl" />
+      </geometry>
+      <material name="base_head_d435_visual_09_material">
+        <color rgba="0.749019980430603 0.749019980430603 0.749019980430603 1" />
+      </material>
+    </visual>
+    <visual name="head_d435_visual_10">
+      <origin xyz="0.2916642278146136 -0.01287767517215205 0.1224317947422705" rpy="2.094395102393195 2.220446049250313e-16 1.570796326794896" />
+      <geometry>
+        <mesh filename="package://go2_piper_d435_assets/meshes/compiled/mesh_36.stl" />
+      </geometry>
+      <material name="base_head_d435_visual_10_material">
+        <color rgba="0.749019980430603 0.749019980430603 0.749019980430603 1" />
+      </material>
+    </visual>
+    <visual name="head_d435_visual_11">
+      <origin xyz="0.2866979436990651 0.01724999941948861 0.1134996412615758" rpy="2.094395102393195 2.220446049250313e-16 1.570796326794896" />
+      <geometry>
+        <mesh filename="package://go2_piper_d435_assets/meshes/compiled/mesh_37.stl" />
+      </geometry>
+      <material name="base_head_d435_visual_11_material">
+        <color rgba="0.749019980430603 0.749019980430603 0.749019980430603 1" />
+      </material>
+    </visual>
+    <visual name="head_d435_visual_12">
+      <origin xyz="0.2858825387209096 0.0006306065851008768 0.1137947098805762" rpy="-1.564940346738441 0.5120281119177665 0.01421731331291376" />
+      <geometry>
+        <mesh filename="package://go2_piper_d435_assets/meshes/compiled/mesh_38.stl" />
+      </geometry>
+      <material name="base_head_d435_visual_12_material">
+        <color rgba="0.749019980430603 0.749019980430603 0.749019980430603 1" />
+      </material>
+    </visual>
+    <visual name="head_d435_visual_13">
+      <origin xyz="0.2868969787748231 -0.03303348289948348 0.1021266371658167" rpy="2.094395102393195 2.220446049250313e-16 1.570796326794896" />
+      <geometry>
+        <mesh filename="package://go2_piper_d435_assets/meshes/compiled/mesh_39.stl" />
+      </geometry>
+      <material name="base_head_d435_visual_13_material">
+        <color rgba="0.749019980430603 0.749019980430603 0.749019980430603 1" />
+      </material>
+    </visual>
+    <visual name="head_d435_visual_14">
+      <origin xyz="0.2919093049726111 0.03249430874822567 0.1104501441629366" rpy="2.094395102393195 2.220446049250313e-16 1.570796326794896" />
+      <geometry>
+        <mesh filename="package://go2_piper_d435_assets/meshes/compiled/mesh_40.stl" />
+      </geometry>
+      <material name="base_head_d435_visual_14_material">
+        <color rgba="0.749019980430603 0.749019980430603 0.749019980430603 1" />
+      </material>
+    </visual>
+    <visual name="head_d435_visual_15">
+      <origin xyz="0.2932412022180106 0.03249995069208364 0.1096756610397093" rpy="2.094395102393195 2.220446049250313e-16 1.570796326794896" />
+      <geometry>
+        <mesh filename="package://go2_piper_d435_assets/meshes/compiled/mesh_41.stl" />
+      </geometry>
+      <material name="base_head_d435_visual_15_material">
+        <color rgba="0.749019980430603 0.749019980430603 0.749019980430603 1" />
+      </material>
+    </visual>
+    <visual name="head_d435_visual_16">
+      <origin xyz="0.2931258766010122 0.03249997360359114 0.1097429373613773" rpy="2.094395102393195 2.220446049250313e-16 1.570796326794896" />
+      <geometry>
+        <mesh filename="package://go2_piper_d435_assets/meshes/compiled/mesh_42.stl" />
+      </geometry>
+      <material name="base_head_d435_visual_16_material">
+        <color rgba="0.749019980430603 0.749019980430603 0.749019980430603 1" />
+      </material>
+    </visual>
+    <visual name="head_d435_visual_17">
+      <origin xyz="0.2849527796066776 -1.164630300082223e-17 0.1014225514123676" rpy="-1.570796326794897 -1.047197551196598 4.440892098500626e-16" />
+      <geometry>
+        <mesh filename="package://go2_piper_d435_assets/meshes/compiled/mesh_43.stl" />
+      </geometry>
+      <material name="base_head_d435_visual_17_material">
+        <color rgba="0.749019980430603 0.749019980430603 0.749019980430603 1" />
+      </material>
+    </visual>
+    <collision name="head_d435_collision">
+      <origin xyz="0.2926795 0 0.11" rpy="0 0.5235987755982987 0" />
+      <geometry>
+        <box size="0.02505 0.09 0.025" />
+      </geometry>
+    </collision>
+  </link>
+  <link name="FL_hip">
+    <inertial>
+      <origin xyz="-0.0054 0.00194 -0.000105" rpy="1.580270960083257 0.00495873700625804 1.578259940048289" />
+      <mass value="0.678" />
+      <inertia ixx="0.00088403" iyy="0.000596003" izz="0.000479967" ixy="0" ixz="0" iyz="0" />
+    </inertial>
+    <visual name="geom_33">
+      <origin xyz="-0.01843071034446295 -0.00403284811962273 -9.402319019014903e-05" rpy="1.574010537063558 0.0004861943230407562 1.518289667027847" />
+      <geometry>
+        <mesh filename="package://go2_piper_d435_assets/meshes/compiled/mesh_05.stl" />
+      </geometry>
+      <material name="FL_hip_geom_33_material">
+        <color rgba="0.8999999761581421 0.949999988079071 0.949999988079071 1" />
+      </material>
+    </visual>
+    <visual name="geom_34">
+      <origin xyz="-0.01634541564355193 0.009974776888469089 -0.0001524228262710644" rpy="1.572210908807386 -7.145911781369918e-05 1.940607086788732" />
+      <geometry>
+        <mesh filename="package://go2_piper_d435_assets/meshes/compiled/mesh_06.stl" />
+      </geometry>
+      <material name="FL_hip_geom_34_material">
+        <color rgba="0.6717050075531006 0.6924260258674622 0.7742699980735779 1" />
+      </material>
+    </visual>
+    <collision name="geom_35">
+      <origin xyz="0 0.05 0" rpy="1.570796326794897 0 0" />
+      <geometry>
+        <cylinder radius="0.046" length="0.04" />
+      </geometry>
+    </collision>
+    <collision name="geom_35_end_-1">
+      <origin xyz="0 0.07000000000000001 0" rpy="1.570796326794897 0 0" />
+      <geometry>
+        <sphere radius="0.046" />
+      </geometry>
+    </collision>
+    <collision name="geom_35_end_+1">
+      <origin xyz="0 0.03 0" rpy="1.570796326794897 0 0" />
+      <geometry>
+        <sphere radius="0.046" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="FL_hip_joint" type="revolute">
+    <parent link="base" />
+    <child link="FL_hip" />
+    <origin xyz="0.1934 0.0465 0" rpy="0 0 0" />
+    <axis xyz="1 0 0" />
+    <limit lower="-1.0472" upper="1.0472" effort="23.7" velocity="30" />
+    <dynamics damping="0.1531" friction="0.2884" />
+  </joint>
+  <link name="FL_thigh">
+    <inertial>
+      <origin xyz="-0.00374 -0.0223 -0.0327" rpy="0.1197437565689583 -0.127143403511029 1.166036577821434" />
+      <mass value="1.152" />
+      <inertia ixx="0.00594973" iyy="0.00584149" izz="0.000878787" ixy="0" ixz="0" iyz="0" />
+    </inertial>
+    <visual name="geom_36">
+      <origin xyz="-0.004160916976041125 -0.01665529013406936 -0.04174767472959812" rpy="0.07764099985956241 -0.1280298990509605 1.453586116405751" />
+      <geometry>
+        <mesh filename="package://go2_piper_d435_assets/meshes/compiled/mesh_07.stl" />
+      </geometry>
+      <material name="FL_thigh_geom_36_material">
+        <color rgba="0.8999999761581421 0.949999988079071 0.949999988079071 1" />
+      </material>
+    </visual>
+    <visual name="geom_37">
+      <origin xyz="-0.005054061099072535 -0.02186542693560587 0.01013743313085582" rpy="-2.113089627253218 -0.7604710691855696 -2.106794122293786" />
+      <geometry>
+        <mesh filename="package://go2_piper_d435_assets/meshes/compiled/mesh_08.stl" />
+      </geometry>
+      <material name="FL_thigh_geom_37_material">
+        <color rgba="0.6717050075531006 0.6924260258674622 0.7742699980735779 1" />
+      </material>
+    </visual>
+    <collision name="geom_38">
+      <origin xyz="0 0 -0.1065" rpy="-0 1.570796326794897 0" />
+      <geometry>
+        <box size="0.213 0.0245 0.034" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="FL_thigh_joint" type="revolute">
+    <parent link="FL_hip" />
+    <child link="FL_thigh" />
+    <origin xyz="0 0.0955 0" rpy="0 0 0" />
+    <axis xyz="0 1 0" />
+    <limit lower="-1.5708" upper="3.4907" effort="23.7" velocity="30" />
+    <dynamics damping="0.2406" friction="0.1739" />
+  </joint>
+  <link name="FL_calf">
+    <inertial>
+      <origin xyz="0.00629595 -0.000622121 -0.141417" rpy="-0.004142679594921095 -0.008565579785848376 1.560682489414849" />
+      <mass value="0.241352" />
+      <inertia ixx="0.0014901" iyy="0.00146356" izz="5.31397e-05" ixy="0" ixz="0" iyz="0" />
+    </inertial>
+    <visual name="geom_39">
+      <origin xyz="0.007579670815585868 -8.678208072411072e-05 -0.126462633556766" rpy="-0.04052235142642557 -0.001996311907713544 1.588013634912414" />
+      <geometry>
+        <mesh filename="package://go2_piper_d435_assets/meshes/compiled/mesh_11.stl" />
+      </geometry>
+      <material name="FL_calf_geom_39_material">
+        <color rgba="0.6717050075531006 0.6924260258674622 0.7742699980735779 1" />
+      </material>
+    </visual>
+    <visual name="geom_40">
+      <origin xyz="-0.00553202586848318 0.0002013131343986809 -0.2184505808858997" rpy="3.141592653589793 -1.009523992934972 0" />
+      <geometry>
+        <mesh filename="package://go2_piper_d435_assets/meshes/compiled/mesh_12.stl" />
+      </geometry>
+      <material name="FL_calf_geom_40_material">
+        <color rgba="0 0 0 1" />
+      </material>
+    </visual>
+    <collision name="geom_41">
+      <origin xyz="0.008 0 -0.06" rpy="0 -0.2099995725478581 0" />
+      <geometry>
+        <box size="0.024 0.034 0.12" />
+      </geometry>
+    </collision>
+    <collision name="geom_42">
+      <origin xyz="0.02 0 -0.148" rpy="0 0.04999998398433458 0" />
+      <geometry>
+        <box size="0.022 0.034 0.06" />
+      </geometry>
+    </collision>
+    <collision name="geom_43">
+      <origin xyz="0.008 0 -0.19" rpy="0 0.4900552379570642 0" />
+      <geometry>
+        <box size="0.022 0.034 0.034" />
+      </geometry>
+    </collision>
+    <visual name="geom_44">
+      <origin xyz="-0.005646883009570938 2.787542947284009e-05 -0.2184697626651252" rpy="3.141592653589793 -1.009081437773671 0" />
+      <geometry>
+        <mesh filename="package://go2_piper_d435_assets/meshes/compiled/mesh_15.stl" />
+      </geometry>
+      <material name="FL_calf_geom_44_material">
+        <color rgba="0 0 0 1" />
+      </material>
+    </visual>
+  </link>
+  <joint name="FL_calf_joint" type="revolute">
+    <parent link="FL_thigh" />
+    <child link="FL_calf" />
+    <origin xyz="0 0 -0.213" rpy="0 0 0" />
+    <axis xyz="0 1 0" />
+    <limit lower="-2.7227" upper="-0.8377599999999999" effort="45.43" velocity="30" />
+    <dynamics damping="0.145" friction="1.0151" />
+  </joint>
+  <link name="FL_foot">
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <mass value="0.04460223810056547" />
+      <inertia ixx="8.634993296269476e-06" iyy="8.634993296269476e-06" izz="8.634993296269476e-06" ixy="0" ixz="0" iyz="0" />
+    </inertial>
+    <collision name="FL">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <sphere radius="0.022" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="FL_foot_fixed" type="fixed">
+    <parent link="FL_calf" />
+    <child link="FL_foot" />
+    <origin xyz="-0.002 0 -0.213" rpy="0 0 0" />
+  </joint>
+  <link name="FR_hip">
+    <inertial>
+      <origin xyz="-0.0054 -0.00194 -0.000105" rpy="1.580270960083257 -0.00495873700625804 1.563332713541504" />
+      <mass value="0.678" />
+      <inertia ixx="0.00088403" iyy="0.000596003" izz="0.000479967" ixy="0" ixz="0" iyz="0" />
+    </inertial>
+    <visual name="geom_46">
+      <origin xyz="-0.01843071034446295 0.004032856813899393 9.364953189083477e-05" rpy="-1.567586979223003 -0.0005787202316687168 -1.518289664438669" />
+      <geometry>
+        <mesh filename="package://go2_piper_d435_assets/meshes/compiled/mesh_05.stl" />
+      </geometry>
+      <material name="FR_hip_geom_46_material">
+        <color rgba="0.8999999761581421 0.949999988079071 0.949999988079071 1" />
+      </material>
+    </visual>
+    <visual name="geom_47">
+      <origin xyz="-0.01634541564355193 -0.009974762723130364 0.0001533470246027431" rpy="-1.569348256158693 -1.493070603131308e-05 -1.940607085842203" />
+      <geometry>
+        <mesh filename="package://go2_piper_d435_assets/meshes/compiled/mesh_06.stl" />
+      </geometry>
+      <material name="FR_hip_geom_47_material">
+        <color rgba="0.6717050075531006 0.6924260258674622 0.7742699980735779 1" />
+      </material>
+    </visual>
+    <collision name="geom_48">
+      <origin xyz="0 -0.05 0" rpy="1.570796326794897 0 0" />
+      <geometry>
+        <cylinder radius="0.046" length="0.04" />
+      </geometry>
+    </collision>
+    <collision name="geom_48_end_-1">
+      <origin xyz="0 -0.03 0" rpy="1.570796326794897 0 0" />
+      <geometry>
+        <sphere radius="0.046" />
+      </geometry>
+    </collision>
+    <collision name="geom_48_end_+1">
+      <origin xyz="0 -0.07000000000000001 0" rpy="1.570796326794897 0 0" />
+      <geometry>
+        <sphere radius="0.046" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="FR_hip_joint" type="revolute">
+    <parent link="base" />
+    <child link="FR_hip" />
+    <origin xyz="0.1934 -0.0465 0" rpy="0 0 0" />
+    <axis xyz="1 0 0" />
+    <limit lower="-1.0472" upper="1.0472" effort="23.7" velocity="30" />
+    <dynamics damping="0.2628" friction="0.1835" />
+  </joint>
+  <link name="FR_thigh">
+    <inertial>
+      <origin xyz="-0.00374 0.0223 -0.0327" rpy="0.1197437565689582 0.1271434035110293 1.975556075768359" />
+      <mass value="1.152" />
+      <inertia ixx="0.00594973" iyy="0.00584149" izz="0.000878787" ixy="0" ixz="0" iyz="0" />
+    </inertial>
+    <visual name="geom_49">
+      <origin xyz="-0.00416091640605537 0.01665529126767645 -0.04174764691098368" rpy="0.07764122929299322 0.1280299571336758 1.688006374610031" />
+      <geometry>
+        <mesh filename="package://go2_piper_d435_assets/meshes/compiled/mesh_09.stl" />
+      </geometry>
+      <material name="FR_thigh_geom_49_material">
+        <color rgba="0.8999999761581421 0.949999988079071 0.949999988079071 1" />
+      </material>
+    </visual>
+    <visual name="geom_50">
+      <origin xyz="-0.005054066936956911 0.02186545438931844 0.01013752729956884" rpy="-1.028532853214947 -0.7604730657794242 2.10680358673537" />
+      <geometry>
+        <mesh filename="package://go2_piper_d435_assets/meshes/compiled/mesh_10.stl" />
+      </geometry>
+      <material name="FR_thigh_geom_50_material">
+        <color rgba="0.6717050075531006 0.6924260258674622 0.7742699980735779 1" />
+      </material>
+    </visual>
+    <collision name="geom_51">
+      <origin xyz="0 0 -0.1065" rpy="-0 1.570796326794897 0" />
+      <geometry>
+        <box size="0.213 0.0245 0.034" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="FR_thigh_joint" type="revolute">
+    <parent link="FR_hip" />
+    <child link="FR_thigh" />
+    <origin xyz="0 -0.0955 0" rpy="0 0 0" />
+    <axis xyz="0 1 0" />
+    <limit lower="-1.5708" upper="3.4907" effort="23.7" velocity="30" />
+    <dynamics damping="0.142" friction="0.2386" />
+  </joint>
+  <link name="FR_calf">
+    <inertial>
+      <origin xyz="0.00629595 0.000622121 -0.141417" rpy="-0.004142679594921206 0.008565579785848376 1.580910164174944" />
+      <mass value="0.241352" />
+      <inertia ixx="0.0014901" iyy="0.00146356" izz="5.31397e-05" ixy="0" ixz="0" iyz="0" />
+    </inertial>
+    <visual name="geom_52">
+      <origin xyz="0.007579674906078829 8.678091749779236e-05 -0.1264626356142243" rpy="-0.04052236637026685 0.001996318122113871 1.553578911231777" />
+      <geometry>
+        <mesh filename="package://go2_piper_d435_assets/meshes/compiled/mesh_13.stl" />
+      </geometry>
+      <material name="FR_calf_geom_52_material">
+        <color rgba="0.6717050075531006 0.6924260258674622 0.7742699980735779 1" />
+      </material>
+    </visual>
+    <visual name="geom_53">
+      <origin xyz="-0.00553201260540202 -0.0002013129577844697 -0.2184505839164727" rpy="3.141592653589793 -1.009524480350323 0" />
+      <geometry>
+        <mesh filename="package://go2_piper_d435_assets/meshes/compiled/mesh_14.stl" />
+      </geometry>
+      <material name="FR_calf_geom_53_material">
+        <color rgba="0 0 0 1" />
+      </material>
+    </visual>
+    <collision name="geom_54">
+      <origin xyz="0.008 0 -0.06" rpy="0 -0.2099995725478581 0" />
+      <geometry>
+        <box size="0.024 0.034 0.12" />
+      </geometry>
+    </collision>
+    <collision name="geom_55">
+      <origin xyz="0.02 0 -0.148" rpy="0 0.04999998398433458 0" />
+      <geometry>
+        <box size="0.022 0.034 0.06" />
+      </geometry>
+    </collision>
+    <collision name="geom_56">
+      <origin xyz="0.008 0 -0.19" rpy="0 0.4900552379570642 0" />
+      <geometry>
+        <box size="0.022 0.034 0.034" />
+      </geometry>
+    </collision>
+    <visual name="geom_57">
+      <origin xyz="-0.005646883009570938 2.787542947284009e-05 -0.2184697626651252" rpy="3.141592653589793 -1.009081437773671 0" />
+      <geometry>
+        <mesh filename="package://go2_piper_d435_assets/meshes/compiled/mesh_15.stl" />
+      </geometry>
+      <material name="FR_calf_geom_57_material">
+        <color rgba="0 0 0 1" />
+      </material>
+    </visual>
+  </link>
+  <joint name="FR_calf_joint" type="revolute">
+    <parent link="FR_thigh" />
+    <child link="FR_calf" />
+    <origin xyz="0 0 -0.213" rpy="0 0 0" />
+    <axis xyz="0 1 0" />
+    <limit lower="-2.7227" upper="-0.8377599999999999" effort="45.43" velocity="30" />
+    <dynamics damping="0.1728" friction="0.4912" />
+  </joint>
+  <link name="FR_foot">
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <mass value="0.04460223810056547" />
+      <inertia ixx="8.634993296269476e-06" iyy="8.634993296269476e-06" izz="8.634993296269476e-06" ixy="0" ixz="0" iyz="0" />
+    </inertial>
+    <collision name="FR">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <sphere radius="0.022" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="FR_foot_fixed" type="fixed">
+    <parent link="FR_calf" />
+    <child link="FR_foot" />
+    <origin xyz="-0.002 0 -0.213" rpy="0 0 0" />
+  </joint>
+  <link name="RL_hip">
+    <inertial>
+      <origin xyz="0.0054 0.00194 -0.000105" rpy="1.561321693506537 0.00495873700625804 1.563332713541504" />
+      <mass value="0.678" />
+      <inertia ixx="0.00088403" iyy="0.000596003" izz="0.000479967" ixy="0" ixz="0" iyz="0" />
+    </inertial>
+    <visual name="geom_59">
+      <origin xyz="0.01843070155376496 -0.004032848119622731 9.573086144687589e-05" rpy="-1.567674642445587 -0.000481331625004966 1.623303031322559" />
+      <geometry>
+        <mesh filename="package://go2_piper_d435_assets/meshes/compiled/mesh_05.stl" />
+      </geometry>
+      <material name="RL_hip_geom_59_material">
+        <color rgba="0.8999999761581421 0.949999988079071 0.949999988079071 1" />
+      </material>
+    </visual>
+    <visual name="geom_60">
+      <origin xyz="0.01634540145086822 0.009974776888469091 0.0001539372872164342" rpy="-1.569468134606274 3.797049383669204e-05 1.200985562074259" />
+      <geometry>
+        <mesh filename="package://go2_piper_d435_assets/meshes/compiled/mesh_06.stl" />
+      </geometry>
+      <material name="RL_hip_geom_60_material">
+        <color rgba="0.6717050075531006 0.6924260258674622 0.7742699980735779 1" />
+      </material>
+    </visual>
+    <collision name="geom_61">
+      <origin xyz="0 0.05 0" rpy="1.570796326794897 0 0" />
+      <geometry>
+        <cylinder radius="0.046" length="0.04" />
+      </geometry>
+    </collision>
+    <collision name="geom_61_end_-1">
+      <origin xyz="0 0.07000000000000001 0" rpy="1.570796326794897 0 0" />
+      <geometry>
+        <sphere radius="0.046" />
+      </geometry>
+    </collision>
+    <collision name="geom_61_end_+1">
+      <origin xyz="0 0.03 0" rpy="1.570796326794897 0 0" />
+      <geometry>
+        <sphere radius="0.046" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="RL_hip_joint" type="revolute">
+    <parent link="base" />
+    <child link="RL_hip" />
+    <origin xyz="-0.1934 0.0465 0" rpy="0 0 0" />
+    <axis xyz="1 0 0" />
+    <limit lower="-1.0472" upper="1.0472" effort="23.7" velocity="30" />
+    <dynamics damping="0.2243" friction="0.155" />
+  </joint>
+  <link name="RL_thigh">
+    <inertial>
+      <origin xyz="-0.00374 -0.0223 -0.0327" rpy="0.1197437565689583 -0.127143403511029 1.166036577821434" />
+      <mass value="1.152" />
+      <inertia ixx="0.00594973" iyy="0.00584149" izz="0.000878787" ixy="0" ixz="0" iyz="0" />
+    </inertial>
+    <visual name="geom_62">
+      <origin xyz="-0.004160916976041125 -0.01665529013406936 -0.04174767472959812" rpy="0.07764099985956241 -0.1280298990509605 1.453586116405751" />
+      <geometry>
+        <mesh filename="package://go2_piper_d435_assets/meshes/compiled/mesh_07.stl" />
+      </geometry>
+      <material name="RL_thigh_geom_62_material">
+        <color rgba="0.8999999761581421 0.949999988079071 0.949999988079071 1" />
+      </material>
+    </visual>
+    <visual name="geom_63">
+      <origin xyz="-0.005054061099072535 -0.02186542693560587 0.01013743313085582" rpy="-2.113089627253218 -0.7604710691855696 -2.106794122293786" />
+      <geometry>
+        <mesh filename="package://go2_piper_d435_assets/meshes/compiled/mesh_08.stl" />
+      </geometry>
+      <material name="RL_thigh_geom_63_material">
+        <color rgba="0.6717050075531006 0.6924260258674622 0.7742699980735779 1" />
+      </material>
+    </visual>
+    <collision name="geom_64">
+      <origin xyz="0 0 -0.1065" rpy="-0 1.570796326794897 0" />
+      <geometry>
+        <box size="0.213 0.0245 0.034" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="RL_thigh_joint" type="revolute">
+    <parent link="RL_hip" />
+    <child link="RL_thigh" />
+    <origin xyz="0 0.0955 0" rpy="0 0 0" />
+    <axis xyz="0 1 0" />
+    <limit lower="-0.5236" upper="4.5379" effort="23.7" velocity="30" />
+    <dynamics damping="0.2352" friction="0.1388" />
+  </joint>
+  <link name="RL_calf">
+    <inertial>
+      <origin xyz="0.00629595 -0.000622121 -0.141417" rpy="-0.004142679594921095 -0.008565579785848376 1.560682489414849" />
+      <mass value="0.241352" />
+      <inertia ixx="0.0014901" iyy="0.00146356" izz="5.31397e-05" ixy="0" ixz="0" iyz="0" />
+    </inertial>
+    <visual name="geom_65">
+      <origin xyz="0.007579670815585868 -8.678208072411072e-05 -0.126462633556766" rpy="-0.04052235142642557 -0.001996311907713544 1.588013634912414" />
+      <geometry>
+        <mesh filename="package://go2_piper_d435_assets/meshes/compiled/mesh_11.stl" />
+      </geometry>
+      <material name="RL_calf_geom_65_material">
+        <color rgba="0.6717050075531006 0.6924260258674622 0.7742699980735779 1" />
+      </material>
+    </visual>
+    <visual name="geom_66">
+      <origin xyz="-0.00553202586848318 0.0002013131343986809 -0.2184505808858997" rpy="3.141592653589793 -1.009523992934972 0" />
+      <geometry>
+        <mesh filename="package://go2_piper_d435_assets/meshes/compiled/mesh_12.stl" />
+      </geometry>
+      <material name="RL_calf_geom_66_material">
+        <color rgba="0 0 0 1" />
+      </material>
+    </visual>
+    <collision name="geom_67">
+      <origin xyz="0.008 0 -0.06" rpy="0 -0.2099995725478581 0" />
+      <geometry>
+        <box size="0.024 0.034 0.12" />
+      </geometry>
+    </collision>
+    <collision name="geom_68">
+      <origin xyz="0.02 0 -0.148" rpy="0 0.04999998398433458 0" />
+      <geometry>
+        <box size="0.022 0.034 0.06" />
+      </geometry>
+    </collision>
+    <collision name="geom_69">
+      <origin xyz="0.008 0 -0.19" rpy="0 0.4900552379570642 0" />
+      <geometry>
+        <box size="0.022 0.034 0.034" />
+      </geometry>
+    </collision>
+    <visual name="geom_70">
+      <origin xyz="-0.005646883009570938 2.787542947284009e-05 -0.2184697626651252" rpy="3.141592653589793 -1.009081437773671 0" />
+      <geometry>
+        <mesh filename="package://go2_piper_d435_assets/meshes/compiled/mesh_15.stl" />
+      </geometry>
+      <material name="RL_calf_geom_70_material">
+        <color rgba="0 0 0 1" />
+      </material>
+    </visual>
+  </link>
+  <joint name="RL_calf_joint" type="revolute">
+    <parent link="RL_thigh" />
+    <child link="RL_calf" />
+    <origin xyz="0 0 -0.213" rpy="0 0 0" />
+    <axis xyz="0 1 0" />
+    <limit lower="-2.7227" upper="-0.8377599999999999" effort="45.43" velocity="30" />
+    <dynamics damping="0.1201" friction="1.3573" />
+  </joint>
+  <link name="RL_foot">
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <mass value="0.04460223810056547" />
+      <inertia ixx="8.634993296269476e-06" iyy="8.634993296269476e-06" izz="8.634993296269476e-06" ixy="0" ixz="0" iyz="0" />
+    </inertial>
+    <collision name="RL">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <sphere radius="0.022" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="RL_foot_fixed" type="fixed">
+    <parent link="RL_calf" />
+    <child link="RL_foot" />
+    <origin xyz="-0.002 0 -0.213" rpy="0 0 0" />
+  </joint>
+  <link name="RR_hip">
+    <inertial>
+      <origin xyz="0.0054 -0.00194 -0.000105" rpy="1.561321693506537 -0.00495873700625804 1.578259940048289" />
+      <mass value="0.678" />
+      <inertia ixx="0.00088403" iyy="0.000596003" izz="0.000479967" ixy="0" ixz="0" iyz="0" />
+    </inertial>
+    <visual name="geom_72">
+      <origin xyz="0.01843071894231826 0.004032856813899303 -9.19418598285519e-05" rpy="1.574098200291167 0.0005835829253857394 -1.623302935379545" />
+      <geometry>
+        <mesh filename="package://go2_piper_d435_assets/meshes/compiled/mesh_05.stl" />
+      </geometry>
+      <material name="RR_hip_geom_72_material">
+        <color rgba="0.8999999761581421 0.949999988079071 0.949999988079071 1" />
+      </material>
+    </visual>
+    <visual name="geom_73">
+      <origin xyz="0.01634542978154557 -0.009974762723130441 -0.0001518325623449037" rpy="1.572330787254951 -1.855791765281722e-05 -1.200985567904272" />
+      <geometry>
+        <mesh filename="package://go2_piper_d435_assets/meshes/compiled/mesh_06.stl" />
+      </geometry>
+      <material name="RR_hip_geom_73_material">
+        <color rgba="0.6717050075531006 0.6924260258674622 0.7742699980735779 1" />
+      </material>
+    </visual>
+    <collision name="geom_74">
+      <origin xyz="0 -0.05 0" rpy="1.570796326794897 0 0" />
+      <geometry>
+        <cylinder radius="0.046" length="0.04" />
+      </geometry>
+    </collision>
+    <collision name="geom_74_end_-1">
+      <origin xyz="0 -0.03 0" rpy="1.570796326794897 0 0" />
+      <geometry>
+        <sphere radius="0.046" />
+      </geometry>
+    </collision>
+    <collision name="geom_74_end_+1">
+      <origin xyz="0 -0.07000000000000001 0" rpy="1.570796326794897 0 0" />
+      <geometry>
+        <sphere radius="0.046" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="RR_hip_joint" type="revolute">
+    <parent link="base" />
+    <child link="RR_hip" />
+    <origin xyz="-0.1934 -0.0465 0" rpy="0 0 0" />
+    <axis xyz="1 0 0" />
+    <limit lower="-1.0472" upper="1.0472" effort="23.7" velocity="30" />
+    <dynamics damping="0.2989" friction="0.2488" />
+  </joint>
+  <link name="RR_thigh">
+    <inertial>
+      <origin xyz="-0.00374 0.0223 -0.0327" rpy="0.1197437565689582 0.1271434035110293 1.975556075768359" />
+      <mass value="1.152" />
+      <inertia ixx="0.00594973" iyy="0.00584149" izz="0.000878787" ixy="0" ixz="0" iyz="0" />
+    </inertial>
+    <visual name="geom_75">
+      <origin xyz="-0.00416091640605537 0.01665529126767645 -0.04174764691098368" rpy="0.07764122929299322 0.1280299571336758 1.688006374610031" />
+      <geometry>
+        <mesh filename="package://go2_piper_d435_assets/meshes/compiled/mesh_09.stl" />
+      </geometry>
+      <material name="RR_thigh_geom_75_material">
+        <color rgba="0.8999999761581421 0.949999988079071 0.949999988079071 1" />
+      </material>
+    </visual>
+    <visual name="geom_76">
+      <origin xyz="-0.005054066936956911 0.02186545438931844 0.01013752729956884" rpy="-1.028532853214947 -0.7604730657794242 2.10680358673537" />
+      <geometry>
+        <mesh filename="package://go2_piper_d435_assets/meshes/compiled/mesh_10.stl" />
+      </geometry>
+      <material name="RR_thigh_geom_76_material">
+        <color rgba="0.6717050075531006 0.6924260258674622 0.7742699980735779 1" />
+      </material>
+    </visual>
+    <collision name="geom_77">
+      <origin xyz="0 0 -0.1065" rpy="-0 1.570796326794897 0" />
+      <geometry>
+        <box size="0.213 0.0245 0.034" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="RR_thigh_joint" type="revolute">
+    <parent link="RR_hip" />
+    <child link="RR_thigh" />
+    <origin xyz="0 -0.0955 0" rpy="0 0 0" />
+    <axis xyz="0 1 0" />
+    <limit lower="-0.5236" upper="4.5379" effort="23.7" velocity="30" />
+    <dynamics damping="0.1983" friction="0.2484" />
+  </joint>
+  <link name="RR_calf">
+    <inertial>
+      <origin xyz="0.00629595 0.000622121 -0.141417" rpy="-0.004142679594921206 0.008565579785848376 1.580910164174944" />
+      <mass value="0.241352" />
+      <inertia ixx="0.0014901" iyy="0.00146356" izz="5.31397e-05" ixy="0" ixz="0" iyz="0" />
+    </inertial>
+    <visual name="geom_78">
+      <origin xyz="0.007579674906078829 8.678091749779236e-05 -0.1264626356142243" rpy="-0.04052236637026685 0.001996318122113871 1.553578911231777" />
+      <geometry>
+        <mesh filename="package://go2_piper_d435_assets/meshes/compiled/mesh_13.stl" />
+      </geometry>
+      <material name="RR_calf_geom_78_material">
+        <color rgba="0.6717050075531006 0.6924260258674622 0.7742699980735779 1" />
+      </material>
+    </visual>
+    <visual name="geom_79">
+      <origin xyz="-0.00553201260540202 -0.0002013129577844697 -0.2184505839164727" rpy="3.141592653589793 -1.009524480350323 0" />
+      <geometry>
+        <mesh filename="package://go2_piper_d435_assets/meshes/compiled/mesh_14.stl" />
+      </geometry>
+      <material name="RR_calf_geom_79_material">
+        <color rgba="0 0 0 1" />
+      </material>
+    </visual>
+    <collision name="geom_80">
+      <origin xyz="0.008 0 -0.06" rpy="0 -0.2099995725478581 0" />
+      <geometry>
+        <box size="0.024 0.034 0.12" />
+      </geometry>
+    </collision>
+    <collision name="geom_81">
+      <origin xyz="0.02 0 -0.148" rpy="0 0.04999998398433458 0" />
+      <geometry>
+        <box size="0.022 0.034 0.06" />
+      </geometry>
+    </collision>
+    <collision name="geom_82">
+      <origin xyz="0.008 0 -0.19" rpy="0 0.4900552379570642 0" />
+      <geometry>
+        <box size="0.022 0.034 0.034" />
+      </geometry>
+    </collision>
+    <visual name="geom_83">
+      <origin xyz="-0.005646883009570938 2.787542947284009e-05 -0.2184697626651252" rpy="3.141592653589793 -1.009081437773671 0" />
+      <geometry>
+        <mesh filename="package://go2_piper_d435_assets/meshes/compiled/mesh_15.stl" />
+      </geometry>
+      <material name="RR_calf_geom_83_material">
+        <color rgba="0 0 0 1" />
+      </material>
+    </visual>
+  </link>
+  <joint name="RR_calf_joint" type="revolute">
+    <parent link="RR_thigh" />
+    <child link="RR_calf" />
+    <origin xyz="0 0 -0.213" rpy="0 0 0" />
+    <axis xyz="0 1 0" />
+    <limit lower="-2.7227" upper="-0.8377599999999999" effort="45.43" velocity="30" />
+    <dynamics damping="0.1" friction="0.7893" />
+  </joint>
+  <link name="RR_foot">
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <mass value="0.04460223810056547" />
+      <inertia ixx="8.634993296269476e-06" iyy="8.634993296269476e-06" izz="8.634993296269476e-06" ixy="0" ixz="0" iyz="0" />
+    </inertial>
+    <collision name="RR">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <sphere radius="0.022" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="RR_foot_fixed" type="fixed">
+    <parent link="RR_calf" />
+    <child link="RR_foot" />
+    <origin xyz="-0.002 0 -0.213" rpy="0 0 0" />
+  </joint>
+  <link name="link1">
+    <inertial>
+      <origin xyz="0.00201 -0.0022 -0.02127" rpy="1.310141732525417 -0.7228825795640573 0.1684882029740707" />
+      <mass value="0.11" />
+      <inertia ixx="0.000114473" iyy="0.000110765" izz="7.120229999999999e-05" ixy="0" ixz="0" iyz="0" />
+    </inertial>
+    <visual name="geom_85">
+      <origin xyz="-0.0006705799523949835 -0.001005313829313227 -0.008251549890294025" rpy="1.506693034860491 0.130764672439263 -0.004723825395311132" />
+      <geometry>
+        <mesh filename="package://go2_piper_d435_assets/meshes/compiled/mesh_17.stl" />
+      </geometry>
+      <material name="link1_geom_85_material">
+        <color rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision name="link1_urdf_hull">
+      <origin xyz="-0.0006705799523949835 -0.001005313829313227 -0.008251549890294025" rpy="1.506693034860491 0.130764672439263 -0.004723825395311132" />
+      <geometry>
+        <mesh filename="package://go2_piper_d435_assets/meshes/compiled/mesh_17_hull.stl" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="joint1" type="revolute">
+    <parent link="base" />
+    <child link="link1" />
+    <origin xyz="0 0 0.193" rpy="0 0 0" />
+    <axis xyz="0 0 1" />
+    <limit lower="-2.618" upper="2.618" effort="32" velocity="5" />
+    <dynamics damping="0.1" friction="0.1" />
+  </joint>
+  <link name="link2">
+    <inertial>
+      <origin xyz="0.25986 -0.009129999999999999 0.00237" rpy="1.575351572499949 -0.5939141565307829 1.541423876855733" />
+      <mass value="1.16" />
+      <inertia ixx="0.0163176" iyy="0.0162777" izz="0.000957388" ixy="0" ixz="0" iyz="0" />
+    </inertial>
+    <visual name="geom_87">
+      <origin xyz="0.1643813408492925 -0.01375715464024595 0.0005389471895406091" rpy="1.573896328116449 0.01144202798468741 1.552809321148278" />
+      <geometry>
+        <mesh filename="package://go2_piper_d435_assets/meshes/compiled/mesh_18.stl" />
+      </geometry>
+      <material name="link2_geom_87_material">
+        <color rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision name="geom_88">
+      <origin xyz="0 0 0" rpy="0 0 1.570796326794897" />
+      <geometry>
+        <cylinder radius="0.04" length="0.04" />
+      </geometry>
+    </collision>
+    <collision name="geom_88_end_-1">
+      <origin xyz="0 0 -0.02" rpy="0 0 1.570796326794897" />
+      <geometry>
+        <sphere radius="0.04" />
+      </geometry>
+    </collision>
+    <collision name="geom_88_end_+1">
+      <origin xyz="0 0 0.02" rpy="0 0 1.570796326794897" />
+      <geometry>
+        <sphere radius="0.04" />
+      </geometry>
+    </collision>
+    <collision name="geom_89">
+      <origin xyz="0.1264 -0.025 0" rpy="-1.49593647908413 1.421494391564256 -1.645656174505663" />
+      <geometry>
+        <cylinder radius="0.03" length="0.1686" />
+      </geometry>
+    </collision>
+    <collision name="geom_89_end_-1">
+      <origin xyz="0.04303782447466009 -0.01249567367119901 -0.0009378244746600732" rpy="-1.49593647908413 1.421494391564256 -1.645656174505663" />
+      <geometry>
+        <sphere radius="0.03" />
+      </geometry>
+    </collision>
+    <collision name="geom_89_end_+1">
+      <origin xyz="0.2097621755253399 -0.03750432632880099 0.0009378244746600732" rpy="-1.49593647908413 1.421494391564256 -1.645656174505663" />
+      <geometry>
+        <sphere radius="0.03" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="joint2" type="revolute">
+    <parent link="link1" />
+    <child link="link2" />
+    <origin xyz="0 0 0" rpy="1.570799659532207 -0.1358998840528414 3.141585339357938" />
+    <axis xyz="0 0 1" />
+    <limit lower="0" upper="3.14" effort="32" velocity="5" />
+    <dynamics damping="0.1" friction="0.1" />
+  </joint>
+  <link name="link3">
+    <inertial>
+      <origin xyz="-0.00726 -0.19029 -0.00045" rpy="1.560806879756257 -0.09260742466436422 0.03537970495183107" />
+      <mass value="0.59" />
+      <inertia ixx="0.00558951" iyy="0.00554224" izz="0.000258829" ixy="0" ixz="0" iyz="0" />
+    </inertial>
+    <visual name="geom_90">
+      <origin xyz="-0.01937722665543522 -0.1078338402609654 -0.0004063113798687778" rpy="1.56126127647186 -0.02320550730748372 -0.07370813677746968" />
+      <geometry>
+        <mesh filename="package://go2_piper_d435_assets/meshes/compiled/mesh_19.stl" />
+      </geometry>
+      <material name="link3_geom_90_material">
+        <color rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision name="geom_91">
+      <origin xyz="0 0 0" rpy="0 0 1.570796326794897" />
+      <geometry>
+        <cylinder radius="0.04" length="0.04" />
+      </geometry>
+    </collision>
+    <collision name="geom_91_end_-1">
+      <origin xyz="0 0 -0.02" rpy="0 0 1.570796326794897" />
+      <geometry>
+        <sphere radius="0.04" />
+      </geometry>
+    </collision>
+    <collision name="geom_91_end_+1">
+      <origin xyz="0 0 0.02" rpy="0 0 1.570796326794897" />
+      <geometry>
+        <sphere radius="0.04" />
+      </geometry>
+    </collision>
+    <collision name="geom_92">
+      <origin xyz="-0.01 -0.1326 0" rpy="1.569546327445938 -0.04995835675690086 0.05002081769439604" />
+      <geometry>
+        <cylinder radius="0.025" length="0.1248" />
+      </geometry>
+    </collision>
+    <collision name="geom_92_end_-1">
+      <origin xyz="-0.01311610486891386 -0.07027790262172284 -7.790262172284663e-05" rpy="1.569546327445938 -0.04995835675690086 0.05002081769439604" />
+      <geometry>
+        <sphere radius="0.025" />
+      </geometry>
+    </collision>
+    <collision name="geom_92_end_+1">
+      <origin xyz="-0.006883895131086142 -0.1949220973782771 7.790262172284663e-05" rpy="1.569546327445938 -0.04995835675690086 0.05002081769439604" />
+      <geometry>
+        <sphere radius="0.025" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="joint3" type="revolute">
+    <parent link="link2" />
+    <child link="link3" />
+    <origin xyz="0.28503 0 0" rpy="0 0 -1.793899896745054" />
+    <axis xyz="0 0 1" />
+    <limit lower="-2.967" upper="0" effort="32" velocity="5" />
+    <dynamics damping="0.1" friction="0.1" />
+  </joint>
+  <link name="link4">
+    <inertial>
+      <origin xyz="0.00054 -0.00162 -0.00399" rpy="0.0467829556818839 -0.2678650128722899 1.033920776898464" />
+      <mass value="0.37" />
+      <inertia ixx="0.000174523" iyy="0.000169749" izz="0.000142038" ixy="0" ixz="0" iyz="0" />
+    </inertial>
+    <visual name="geom_93">
+      <origin xyz="-0.0006285443788105868 0.006176698262155449 -0.008451435256494666" rpy="-0.4517607964130117 0.1252929154941316 -0.01393686544876249" />
+      <geometry>
+        <mesh filename="package://go2_piper_d435_assets/meshes/compiled/mesh_20.stl" />
+      </geometry>
+      <material name="link4_geom_93_material">
+        <color rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision name="geom_94">
+      <origin xyz="0 0 0" rpy="1.570796326794897 0 0" />
+      <geometry>
+        <cylinder radius="0.03" length="0.03" />
+      </geometry>
+    </collision>
+    <collision name="geom_94_end_-1">
+      <origin xyz="0 0.015 0" rpy="1.570796326794897 0 0" />
+      <geometry>
+        <sphere radius="0.03" />
+      </geometry>
+    </collision>
+    <collision name="geom_94_end_+1">
+      <origin xyz="0 -0.015 0" rpy="1.570796326794897 0 0" />
+      <geometry>
+        <sphere radius="0.03" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="joint4" type="revolute">
+    <parent link="link3" />
+    <child link="link4" />
+    <origin xyz="-0.021984 -0.25075 0" rpy="1.570800569437271 0 0" />
+    <axis xyz="0 0 1" />
+    <limit lower="-1.745" upper="1.745" effort="8" velocity="5" />
+    <dynamics damping="0.1" friction="0.1" />
+  </joint>
+  <link name="link5">
+    <inertial>
+      <origin xyz="0.0002 -0.06142 -0.00257" rpy="0.277731720656585 -1.19352389857178 1.284371367976925" />
+      <mass value="0.38" />
+      <inertia ixx="0.000302439" iyy="0.000295278" izz="0.000150843" ixy="0" ixz="0" iyz="0" />
+    </inertial>
+    <visual name="geom_95">
+      <origin xyz="-0.0001398642150242105 -0.04353497691217347 -0.006457170587556304" rpy="0.3693305464883346 -1.122934913006802 1.169009345728856" />
+      <geometry>
+        <mesh filename="package://go2_piper_d435_assets/meshes/compiled/mesh_21.stl" />
+      </geometry>
+      <material name="link5_geom_95_material">
+        <color rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision name="link5_source_mesh_hull">
+      <origin xyz="-0.0001398642150242105 -0.04353497691217347 -0.006457170587556304" rpy="0.3693305464883346 -1.122934913006802 1.169009345728856" />
+      <geometry>
+        <mesh filename="package://go2_piper_d435_assets/meshes/compiled/mesh_21_hull.stl" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="joint5" type="revolute">
+    <parent link="link4" />
+    <child link="link5" />
+    <origin xyz="0 0 0" rpy="-1.570800569437271 0 0" />
+    <axis xyz="0 0 1" />
+    <limit lower="-1.22" upper="1.22" effort="8" velocity="5" />
+    <dynamics damping="0.1" friction="0.1" />
+  </joint>
+  <link name="link6">
+    <inertial>
+      <origin xyz="-0.0735584 -0.0270802 0.0303962" rpy="0.2090654529671753 0.05004024441534405 -1.735268125178576" />
+      <mass value="0.7976323" />
+      <inertia ixx="0.00023745" iyy="0.00069875" izz="0.00081826" ixy="0" ixz="0" iyz="0" />
+    </inertial>
+    <visual name="geom_97">
+      <origin xyz="-0.0002349677187775782 -0.0001192871923864907 0.038265405425183" rpy="1.568136045981646 0.003525323999222563 -3.10563264267181" />
+      <geometry>
+        <mesh filename="package://go2_piper_d435_assets/meshes/compiled/mesh_24.stl" />
+      </geometry>
+      <material name="link6_geom_97_material">
+        <color rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision name="geom_98">
+      <origin xyz="0 -0 0.06" rpy="-1.570000326963016 3.168078996917956e-07 1.570000326963016" />
+      <geometry>
+        <box size="0.164 0.02 0.02" />
+      </geometry>
+    </collision>
+    <visual name="piper_d435_wrist_mount_visual">
+      <origin xyz="-0.0463235796864658 0.001548213483945881 0.02098397872545624" rpy="0.4533914273087628 1.323367719393901 0.1121000042289639" />
+      <geometry>
+        <mesh filename="package://go2_piper_d435_assets/meshes/compiled/mesh_25.stl" />
+      </geometry>
+      <material name="link6_piper_d435_wrist_mount_visual_material">
+        <color rgba="0.699999988079071 0.699999988079071 0.699999988079071 1" />
+      </material>
+    </visual>
+    <collision name="d435_camera_body_collision">
+      <origin xyz="-0.073608446242865 0.010986317207782 0.039206889332246" rpy="-0.001692832098986858 -1.220934030738766 -0.000794180072339239" />
+      <geometry>
+        <box size="0.02505 0.09 0.025" />
+      </geometry>
+    </collision>
+    <visual name="wrist_d435_visual_00">
+      <origin xyz="-0.07944190219842689 -0.02843461394302212 0.04233452091929536" rpy="0.3498618346765709 0.0005802491882052063 1.568411866345147" />
+      <geometry>
+        <mesh filename="package://go2_piper_d435_assets/meshes/compiled/mesh_26.stl" />
+      </geometry>
+      <material name="link6_wrist_d435_visual_00_material">
+        <color rgba="0.749019980430603 0.749019980430603 0.749019980430603 1" />
+      </material>
+    </visual>
+    <visual name="wrist_d435_visual_01">
+      <origin xyz="-0.09018269882012472 0.01826918384066213 0.02767064307947042" rpy="0.3498618346765709 0.0005802491882052063 1.568411866345147" />
+      <geometry>
+        <mesh filename="package://go2_piper_d435_assets/meshes/compiled/mesh_27.stl" />
+      </geometry>
+      <material name="link6_wrist_d435_visual_01_material">
+        <color rgba="0.749019980430603 0.749019980430603 0.749019980430603 1" />
+      </material>
+    </visual>
+    <visual name="wrist_d435_visual_02">
+      <origin xyz="-0.09021727348798797 0.0037692272989648 0.02767905666621508" rpy="0.3498618346765709 0.0005802491882052063 1.568411866345147" />
+      <geometry>
+        <mesh filename="package://go2_piper_d435_assets/meshes/compiled/mesh_28.stl" />
+      </geometry>
+      <material name="link6_wrist_d435_visual_02_material">
+        <color rgba="0.749019980430603 0.749019980430603 0.749019980430603 1" />
+      </material>
+    </visual>
+    <visual name="wrist_d435_visual_03">
+      <origin xyz="-0.0720412960992801 0.01365764533047123 0.03296561011285315" rpy="0.3498618346765709 0.0005802491882052063 1.568411866345147" />
+      <geometry>
+        <mesh filename="package://go2_piper_d435_assets/meshes/compiled/mesh_29.stl" />
+      </geometry>
+      <material name="link6_wrist_d435_visual_03_material">
+        <color rgba="0.749019980430603 0.749019980430603 0.749019980430603 1" />
+      </material>
+    </visual>
+    <visual name="wrist_d435_visual_04">
+      <origin xyz="-0.0760994984706837 -0.02176160016130758 0.032729422842149" rpy="0.3498618346765709 0.0005802491882052063 1.568411866345147" />
+      <geometry>
+        <mesh filename="package://go2_piper_d435_assets/meshes/compiled/mesh_30.stl" />
+      </geometry>
+      <material name="link6_wrist_d435_visual_04_material">
+        <color rgba="0.749019980430603 0.749019980430603 0.749019980430603 1" />
+      </material>
+    </visual>
+    <visual name="wrist_d435_visual_05">
+      <origin xyz="-0.06731240146912687 -0.02846635339433084 0.03790893015848763" rpy="0.3498618346765709 0.0005802491882052063 1.568411866345147" />
+      <geometry>
+        <mesh filename="package://go2_piper_d435_assets/meshes/compiled/mesh_31.stl" />
+      </geometry>
+      <material name="link6_wrist_d435_visual_05_material">
+        <color rgba="0.749019980430603 0.749019980430603 0.749019980430603 1" />
+      </material>
+    </visual>
+    <visual name="wrist_d435_visual_06">
+      <origin xyz="-0.06783955594686962 0.05105365025892258 0.03836518233678062" rpy="0.3498618346765709 0.0005802491882052063 1.568411866345147" />
+      <geometry>
+        <mesh filename="package://go2_piper_d435_assets/meshes/compiled/mesh_32.stl" />
+      </geometry>
+      <material name="link6_wrist_d435_visual_06_material">
+        <color rgba="0.749019980430603 0.749019980430603 0.749019980430603 1" />
+      </material>
+    </visual>
+    <visual name="wrist_d435_visual_07">
+      <origin xyz="-0.0831714581837168 -0.02048961787672991 0.041570406401563" rpy="0.3498618346765709 0.0005802491882052063 1.568411866345147" />
+      <geometry>
+        <mesh filename="package://go2_piper_d435_assets/meshes/compiled/mesh_33.stl" />
+      </geometry>
+      <material name="link6_wrist_d435_visual_07_material">
+        <color rgba="0.749019980430603 0.749019980430603 0.749019980430603 1" />
+      </material>
+    </visual>
+    <visual name="wrist_d435_visual_08">
+      <origin xyz="-0.08303552752988906 0.03651019169780348 0.04153736640442737" rpy="0.3498618346765709 0.0005802491882052063 1.568411866345147" />
+      <geometry>
+        <mesh filename="package://go2_piper_d435_assets/meshes/compiled/mesh_34.stl" />
+      </geometry>
+      <material name="link6_wrist_d435_visual_08_material">
+        <color rgba="0.749019980430603 0.749019980430603 0.749019980430603 1" />
+      </material>
+    </visual>
+    <visual name="wrist_d435_visual_09">
+      <origin xyz="-0.07323926419801098 -0.02852899406258854 0.04049830884876873" rpy="0.3498618346765709 0.0005802491882052063 1.568411866345147" />
+      <geometry>
+        <mesh filename="package://go2_piper_d435_assets/meshes/compiled/mesh_35.stl" />
+      </geometry>
+      <material name="link6_wrist_d435_visual_09_material">
+        <color rgba="0.749019980430603 0.749019980430603 0.749019980430603 1" />
+      </material>
+    </visual>
+    <visual name="wrist_d435_visual_10">
+      <origin xyz="-0.08570826062153244 -0.001864368032156179 0.0360653615463347" rpy="0.3498618346765709 0.0005802491882052063 1.568411866345147" />
+      <geometry>
+        <mesh filename="package://go2_piper_d435_assets/meshes/compiled/mesh_36.stl" />
+      </geometry>
+      <material name="link6_wrist_d435_visual_10_material">
+        <color rgba="0.749019980430603 0.749019980430603 0.749019980430603 1" />
+      </material>
+    </visual>
+    <visual name="wrist_d435_visual_11">
+      <origin xyz="-0.0759802758244791 0.02823824872435709 0.03270041039994175" rpy="0.3498618346765709 0.0005802491882052063 1.568411866345147" />
+      <geometry>
+        <mesh filename="package://go2_piper_d435_assets/meshes/compiled/mesh_37.stl" />
+      </geometry>
+      <material name="link6_wrist_d435_visual_11_material">
+        <color rgba="0.749019980430603 0.749019980430603 0.749019980430603 1" />
+      </material>
+    </visual>
+    <visual name="wrist_d435_visual_12">
+      <origin xyz="-0.07616957702308132 0.01161876721034984 0.03185591752620223" rpy="-1.608860242049179 -1.232221649064141 0.03658715178539751" />
+      <geometry>
+        <mesh filename="package://go2_piper_d435_assets/meshes/compiled/mesh_38.stl" />
+      </geometry>
+      <material name="link6_wrist_d435_visual_12_material">
+        <color rgba="0.749019980430603 0.749019980430603 0.749019980430603 1" />
+      </material>
+    </visual>
+    <visual name="wrist_d435_visual_13">
+      <origin xyz="-0.0649328184157973 -0.02207045583597974 0.03489161132866105" rpy="0.3498618346765709 0.0005802491882052063 1.568411866345147" />
+      <geometry>
+        <mesh filename="package://go2_piper_d435_assets/meshes/compiled/mesh_39.stl" />
+      </geometry>
+      <material name="link6_wrist_d435_visual_13_material">
+        <color rgba="0.749019980430603 0.749019980430603 0.749019980430603 1" />
+      </material>
+    </visual>
+    <visual name="wrist_d435_visual_14">
+      <origin xyz="-0.07384119357994101 0.04348078250956164 0.03835162060185819" rpy="0.3498618346765709 0.0005802491882052063 1.568411866345147" />
+      <geometry>
+        <mesh filename="package://go2_piper_d435_assets/meshes/compiled/mesh_40.stl" />
+      </geometry>
+      <material name="link6_wrist_d435_visual_14_material">
+        <color rgba="0.749019980430603 0.749019980430603 0.749019980430603 1" />
+      </material>
+    </visual>
+    <visual name="wrist_d435_visual_15">
+      <origin xyz="-0.0733085932414699 0.04348599338582483 0.03979734392885619" rpy="0.3498618346765709 0.0005802491882052063 1.568411866345147" />
+      <geometry>
+        <mesh filename="package://go2_piper_d435_assets/meshes/compiled/mesh_41.stl" />
+      </geometry>
+      <material name="link6_wrist_d435_visual_15_material">
+        <color rgba="0.749019980430603 0.749019980430603 0.749019980430603 1" />
+      </material>
+    </visual>
+    <visual name="wrist_d435_visual_16">
+      <origin xyz="-0.0733549210754591 0.04348605410598645 0.03967212480080811" rpy="0.3498618346765709 0.0005802491882052063 1.568411866345147" />
+      <geometry>
+        <mesh filename="package://go2_piper_d435_assets/meshes/compiled/mesh_42.stl" />
+      </geometry>
+      <material name="link6_wrist_d435_visual_16_material">
+        <color rgba="0.749019980430603 0.749019980430603 0.749019980430603 1" />
+      </material>
+    </visual>
+    <visual name="wrist_d435_visual_17">
+      <origin xyz="-0.06382448817485099 0.01095943211956838 0.03307922468529954" rpy="1.571413994217171 -0.3498617732523692 3.138996476515384" />
+      <geometry>
+        <mesh filename="package://go2_piper_d435_assets/meshes/compiled/mesh_43.stl" />
+      </geometry>
+      <material name="link6_wrist_d435_visual_17_material">
+        <color rgba="0.749019980430603 0.749019980430603 0.749019980430603 1" />
+      </material>
+    </visual>
+    <collision name="wrist_d435_bracket_collision">
+      <origin xyz="-0.0463235796864658 0.001548213483945881 0.02098397872545624" rpy="0.4533914273087628 1.323367719393901 0.1121000042289639" />
+      <geometry>
+        <mesh filename="package://go2_piper_d435_assets/meshes/compiled/mesh_25_hull.stl" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="joint6" type="revolute">
+    <parent link="link5" />
+    <child link="link6" />
+    <origin xyz="8.8259e-05 -0.091 0" rpy="1.570800569437271 0 0" />
+    <axis xyz="0 0 1" />
+    <limit lower="-2.0944" upper="2.0944" effort="8" velocity="5" />
+    <dynamics damping="0.1" friction="0.1" />
+  </joint>
+  <link name="link7">
+    <inertial>
+      <origin xyz="0.000277817 -0.0467674 -0.009210299999999999" rpy="-0.04203045104981917 -1.38233000687569 1.574181929948243" />
+      <mass value="0.0264822" />
+      <inertia ixx="1.45133e-05" iyy="1.0004e-05" izz="5.87021e-06" ixy="0" ixz="0" iyz="0" />
+    </inertial>
+    <visual name="geom_120">
+      <origin xyz="0.0004558150895103778 -0.05107128884446038 0.01017915797788432" rpy="0.07939729552160379 -1.373769152442114 1.530390410036426" />
+      <geometry>
+        <mesh filename="package://go2_piper_d435_assets/meshes/compiled/mesh_22.stl" />
+      </geometry>
+      <material name="link7_geom_120_material">
+        <color rgba="0.699999988079071 0.699999988079071 0.699999988079071 1" />
+      </material>
+    </visual>
+    <collision name="link7_contact_inner">
+      <origin xyz="0 -0.015 0.0025" rpy="0 0 0" />
+      <geometry>
+        <box size="0.024 0.03 0.005" />
+      </geometry>
+    </collision>
+    <collision name="link7_contact_outer">
+      <origin xyz="0 -0.045 0.0025" rpy="0 0 0" />
+      <geometry>
+        <box size="0.03 0.03 0.005" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="joint7" type="prismatic">
+    <parent link="link6" />
+    <child link="link7" />
+    <origin xyz="0 0 0.13503" rpy="1.570800569437271 0 0" />
+    <axis xyz="0 0 1" />
+    <limit lower="0" upper="0.05" effort="10" velocity="1" />
+    <dynamics damping="0.2" friction="0" />
+  </joint>
+  <link name="link8">
+    <inertial>
+      <origin xyz="-0.00027788 -0.0467674 -0.009210299999999999" rpy="-0.04207295083854001 -1.3823298258638 -1.567368223852829" />
+      <mass value="0.0264822" />
+      <inertia ixx="1.45133e-05" iyy="1.0004e-05" izz="5.87021e-06" ixy="0" ixz="0" iyz="0" />
+    </inertial>
+    <visual name="geom_123">
+      <origin xyz="0.0004558150895103778 -0.05107128884446038 0.01017915797788432" rpy="0.07939729552160379 -1.373769152442114 1.530390410036426" />
+      <geometry>
+        <mesh filename="package://go2_piper_d435_assets/meshes/compiled/mesh_23.stl" />
+      </geometry>
+      <material name="link8_geom_123_material">
+        <color rgba="0.792156994342804 0.8196079730987549 0.9333329796791077 1" />
+      </material>
+    </visual>
+    <collision name="link8_contact_inner">
+      <origin xyz="0 -0.015 0.0025" rpy="0 0 3.141592653589793" />
+      <geometry>
+        <box size="0.024 0.03 0.005" />
+      </geometry>
+    </collision>
+    <collision name="link8_contact_outer">
+      <origin xyz="0 -0.045 0.0025" rpy="0 0 3.141592653589793" />
+      <geometry>
+        <box size="0.03 0.03 0.005" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="joint8" type="prismatic">
+    <parent link="link6" />
+    <child link="link8" />
+    <origin xyz="0 0 0.13503" rpy="1.570800569437271 1.441957664383153e-12 3.141585307185822" />
+    <axis xyz="0 0 -1" />
+    <limit lower="-0.05" upper="0" effort="10" velocity="1" />
+    <dynamics damping="0.2" friction="0" />
+    <mimic joint="joint7" multiplier="-1" offset="0" />
+  </joint>
+  <link name="HeadCameraOpticalFrame" />
+  <joint name="HeadCameraOpticalFrame_fixed" type="fixed">
+    <parent link="base" />
+    <child link="HeadCameraOpticalFrame" />
+    <origin xyz="0.31 0 0.1" rpy="-2.094395442980788 0 -1.570796326794897" />
+  </joint>
+  <link name="WristCameraOpticalFrame" />
+  <joint name="WristCameraOpticalFrame_fixed" type="fixed">
+    <parent link="link6" />
+    <child link="WristCameraOpticalFrame" />
+    <origin xyz="-0.07379376929766 0.043501833790784 0.038766391570204" rpy="-0.3466681722289707 0.006505735788928879 -1.567938847805767" />
+  </joint>
+</robot>

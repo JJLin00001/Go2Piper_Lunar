@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<package format="3">
+  <name>go2_piper_d435_assets</name>
+  <version>4.0.0</version>
+  <description>Portable Go2, Piper and dual D435 v4 robot description and mesh assets.</description>
+  <maintainer email="assets@example.invalid">Asset bundle maintainers</maintainer>
+  <license>Apache-2.0</license>
+  <buildtool_depend>ament_cmake</buildtool_depend>
+  <export><build_type>ament_cmake</build_type></export>
+</package>

@@ -1,0 +1,3 @@
+# Only needed to re-crop public GeoTIFF sources; normal scene building uses bundled NPZ data.
+rasterio==1.4.4
+requests>=2.31

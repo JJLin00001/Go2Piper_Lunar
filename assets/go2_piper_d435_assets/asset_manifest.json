@@ -1,0 +1,268 @@
+{
+  "name": "go2_piper_d435_assets",
+  "version": "go2-piper-d435-cad-nominal-gripper-direction-v4",
+  "source_asset_directory": "source/loco_mani_demo/loco_mani_demo/assets/go2_piper/usd_d435",
+  "original_usd_sha256": "a8bc597a5c69a6d136d9cc0c79f35e90323ca5432ec6cc3a77df103b7b5ff8d8",
+  "original_mjcf_sha256": "f1d30c2acc4de46a14b2b3a849fa8e8a013228b6eac91e4ce85e45da3a299e27",
+  "source_d435_dae_sha256": "42f3b66f47a1f8f425a2e4dc07c1d9c283183167d8441f520a15623d98f9bf78",
+  "mesh_provenance": [
+    {
+      "file": "meshes/source/go2/assets/base_0.obj",
+      "source": "mujoco/go2/assets/base_0.obj",
+      "source_sha256": "8cdc53719002a5ee737d867904e534a6d6fa930b616bdcc1b3131e577d4e46c0",
+      "export_sha256": "1b37236fdabd89d8398074568861f22b720a473203731d53d0e5a9ea2c4463d5"
+    },
+    {
+      "file": "meshes/source/go2/assets/base_1.obj",
+      "source": "mujoco/go2/assets/base_1.obj",
+      "source_sha256": "39d2f4724ff64dd5a0640c308fd98902a2946660a8d033ec8dbf368fd5af0dd6",
+      "export_sha256": "c0a05eb58c20e2e1a1d0891cff385f62dc30051be7b475a7d9c54dfef96e003e"
+    },
+    {
+      "file": "meshes/source/go2/assets/base_2.obj",
+      "source": "mujoco/go2/assets/base_2.obj",
+      "source_sha256": "29cae463f95d678e4ede863c36c9b19b0d356b8340412add10670d70bdcc3095",
+      "export_sha256": "c5c0a7be00c7e48aa73163ba5d9f4c6b6370a1c74ba8a316996a902c21d34599"
+    },
+    {
+      "file": "meshes/source/go2/assets/base_3.obj",
+      "source": "mujoco/go2/assets/base_3.obj",
+      "source_sha256": "f51ba43bf300e68957a0c1aa83eaf3e4926f4ac7e64a0d6c33ae5d21fcbcf5f6",
+      "export_sha256": "7f21b320b8aa86d39b40197645a0949d007df7247c503c6b98bd89dc31e412f9"
+    },
+    {
+      "file": "meshes/source/go2/assets/base_4.obj",
+      "source": "mujoco/go2/assets/base_4.obj",
+      "source_sha256": "49ddec0129546e5dd2075d5beacf7f207baa2860aeff7626818e64d2efbf3821",
+      "export_sha256": "d51ae8e4d0ebb0f2c6d071f1cefe984629e39b8a04a4945c0bdf975c37e0a226"
+    },
+    {
+      "file": "meshes/source/go2/assets/hip_0.obj",
+      "source": "mujoco/go2/assets/hip_0.obj",
+      "source_sha256": "cc29932ab4d251ce3f72389ec4c1f757e44eee138b87e772b648c2bc76b506cd",
+      "export_sha256": "554b08bfcb80f9e65d83fb02cb6aa5efdca538e3ff6df4ff778670418dd8ed4e"
+    },
+    {
+      "file": "meshes/source/go2/assets/hip_1.obj",
+      "source": "mujoco/go2/assets/hip_1.obj",
+      "source_sha256": "3fd5bd9b2ef6abe622c0739d3c67eaa1679b19b47132951972c4892a779ea7cf",
+      "export_sha256": "533b047ea1243f68d6f301aad5cd06275945abb373551c62af427dba9b1b42b2"
+    },
+    {
+      "file": "meshes/source/go2/assets/thigh_0.obj",
+      "source": "mujoco/go2/assets/thigh_0.obj",
+      "source_sha256": "bb3edfe6a7b04f4f4dff1ce7b05d426ddce941e276cc6372fb542055893c71ec",
+      "export_sha256": "bc18267d5e40a1f1a82e7480ed441f52b92bf77522c71c2ead41535874e70d5d"
+    },
+    {
+      "file": "meshes/source/go2/assets/thigh_1.obj",
+      "source": "mujoco/go2/assets/thigh_1.obj",
+      "source_sha256": "3a631822f9f7d2114b1b79dcdff5abf95103630abb7d91d1f3b8b18117132ed2",
+      "export_sha256": "603986f50eedc14ed173187a2be756c4bae6e95ba0f8129f4865c67bd0f403d0"
+    },
+    {
+      "file": "meshes/source/go2/assets/thigh_mirror_0.obj",
+      "source": "mujoco/go2/assets/thigh_mirror_0.obj",
+      "source_sha256": "07abaedce761f1dd48647384ac14ba1959276bc78d5a2a62051e8f1c6093933b",
+      "export_sha256": "97bab5951d8d23324be6f0f85ea0cfac0173664d291dc3cb89fcb7cd4ce54801"
+    },
+    {
+      "file": "meshes/source/go2/assets/thigh_mirror_1.obj",
+      "source": "mujoco/go2/assets/thigh_mirror_1.obj",
+      "source_sha256": "db984a3e983eabbc9b38183427cca9ab0bb3bdb049f9eab030e06edda36579d6",
+      "export_sha256": "24650132d64b139e82ebfdab7b22f427810882ee976354a4bdb86c93879e6234"
+    },
+    {
+      "file": "meshes/source/go2/assets/calf_0.obj",
+      "source": "mujoco/go2/assets/calf_0.obj",
+      "source_sha256": "4a818cd563c5b7e2a271504442d05fd777d38cbaa028d4a10ad29c9f87bb355e",
+      "export_sha256": "708d80a1c1fe1a611bfd759ce7afa721f6815af8bca453ca6dc8c56ab7c84962"
+    },
+    {
+      "file": "meshes/source/go2/assets/calf_1.obj",
+      "source": "mujoco/go2/assets/calf_1.obj",
+      "source_sha256": "51950c3a153ae3208592df86ea11c9d6756f8f645ebca5caf6910c61aeb03817",
+      "export_sha256": "4a044a38e27434c90d1e9bf8c9f2e0d7a2701e71142665bb4fbb35c5b2d2abf2"
+    },
+    {
+      "file": "meshes/source/go2/assets/calf_mirror_0.obj",
+      "source": "mujoco/go2/assets/calf_mirror_0.obj",
+      "source_sha256": "6dc0406207a1c08a5953fd5962aca1a270fd06593d30d100205e05c1b32d4af2",
+      "export_sha256": "c99f26ac044011d04b8b0bc093fb9e7bc528fd9359521fec7a44baff246b0418"
+    },
+    {
+      "file": "meshes/source/go2/assets/calf_mirror_1.obj",
+      "source": "mujoco/go2/assets/calf_mirror_1.obj",
+      "source_sha256": "f84f5af90b914633165beb3a5493ee499169144c5797dcf04c6eb5842f74b31a",
+      "export_sha256": "71d15bd01687f22d075dbdb63aba91334f16d31b7ccac6ea9dc98258ee4b8712"
+    },
+    {
+      "file": "meshes/source/go2/assets/foot.obj",
+      "source": "mujoco/go2/assets/foot.obj",
+      "source_sha256": "df9e78a7c0110d02557439010f2a5f11f0ec4fd907b32704145dbd6aa7affc0b",
+      "export_sha256": "ac616c20ae0b8fb4d4029304f93139bcca4642b2f7eaaee913be6dde73bf9f91"
+    },
+    {
+      "file": "meshes/source/piper_dabai/assets/base_link.STL",
+      "source": "mujoco/piper_dabai/assets/base_link.STL",
+      "source_sha256": "fd4a3d6d0266205fe3f725f048645be66592c23564db22e08b0807d5569b2c64",
+      "export_sha256": "fd4a3d6d0266205fe3f725f048645be66592c23564db22e08b0807d5569b2c64"
+    },
+    {
+      "file": "meshes/source/piper_dabai/assets/link1.STL",
+      "source": "mujoco/piper_dabai/assets/link1.STL",
+      "source_sha256": "9ee6e1d67c0241f42a0dbaf5c676d19230375ed078ee1943bb8c4c37ab303d14",
+      "export_sha256": "9ee6e1d67c0241f42a0dbaf5c676d19230375ed078ee1943bb8c4c37ab303d14"
+    },
+    {
+      "file": "meshes/source/piper_dabai/assets/link2.STL",
+      "source": "mujoco/piper_dabai/assets/link2.STL",
+      "source_sha256": "0d37675b699b643f2e15348de99aed535fac10dc5f09a79b8e4b0acfaf4e0378",
+      "export_sha256": "0d37675b699b643f2e15348de99aed535fac10dc5f09a79b8e4b0acfaf4e0378"
+    },
+    {
+      "file": "meshes/source/piper_dabai/assets/link3.STL",
+      "source": "mujoco/piper_dabai/assets/link3.STL",
+      "source_sha256": "e8ae51f17c0c7f6d67b753922e2cc269f5e8372a65734f859231639a64fe8fad",
+      "export_sha256": "e8ae51f17c0c7f6d67b753922e2cc269f5e8372a65734f859231639a64fe8fad"
+    },
+    {
+      "file": "meshes/source/piper_dabai/assets/link4.STL",
+      "source": "mujoco/piper_dabai/assets/link4.STL",
+      "source_sha256": "efa33022976218f246f736a6133494b5d0e5486e8b50b52900c42f285ae85558",
+      "export_sha256": "efa33022976218f246f736a6133494b5d0e5486e8b50b52900c42f285ae85558"
+    },
+    {
+      "file": "meshes/source/piper_dabai/assets/link5.STL",
+      "source": "mujoco/piper_dabai/assets/link5.STL",
+      "source_sha256": "a1c69d1c7f6f8c60e2c82331c0f444725200ed4053d3e5ec23aa82cb5db5b29f",
+      "export_sha256": "a1c69d1c7f6f8c60e2c82331c0f444725200ed4053d3e5ec23aa82cb5db5b29f"
+    },
+    {
+      "file": "meshes/source/piper_dabai/assets/link7.STL",
+      "source": "mujoco/piper_dabai/assets/link7.STL",
+      "source_sha256": "475a7d8db056524d7659fadf5a2c307d62791047b6214d733dfc7846ed1c613d",
+      "export_sha256": "475a7d8db056524d7659fadf5a2c307d62791047b6214d733dfc7846ed1c613d"
+    },
+    {
+      "file": "meshes/source/piper_dabai/assets/link8.STL",
+      "source": "mujoco/piper_dabai/assets/link8.STL",
+      "source_sha256": "3f88d534a85e28a33ef7d2061adacbd1d25214aa9325f9e464aad0f9e4b74606",
+      "export_sha256": "3f88d534a85e28a33ef7d2061adacbd1d25214aa9325f9e464aad0f9e4b74606"
+    },
+    {
+      "file": "meshes/source/piper_dabai/assets/gripper_base_100_v3.STL",
+      "source": "mujoco/piper_dabai/assets/gripper_base_100_v3.STL",
+      "source_sha256": "cdc58c74a7795fb47c9450019ff0b6bf43563f5c4c6e2bdefa3d8c26abaa1835",
+      "export_sha256": "cdc58c74a7795fb47c9450019ff0b6bf43563f5c4c6e2bdefa3d8c26abaa1835"
+    },
+    {
+      "file": "meshes/source/piper_d435/assets/piper_d435_wrist_mount.stl",
+      "source": "mujoco/piper_d435/assets/piper_d435_wrist_mount.stl",
+      "source_sha256": "ce6097392dd201a2d930a1772fc8799b675abdef460030c3e115f1fa28ccb439",
+      "export_sha256": "ce6097392dd201a2d930a1772fc8799b675abdef460030c3e115f1fa28ccb439"
+    }
+  ],
+  "usd_copied_byte_for_byte": true,
+  "moving_joint_count": 20,
+  "rigid_body_count": 25,
+  "d435_camera_count": 2,
+  "d435_visual_mesh_count_per_camera": 18,
+  "mujoco_version": "3.9.0",
+  "gripper_correction": {
+    "joint_axes": {
+      "joint7": {
+        "source": [
+          0.0,
+          0.0,
+          -1.0
+        ],
+        "corrected": [
+          0.0,
+          0.0,
+          1.0
+        ]
+      },
+      "joint8": {
+        "source": [
+          0.0,
+          0.0,
+          1.0
+        ],
+        "corrected": [
+          0.0,
+          0.0,
+          -1.0
+        ]
+      }
+    },
+    "contact_pads": {
+      "link7_contact_inner": {
+        "source": [
+          0.0,
+          -0.015,
+          -0.0025
+        ],
+        "corrected": [
+          0.0,
+          -0.015,
+          0.0025
+        ]
+      },
+      "link7_contact_outer": {
+        "source": [
+          0.0,
+          -0.045,
+          -0.0025
+        ],
+        "corrected": [
+          0.0,
+          -0.045,
+          0.0025
+        ]
+      },
+      "link8_contact_inner": {
+        "source": [
+          0.0,
+          -0.015,
+          -0.0025
+        ],
+        "corrected": [
+          0.0,
+          -0.015,
+          0.0025
+        ]
+      },
+      "link8_contact_outer": {
+        "source": [
+          0.0,
+          -0.045,
+          -0.0025
+        ],
+        "corrected": [
+          0.0,
+          -0.045,
+          0.0025
+        ]
+      }
+    },
+    "command": "opening_m = joint7 - joint8; joint7 = opening_m/2; joint8 = -opening_m/2",
+    "outward_direction_link6": {
+      "link7": [
+        0,
+        -1,
+        0
+      ],
+      "link8": [
+        0,
+        1,
+        0
+      ]
+    },
+    "closed_pose_preserved": true,
+    "joint_limits_preserved": true,
+    "source_files_modified": false,
+    "previous_grasp_results_apply": false
+  },
+  "dynamics_note": "Source composite inertias retained. This is an asset export, not cross-simulator controller qualification."
+}

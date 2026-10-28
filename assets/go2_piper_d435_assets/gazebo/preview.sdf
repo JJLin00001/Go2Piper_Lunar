@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- New portable preview world, Gazebo Sim Harmonic. Model held static for inspection. -->
+<sdf version="1.9">
+  <world name="go2_piper_d435_preview">
+    <gravity>0 0 -9.81</gravity>
+    <physics name="default" type="ignored">
+      <max_step_size>0.002</max_step_size>
+      <real_time_factor>1</real_time_factor>
+    </physics>
+    <plugin filename="gz-sim-physics-system" name="gz::sim::systems::Physics"/>
+    <plugin filename="gz-sim-user-commands-system" name="gz::sim::systems::UserCommands"/>
+    <plugin filename="gz-sim-scene-broadcaster-system" name="gz::sim::systems::SceneBroadcaster"/>
+    <plugin filename="gz-sim-sensors-system" name="gz::sim::systems::Sensors">
+      <render_engine>ogre2</render_engine>
+    </plugin>
+    <scene><ambient>0.5 0.5 0.5 1</ambient><background>0.75 0.8 0.85 1</background></scene>
+    <light name="sun" type="directional">
+      <pose>0 0 10 0 0 0</pose><diffuse>0.8 0.8 0.8 1</diffuse>
+      <specular>0.2 0.2 0.2 1</specular><direction>-0.3 0.2 -1</direction>
+      <cast_shadows>true</cast_shadows>
+    </light>
+    <model name="ground">
+      <static>true</static>
+      <link name="ground">
+        <collision name="ground"><geometry><plane><normal>0 0 1</normal><size>10 10</size></plane></geometry></collision>
+        <visual name="ground">
+          <geometry><plane><normal>0 0 1</normal><size>10 10</size></plane></geometry>
+          <material><ambient>0.3 0.32 0.35 1</ambient><diffuse>0.3 0.32 0.35 1</diffuse></material>
+        </visual>
+      </link>
+    </model>
+    <include>
+      <uri>model://go2_piper_d435_assets</uri>
+      <name>go2_piper_d435</name>
+      <pose>0 0 0.48 0 0 0</pose>
+      <static>true</static>
+    </include>
+  </world>
+</sdf>

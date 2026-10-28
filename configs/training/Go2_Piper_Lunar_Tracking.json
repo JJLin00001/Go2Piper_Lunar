@@ -1,0 +1,171 @@
+{
+  "task": "Go2_Piper_Lunar_Tracking",
+  "environment": "Lunar",
+  "seed": 42,
+  "num_envs": 64,
+  "episode_length_s": 20,
+  "decimation": 4,
+  "patch_size_m": 16,
+  "boundary_margin_m": 1.5,
+  "history_len": 10,
+  "tcp_offset_link6_m": [
+    0,
+    0,
+    0.18
+  ],
+  "nominal_base_height_m": 0.34,
+  "action_scale": [
+    0.3,
+    0.45,
+    0.45,
+    0.3,
+    0.45,
+    0.45,
+    0.3,
+    0.45,
+    0.45,
+    0.3,
+    0.45,
+    0.45,
+    0.65,
+    0.45,
+    0.55,
+    0.45,
+    0.45,
+    0.45
+  ],
+  "command": {
+    "resample_time_s": 5,
+    "velocity_x_m_s": [
+      -0.2,
+      0.5
+    ],
+    "velocity_y_m_s": [
+      -0.2,
+      0.2
+    ],
+    "yaw_rate_rad_s": [
+      -0.5,
+      0.5
+    ],
+    "standing_fraction": 0.2,
+    "trajectory_time_s": [
+      2,
+      4
+    ],
+    "hold_time_s": [
+      0.5,
+      1.5
+    ]
+  },
+  "curriculum": {
+    "initial_scale": 0.2,
+    "ramp_iterations": 2000
+  },
+  "rewards": {
+    "linear_tracking": 2,
+    "yaw_tracking": 1,
+    "ee_tracking": 3,
+    "ee_velocity": 0.15,
+    "alive": 0.2,
+    "orientation": -0.5,
+    "base_height": -2,
+    "vertical_velocity": -0.2,
+    "angular_xy": -0.05,
+    "leg_energy": -0.0002,
+    "arm_energy": -0.0002,
+    "leg_action_rate": -0.01,
+    "arm_action_rate": -0.01,
+    "joint_limits": -2,
+    "foot_slip": -0.1,
+    "undesired_contact": -0.2,
+    "termination": -2
+  },
+  "ppo": {
+    "num_steps_per_env": 48,
+    "num_learning_epochs": 5,
+    "num_mini_batches": 4,
+    "learning_rate": 0.0003,
+    "gamma": 0.99,
+    "lam": 0.95,
+    "clip_param": 0.2,
+    "entropy_coef": 0.002,
+    "max_grad_norm": 1,
+    "dagger_update_freq": 20,
+    "mixing_schedule": [
+      1,
+      0,
+      3000
+    ],
+    "priv_reg_coef_schedual": [
+      0,
+      0.1,
+      1000,
+      3000
+    ]
+  },
+  "policy": {
+    "actor_hidden_dims": [
+      128
+    ],
+    "critic_hidden_dims": [
+      128
+    ],
+    "leg_control_head_hidden_dims": [
+      128,
+      128
+    ],
+    "arm_control_head_hidden_dims": [
+      128,
+      128
+    ],
+    "priv_encoder_dims": [
+      64,
+      20
+    ],
+    "init_std": [
+      [
+        0.3,
+        0.3,
+        0.3,
+        0.3,
+        0.3,
+        0.3,
+        0.3,
+        0.3,
+        0.3,
+        0.3,
+        0.3,
+        0.3,
+        0.2,
+        0.2,
+        0.2,
+        0.2,
+        0.2,
+        0.2
+      ]
+    ],
+    "min_std": [
+      [
+        0.08,
+        0.08,
+        0.08,
+        0.08,
+        0.08,
+        0.08,
+        0.08,
+        0.08,
+        0.08,
+        0.08,
+        0.08,
+        0.08,
+        0.05,
+        0.05,
+        0.05,
+        0.05,
+        0.05,
+        0.05
+      ]
+    ]
+  }
+}

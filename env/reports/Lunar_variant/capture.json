@@ -1,0 +1,18 @@
+{
+  "close": {
+    "prim_path": "/World/Cameras/Close",
+    "resolution": [
+      1280,
+      720
+    ],
+    "rgb_std": 25.59200802159707
+  },
+  "overview": {
+    "prim_path": "/World/Cameras/Overview",
+    "resolution": [
+      1280,
+      720
+    ],
+    "rgb_std": 14.477027183798056
+  }
+}

@@ -1,0 +1,2027 @@
+#usda 1.0
+(
+    customLayerData = {
+        dictionary cameraSettings = {
+            string boundCamera = "/World/Cameras/Close"
+        }
+    }
+    defaultPrim = "World"
+    framesPerSecond = 60
+    kilogramsPerUnit = 1
+    metersPerUnit = 1
+    timeCodesPerSecond = 240
+    upAxis = "Z"
+)
+
+def Xform "World" (
+    customData = {
+        string configuration_json = '{"camera": {"close_eye_m": [2.0, -2.3, 1.35], "close_target_m": [0.2, 0.0, 0.4], "height": 720, "overview_eye_m": [6.5, -7.0, 4.5], "overview_target_m": [0.5, 0.0, 0.25], "sensor_height": 480, "sensor_horizontal_fov_deg": 69.0, "sensor_width": 640, "width": 1280}, "lighting": {"fill_intensity": 35.0, "sun_azimuth_deg": 140.0, "sun_elevation_deg": 28.0, "sun_intensity": 900.0}, "ore": {"clearance_m": 0.003, "dimensions_m": [0.18, 0.065, 0.15], "dynamic_friction": 0.65, "mass_kg": 2.0, "static_friction": 0.8, "xy_m": [0.72, 0.0]}, "physics": {"dt_s": 0.004166666666666667, "gravity_m_s2": 1.62, "solver_position_iterations": 16, "solver_velocity_iterations": 4}, "robot": {"arm_rad": [0.0, 0.8, -1.25, 0.0, 0.45, 0.0], "calf_rad": -1.5, "foot_clearance_m": 0.008, "foot_dynamic_friction": 0.65, "foot_static_friction": 0.8, "gripper_opening_m": 0.06, "hip_rad": 0.1, "pad_dynamic_friction": 0.65, "pad_static_friction": 0.8, "pd": {"arm": [60.0, 3.0], "arm_load_bearing": [360.0, 20.0], "gripper": [800.0, 5.0], "legs": [80.0, 4.0]}, "self_collisions": true, "thigh_rad": 0.8, "xy_m": [0.0, 0.0], "yaw_deg": 0.0}, "seed": 20261022, "terrain": {"crater_count": 24, "dynamic_friction": 0.65, "flat_blend_m": 1.0, "flat_radius_m": 1.5, "horizon_extent_m": 100.0, "restitution": 0.0, "rock_count": 100, "roughness_m": 0.045, "size_m": 40.0, "slope_deg": 0.0, "spacing_m": 0.15, "static_friction": 0.8}}'
+        string configuration_sha256 = "8c4f292d142afc4ec6be6ffce6ec3ea25166b06f2ab5abba2d6b4176bd76e6fc"
+        string purpose = "Lunar Go2 + Piper heavy-rock grasp / future WBC experiments"
+    }
+)
+{
+    def PhysicsScene "PhysicsScene" (
+        prepend apiSchemas = ["PhysxSceneAPI"]
+    )
+    {
+        vector3f physics:gravityDirection = (0, 0, -1)
+        float physics:gravityMagnitude = 1.62
+        uniform token physxScene:broadphaseType = "MBP"
+        bool physxScene:enableCCD = 1
+        bool physxScene:enableGPUDynamics = 0
+        bool physxScene:enableStabilization = 0
+        uniform token physxScene:solverType = "TGS"
+        uint physxScene:timeStepsPerSecond = 240
+    }
+
+    def Xform "Terrain" (
+        prepend references = @../../assets/lunar/lunar_scene/terrain.usdc@
+    )
+    {
+    }
+
+    def Scope "Materials"
+    {
+        def Material "FootContact" (
+            prepend apiSchemas = ["PhysicsMaterialAPI", "PhysxMaterialAPI"]
+        )
+        {
+            float physics:dynamicFriction = 0.65
+            float physics:restitution = 0
+            float physics:staticFriction = 0.8
+            uniform token physxMaterial:frictionCombineMode = "average"
+            uniform token physxMaterial:restitutionCombineMode = "min"
+        }
+
+        def Material "PadContact" (
+            prepend apiSchemas = ["PhysicsMaterialAPI", "PhysxMaterialAPI"]
+        )
+        {
+            float physics:dynamicFriction = 0.65
+            float physics:restitution = 0
+            float physics:staticFriction = 0.8
+            uniform token physxMaterial:frictionCombineMode = "average"
+            uniform token physxMaterial:restitutionCombineMode = "min"
+        }
+
+        def Material "RobotVisual"
+        {
+            token outputs:surface.connect = </World/Materials/RobotVisual/PreviewSurface.outputs:surface>
+
+            def Shader "PreviewSurface"
+            {
+                uniform token info:id = "UsdPreviewSurface"
+                color3f inputs:diffuseColor = (0.2, 0.2, 0.2)
+                color3f inputs:diffuseColor.connect = </World/Materials/RobotVisual/DisplayColor.outputs:result>
+                float inputs:metallic = 0
+                float inputs:roughness = 0.55
+                token outputs:surface
+            }
+
+            def Shader "DisplayColor"
+            {
+                uniform token info:id = "UsdPrimvarReader_float3"
+                token inputs:varname = "displayColor"
+                float3 outputs:result
+            }
+        }
+    }
+
+    def Scope "Ores"
+    {
+        def Xform "Target" (
+            prepend apiSchemas = ["PhysxRigidBodyAPI"]
+            prepend references = @../../assets/lunar/lunar_scene/ore.usdc@
+        )
+        {
+            float physxRigidBody:sleepThreshold = 0
+            double3 xformOp:translate = (0.72, 0, 0.07800000298023224)
+            uniform token[] xformOpOrder = ["xformOp:translate"]
+        }
+    }
+
+    def Xform "Robot" (
+        customData = {
+            string control_mode = "Model-limited joint PD preview; replace drives for WBC"
+            string initial_joint_positions_json = '{"FL_calf_joint": -1.5, "FL_hip_joint": 0.1, "FL_thigh_joint": 0.8, "FR_calf_joint": -1.5, "FR_hip_joint": -0.1, "FR_thigh_joint": 0.8, "RL_calf_joint": -1.5, "RL_hip_joint": 0.1, "RL_thigh_joint": 0.8, "RR_calf_joint": -1.5, "RR_hip_joint": -0.1, "RR_thigh_joint": 0.8, "joint1": 0.0, "joint2": 0.8, "joint3": -1.25, "joint4": 0.0, "joint5": 0.45, "joint6": 0.0, "joint7": 0.03, "joint8": -0.03}'
+        }
+        prepend references = @../../assets/go2_piper_d435_assets/isaac_sim/go2_piper_d435.usd@
+    )
+    {
+        quatf xformOp:orient = (1, 0, 0, 0)
+        double3 xformOp:translate = (0, 0, 0.33150256875980433)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient"]
+
+        over "base" (
+            prepend apiSchemas = ["PhysxArticulationAPI", "PhysxRigidBodyAPI"]
+        )
+        {
+            bool physxArticulation:enabledSelfCollisions = 1
+            float physxArticulation:sleepThreshold = 0
+            int physxArticulation:solverPositionIterationCount = 16
+            int physxArticulation:solverVelocityIterationCount = 4
+            float physxArticulation:stabilizationThreshold = 0
+            float physxRigidBody:angularDamping = 0
+            bool physxRigidBody:disableGravity = 0
+            float physxRigidBody:linearDamping = 0
+            float physxRigidBody:maxDepenetrationVelocity = 1
+            float physxRigidBody:sleepThreshold = 0
+            quatf xformOp:orient = (1, 0, 0, 0)
+            double3 xformOp:translate = (0, 0, 0)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient"]
+
+            over "visuals"
+            {
+                over "geom_0" (
+                    prepend apiSchemas = ["MaterialBindingAPI"]
+                )
+                {
+                    rel material:binding = </World/Materials/RobotVisual>
+                }
+
+                over "geom_1" (
+                    prepend apiSchemas = ["MaterialBindingAPI"]
+                )
+                {
+                    rel material:binding = </World/Materials/RobotVisual>
+                }
+
+                over "geom_2" (
+                    prepend apiSchemas = ["MaterialBindingAPI"]
+                )
+                {
+                    rel material:binding = </World/Materials/RobotVisual>
+                }
+
+                over "geom_3" (
+                    prepend apiSchemas = ["MaterialBindingAPI"]
+                )
+                {
+                    rel material:binding = </World/Materials/RobotVisual>
+                }
+
+                over "geom_4" (
+                    prepend apiSchemas = ["MaterialBindingAPI"]
+                )
+                {
+                    rel material:binding = </World/Materials/RobotVisual>
+                }
+
+                over "geom_5" (
+                    prepend apiSchemas = ["MaterialBindingAPI"]
+                )
+                {
+                    rel material:binding = </World/Materials/RobotVisual>
+                }
+
+                over "geom_13" (
+                    prepend apiSchemas = ["MaterialBindingAPI"]
+                )
+                {
+                    rel material:binding = </World/Materials/RobotVisual>
+                }
+            }
+
+            over "collisions"
+            {
+                over "geom_6" (
+                    prepend apiSchemas = ["MaterialBindingAPI", "PhysxCollisionAPI"]
+                )
+                {
+                    rel material:binding:physics = </World/Materials/FootContact> (
+                        bindMaterialAs = "weakerThanDescendants"
+                    )
+                    float physxCollision:contactOffset = 0.002
+                    float physxCollision:restOffset = 0
+                }
+
+                over "geom_7" (
+                    prepend apiSchemas = ["MaterialBindingAPI", "PhysxCollisionAPI"]
+                )
+                {
+                    rel material:binding:physics = </World/Materials/FootContact> (
+                        bindMaterialAs = "weakerThanDescendants"
+                    )
+                    float physxCollision:contactOffset = 0.002
+                    float physxCollision:restOffset = 0
+                }
+
+                over "geom_8" (
+                    prepend apiSchemas = ["MaterialBindingAPI", "PhysxCollisionAPI"]
+                )
+                {
+                    rel material:binding:physics = </World/Materials/FootContact> (
+                        bindMaterialAs = "weakerThanDescendants"
+                    )
+                    float physxCollision:contactOffset = 0.002
+                    float physxCollision:restOffset = 0
+                }
+
+                over "geom_9" (
+                    prepend apiSchemas = ["MaterialBindingAPI", "PhysxCollisionAPI"]
+                )
+                {
+                    rel material:binding:physics = </World/Materials/FootContact> (
+                        bindMaterialAs = "weakerThanDescendants"
+                    )
+                    float physxCollision:contactOffset = 0.002
+                    float physxCollision:restOffset = 0
+                }
+
+                over "geom_10" (
+                    prepend apiSchemas = ["MaterialBindingAPI", "PhysxCollisionAPI"]
+                )
+                {
+                    rel material:binding:physics = </World/Materials/FootContact> (
+                        bindMaterialAs = "weakerThanDescendants"
+                    )
+                    float physxCollision:contactOffset = 0.002
+                    float physxCollision:restOffset = 0
+                }
+
+                over "geom_11" (
+                    prepend apiSchemas = ["MaterialBindingAPI", "PhysxCollisionAPI"]
+                )
+                {
+                    rel material:binding:physics = </World/Materials/FootContact> (
+                        bindMaterialAs = "weakerThanDescendants"
+                    )
+                    float physxCollision:contactOffset = 0.002
+                    float physxCollision:restOffset = 0
+                }
+
+                over "geom_12" (
+                    prepend apiSchemas = ["MaterialBindingAPI", "PhysxCollisionAPI"]
+                )
+                {
+                    rel material:binding:physics = </World/Materials/FootContact> (
+                        bindMaterialAs = "weakerThanDescendants"
+                    )
+                    float physxCollision:contactOffset = 0.002
+                    float physxCollision:restOffset = 0
+                }
+            }
+
+            over "camera_mounts"
+            {
+                over "head_d435"
+                {
+                    over "visual"
+                    {
+                        over "ID3" (
+                            prepend apiSchemas = ["MaterialBindingAPI"]
+                        )
+                        {
+                            rel material:binding = </World/Materials/RobotVisual>
+                        }
+
+                        over "ID11" (
+                            prepend apiSchemas = ["MaterialBindingAPI"]
+                        )
+                        {
+                            rel material:binding = </World/Materials/RobotVisual>
+                        }
+
+                        over "ID17" (
+                            prepend apiSchemas = ["MaterialBindingAPI"]
+                        )
+                        {
+                            rel material:binding = </World/Materials/RobotVisual>
+                        }
+
+                        over "ID23" (
+                            prepend apiSchemas = ["MaterialBindingAPI"]
+                        )
+                        {
+                            rel material:binding = </World/Materials/RobotVisual>
+                        }
+
+                        over "ID29" (
+                            prepend apiSchemas = ["MaterialBindingAPI"]
+                        )
+                        {
+                            rel material:binding = </World/Materials/RobotVisual>
+                        }
+
+                        over "ID35" (
+                            prepend apiSchemas = ["MaterialBindingAPI"]
+                        )
+                        {
+                            rel material:binding = </World/Materials/RobotVisual>
+                        }
+
+                        over "ID41" (
+                            prepend apiSchemas = ["MaterialBindingAPI"]
+                        )
+                        {
+                            rel material:binding = </World/Materials/RobotVisual>
+                        }
+
+                        over "ID47" (
+                            prepend apiSchemas = ["MaterialBindingAPI"]
+                        )
+                        {
+                            rel material:binding = </World/Materials/RobotVisual>
+                        }
+
+                        over "ID53" (
+                            prepend apiSchemas = ["MaterialBindingAPI"]
+                        )
+                        {
+                            rel material:binding = </World/Materials/RobotVisual>
+                        }
+
+                        over "ID59" (
+                            prepend apiSchemas = ["MaterialBindingAPI"]
+                        )
+                        {
+                            rel material:binding = </World/Materials/RobotVisual>
+                        }
+
+                        over "ID65" (
+                            prepend apiSchemas = ["MaterialBindingAPI"]
+                        )
+                        {
+                            rel material:binding = </World/Materials/RobotVisual>
+                        }
+
+                        over "ID71" (
+                            prepend apiSchemas = ["MaterialBindingAPI"]
+                        )
+                        {
+                            rel material:binding = </World/Materials/RobotVisual>
+                        }
+
+                        over "ID77" (
+                            prepend apiSchemas = ["MaterialBindingAPI"]
+                        )
+                        {
+                            rel material:binding = </World/Materials/RobotVisual>
+                        }
+
+                        over "ID83" (
+                            prepend apiSchemas = ["MaterialBindingAPI"]
+                        )
+                        {
+                            rel material:binding = </World/Materials/RobotVisual>
+                        }
+
+                        over "ID89" (
+                            prepend apiSchemas = ["MaterialBindingAPI"]
+                        )
+                        {
+                            rel material:binding = </World/Materials/RobotVisual>
+                        }
+
+                        over "ID95" (
+                            prepend apiSchemas = ["MaterialBindingAPI"]
+                        )
+                        {
+                            rel material:binding = </World/Materials/RobotVisual>
+                        }
+
+                        over "ID101" (
+                            prepend apiSchemas = ["MaterialBindingAPI"]
+                        )
+                        {
+                            rel material:binding = </World/Materials/RobotVisual>
+                        }
+
+                        over "ID107" (
+                            prepend apiSchemas = ["MaterialBindingAPI"]
+                        )
+                        {
+                            rel material:binding = </World/Materials/RobotVisual>
+                        }
+                    }
+
+                    over "collision" (
+                        prepend apiSchemas = ["MaterialBindingAPI", "PhysxCollisionAPI"]
+                    )
+                    {
+                        rel material:binding:physics = </World/Materials/FootContact> (
+                            bindMaterialAs = "weakerThanDescendants"
+                        )
+                        float physxCollision:contactOffset = 0.002
+                        float physxCollision:restOffset = 0
+                    }
+                }
+            }
+
+            over "HeadCameraOpticalFrame"
+            {
+                def Camera "Camera" (
+                    customData = {
+                        string sensor_model = "Ideal pinhole RGB + depth; nominal mount; no D435 noise model"
+                    }
+                )
+                {
+                    float2 clippingRange = (0.05, 30)
+                    float focalLength = 15.244857
+                    float horizontalAperture = 20.955
+                    float verticalAperture = 15.71625
+                    quatf xformOp:orient = (0, 1, 0, 0)
+                    double3 xformOp:translate = (0, 0, 0)
+                    uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient"]
+                }
+            }
+        }
+
+        over "FL_hip" (
+            prepend apiSchemas = ["PhysxRigidBodyAPI"]
+        )
+        {
+            float physxRigidBody:angularDamping = 0
+            bool physxRigidBody:disableGravity = 0
+            float physxRigidBody:linearDamping = 0
+            float physxRigidBody:maxDepenetrationVelocity = 1
+            float physxRigidBody:sleepThreshold = 0
+            quatf xformOp:orient = (0.99875027, 0.04997917, 0, 0)
+            double3 xformOp:translate = (0.19339999556541443, 0.04650000110268593, 0)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient"]
+
+            over "visuals"
+            {
+                over "geom_14" (
+                    prepend apiSchemas = ["MaterialBindingAPI"]
+                )
+                {
+                    rel material:binding = </World/Materials/RobotVisual>
+                }
+
+                over "geom_15" (
+                    prepend apiSchemas = ["MaterialBindingAPI"]
+                )
+                {
+                    rel material:binding = </World/Materials/RobotVisual>
+                }
+            }
+
+            over "collisions"
+            {
+                over "geom_16" (
+                    prepend apiSchemas = ["MaterialBindingAPI", "PhysxCollisionAPI"]
+                )
+                {
+                    rel material:binding:physics = </World/Materials/FootContact> (
+                        bindMaterialAs = "weakerThanDescendants"
+                    )
+                    float physxCollision:contactOffset = 0.002
+                    float physxCollision:restOffset = 0
+                }
+            }
+        }
+
+        over "FL_thigh" (
+            prepend apiSchemas = ["PhysxRigidBodyAPI"]
+        )
+        {
+            float physxRigidBody:angularDamping = 0
+            bool physxRigidBody:disableGravity = 0
+            float physxRigidBody:linearDamping = 0
+            float physxRigidBody:maxDepenetrationVelocity = 1
+            float physxRigidBody:sleepThreshold = 0
+            quatf xformOp:orient = (0.9199099, 0.046033863, 0.38893166, 0.019462805)
+            double3 xformOp:translate = (0.19339999556541443, 0.1415228987088168, 0.009534091271920482)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient"]
+
+            over "visuals"
+            {
+                over "geom_17" (
+                    prepend apiSchemas = ["MaterialBindingAPI"]
+                )
+                {
+                    rel material:binding = </World/Materials/RobotVisual>
+                }
+
+                over "geom_18" (
+                    prepend apiSchemas = ["MaterialBindingAPI"]
+                )
+                {
+                    rel material:binding = </World/Materials/RobotVisual>
+                }
+            }
+
+            over "collisions"
+            {
+                over "geom_19" (
+                    prepend apiSchemas = ["MaterialBindingAPI", "PhysxCollisionAPI"]
+                )
+                {
+                    rel material:binding:physics = </World/Materials/FootContact> (
+                        bindMaterialAs = "weakerThanDescendants"
+                    )
+                    float physxCollision:contactOffset = 0.002
+                    float physxCollision:restOffset = 0
+                }
+            }
+        }
+
+        over "FL_calf" (
+            prepend apiSchemas = ["PhysxRigidBodyAPI"]
+        )
+        {
+            float physxRigidBody:angularDamping = 0
+            bool physxRigidBody:disableGravity = 0
+            float physxRigidBody:linearDamping = 0
+            float physxRigidBody:maxDepenetrationVelocity = 1
+            float physxRigidBody:sleepThreshold = 0
+            quatf xformOp:orient = (0.93819875, 0.046949066, -0.34246927, -0.017137747)
+            double3 xformOp:translate = (0.040603148545878126, 0.15633803086016346, -0.1381230629641474)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient"]
+
+            over "visuals"
+            {
+                over "geom_20" (
+                    prepend apiSchemas = ["MaterialBindingAPI"]
+                )
+                {
+                    rel material:binding = </World/Materials/RobotVisual>
+                }
+
+                over "geom_21" (
+                    prepend apiSchemas = ["MaterialBindingAPI"]
+                )
+                {
+                    rel material:binding = </World/Materials/RobotVisual>
+                }
+
+                over "geom_25" (
+                    prepend apiSchemas = ["MaterialBindingAPI"]
+                )
+                {
+                    rel material:binding = </World/Materials/RobotVisual>
+                }
+            }
+
+            over "collisions"
+            {
+                over "geom_22" (
+                    prepend apiSchemas = ["MaterialBindingAPI", "PhysxCollisionAPI"]
+                )
+                {
+                    rel material:binding:physics = </World/Materials/FootContact> (
+                        bindMaterialAs = "weakerThanDescendants"
+                    )
+                    float physxCollision:contactOffset = 0.002
+                    float physxCollision:restOffset = 0
+                }
+
+                over "geom_23" (
+                    prepend apiSchemas = ["MaterialBindingAPI", "PhysxCollisionAPI"]
+                )
+                {
+                    rel material:binding:physics = </World/Materials/FootContact> (
+                        bindMaterialAs = "weakerThanDescendants"
+                    )
+                    float physxCollision:contactOffset = 0.002
+                    float physxCollision:restOffset = 0
+                }
+
+                over "geom_24" (
+                    prepend apiSchemas = ["MaterialBindingAPI", "PhysxCollisionAPI"]
+                )
+                {
+                    rel material:binding:physics = </World/Materials/FootContact> (
+                        bindMaterialAs = "weakerThanDescendants"
+                    )
+                    float physxCollision:contactOffset = 0.002
+                    float physxCollision:restOffset = 0
+                }
+            }
+        }
+
+        over "FL_foot" (
+            prepend apiSchemas = ["PhysxRigidBodyAPI", "PhysxContactReportAPI"]
+        )
+        {
+            float physxContactReport:threshold = 0
+            float physxRigidBody:angularDamping = 0
+            bool physxRigidBody:disableGravity = 0
+            float physxRigidBody:linearDamping = 0
+            float physxRigidBody:maxDepenetrationVelocity = 1
+            float physxRigidBody:sleepThreshold = 0
+            quatf xformOp:orient = (0.93819875, 0.046949066, -0.34246927, -0.017137747)
+            double3 xformOp:translate = (0.1762918311730943, 0.17273065999965367, -0.3015025687598043)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient"]
+
+            over "collisions"
+            {
+                over "FL" (
+                    prepend apiSchemas = ["MaterialBindingAPI", "PhysxCollisionAPI"]
+                )
+                {
+                    rel material:binding:physics = </World/Materials/FootContact> (
+                        bindMaterialAs = "weakerThanDescendants"
+                    )
+                    float physxCollision:contactOffset = 0.002
+                    float physxCollision:restOffset = 0
+                }
+            }
+        }
+
+        over "FR_hip" (
+            prepend apiSchemas = ["PhysxRigidBodyAPI"]
+        )
+        {
+            float physxRigidBody:angularDamping = 0
+            bool physxRigidBody:disableGravity = 0
+            float physxRigidBody:linearDamping = 0
+            float physxRigidBody:maxDepenetrationVelocity = 1
+            float physxRigidBody:sleepThreshold = 0
+            quatf xformOp:orient = (0.99875027, -0.04997917, 0, 0)
+            double3 xformOp:translate = (0.19339999556541443, -0.04650000110268593, 0)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient"]
+
+            over "visuals"
+            {
+                over "geom_27" (
+                    prepend apiSchemas = ["MaterialBindingAPI"]
+                )
+                {
+                    rel material:binding = </World/Materials/RobotVisual>
+                }
+
+                over "geom_28" (
+                    prepend apiSchemas = ["MaterialBindingAPI"]
+                )
+                {
+                    rel material:binding = </World/Materials/RobotVisual>
+                }
+            }
+
+            over "collisions"
+            {
+                over "geom_29" (
+                    prepend apiSchemas = ["MaterialBindingAPI", "PhysxCollisionAPI"]
+                )
+                {
+                    rel material:binding:physics = </World/Materials/FootContact> (
+                        bindMaterialAs = "weakerThanDescendants"
+                    )
+                    float physxCollision:contactOffset = 0.002
+                    float physxCollision:restOffset = 0
+                }
+            }
+        }
+
+        over "FR_thigh" (
+            prepend apiSchemas = ["PhysxRigidBodyAPI"]
+        )
+        {
+            float physxRigidBody:angularDamping = 0
+            bool physxRigidBody:disableGravity = 0
+            float physxRigidBody:linearDamping = 0
+            float physxRigidBody:maxDepenetrationVelocity = 1
+            float physxRigidBody:sleepThreshold = 0
+            quatf xformOp:orient = (0.9199099, -0.046033863, 0.38893166, -0.019462805)
+            double3 xformOp:translate = (0.19339999556541443, -0.1415228987088168, 0.009534091271920482)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient"]
+
+            over "visuals"
+            {
+                over "geom_30" (
+                    prepend apiSchemas = ["MaterialBindingAPI"]
+                )
+                {
+                    rel material:binding = </World/Materials/RobotVisual>
+                }
+
+                over "geom_31" (
+                    prepend apiSchemas = ["MaterialBindingAPI"]
+                )
+                {
+                    rel material:binding = </World/Materials/RobotVisual>
+                }
+            }
+
+            over "collisions"
+            {
+                over "geom_32" (
+                    prepend apiSchemas = ["MaterialBindingAPI", "PhysxCollisionAPI"]
+                )
+                {
+                    rel material:binding:physics = </World/Materials/FootContact> (
+                        bindMaterialAs = "weakerThanDescendants"
+                    )
+                    float physxCollision:contactOffset = 0.002
+                    float physxCollision:restOffset = 0
+                }
+            }
+        }
+
+        over "FR_calf" (
+            prepend apiSchemas = ["PhysxRigidBodyAPI"]
+        )
+        {
+            float physxRigidBody:angularDamping = 0
+            bool physxRigidBody:disableGravity = 0
+            float physxRigidBody:linearDamping = 0
+            float physxRigidBody:maxDepenetrationVelocity = 1
+            float physxRigidBody:sleepThreshold = 0
+            quatf xformOp:orient = (0.93819875, -0.046949066, -0.34246927, 0.017137747)
+            double3 xformOp:translate = (0.040603148545878126, -0.15633803086016346, -0.1381230629641474)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient"]
+
+            over "visuals"
+            {
+                over "geom_33" (
+                    prepend apiSchemas = ["MaterialBindingAPI"]
+                )
+                {
+                    rel material:binding = </World/Materials/RobotVisual>
+                }
+
+                over "geom_34" (
+                    prepend apiSchemas = ["MaterialBindingAPI"]
+                )
+                {
+                    rel material:binding = </World/Materials/RobotVisual>
+                }
+
+                over "geom_38" (
+                    prepend apiSchemas = ["MaterialBindingAPI"]
+                )
+                {
+                    rel material:binding = </World/Materials/RobotVisual>
+                }
+            }
+
+            over "collisions"
+            {
+                over "geom_35" (
+                    prepend apiSchemas = ["MaterialBindingAPI", "PhysxCollisionAPI"]
+                )
+                {
+                    rel material:binding:physics = </World/Materials/FootContact> (
+                        bindMaterialAs = "weakerThanDescendants"
+                    )
+                    float physxCollision:contactOffset = 0.002
+                    float physxCollision:restOffset = 0
+                }
+
+                over "geom_36" (
+                    prepend apiSchemas = ["MaterialBindingAPI", "PhysxCollisionAPI"]
+                )
+                {
+                    rel material:binding:physics = </World/Materials/FootContact> (
+                        bindMaterialAs = "weakerThanDescendants"
+                    )
+                    float physxCollision:contactOffset = 0.002
+                    float physxCollision:restOffset = 0
+                }
+
+                over "geom_37" (
+                    prepend apiSchemas = ["MaterialBindingAPI", "PhysxCollisionAPI"]
+                )
+                {
+                    rel material:binding:physics = </World/Materials/FootContact> (
+                        bindMaterialAs = "weakerThanDescendants"
+                    )
+                    float physxCollision:contactOffset = 0.002
+                    float physxCollision:restOffset = 0
+                }
+            }
+        }
+
+        over "FR_foot" (
+            prepend apiSchemas = ["PhysxRigidBodyAPI", "PhysxContactReportAPI"]
+        )
+        {
+            float physxContactReport:threshold = 0
+            float physxRigidBody:angularDamping = 0
+            bool physxRigidBody:disableGravity = 0
+            float physxRigidBody:linearDamping = 0
+            float physxRigidBody:maxDepenetrationVelocity = 1
+            float physxRigidBody:sleepThreshold = 0
+            quatf xformOp:orient = (0.93819875, -0.046949066, -0.34246927, 0.017137747)
+            double3 xformOp:translate = (0.1762918311730943, -0.17273065999965367, -0.3015025687598043)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient"]
+
+            over "collisions"
+            {
+                over "FR" (
+                    prepend apiSchemas = ["MaterialBindingAPI", "PhysxCollisionAPI"]
+                )
+                {
+                    rel material:binding:physics = </World/Materials/FootContact> (
+                        bindMaterialAs = "weakerThanDescendants"
+                    )
+                    float physxCollision:contactOffset = 0.002
+                    float physxCollision:restOffset = 0
+                }
+            }
+        }
+
+        over "RL_hip" (
+            prepend apiSchemas = ["PhysxRigidBodyAPI"]
+        )
+        {
+            float physxRigidBody:angularDamping = 0
+            bool physxRigidBody:disableGravity = 0
+            float physxRigidBody:linearDamping = 0
+            float physxRigidBody:maxDepenetrationVelocity = 1
+            float physxRigidBody:sleepThreshold = 0
+            quatf xformOp:orient = (0.99875027, 0.04997917, 0, 0)
+            double3 xformOp:translate = (-0.19339999556541443, 0.04650000110268593, 0)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient"]
+
+            over "visuals"
+            {
+                over "geom_40" (
+                    prepend apiSchemas = ["MaterialBindingAPI"]
+                )
+                {
+                    rel material:binding = </World/Materials/RobotVisual>
+                }
+
+                over "geom_41" (
+                    prepend apiSchemas = ["MaterialBindingAPI"]
+                )
+                {
+                    rel material:binding = </World/Materials/RobotVisual>
+                }
+            }
+
+            over "collisions"
+            {
+                over "geom_42" (
+                    prepend apiSchemas = ["MaterialBindingAPI", "PhysxCollisionAPI"]
+                )
+                {
+                    rel material:binding:physics = </World/Materials/FootContact> (
+                        bindMaterialAs = "weakerThanDescendants"
+                    )
+                    float physxCollision:contactOffset = 0.002
+                    float physxCollision:restOffset = 0
+                }
+            }
+        }
+
+        over "RL_thigh" (
+            prepend apiSchemas = ["PhysxRigidBodyAPI"]
+        )
+        {
+            float physxRigidBody:angularDamping = 0
+            bool physxRigidBody:disableGravity = 0
+            float physxRigidBody:linearDamping = 0
+            float physxRigidBody:maxDepenetrationVelocity = 1
+            float physxRigidBody:sleepThreshold = 0
+            quatf xformOp:orient = (0.9199099, 0.046033863, 0.38893166, 0.019462805)
+            double3 xformOp:translate = (-0.19339999556541443, 0.1415228987088168, 0.009534091271920482)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient"]
+
+            over "visuals"
+            {
+                over "geom_43" (
+                    prepend apiSchemas = ["MaterialBindingAPI"]
+                )
+                {
+                    rel material:binding = </World/Materials/RobotVisual>
+                }
+
+                over "geom_44" (
+                    prepend apiSchemas = ["MaterialBindingAPI"]
+                )
+                {
+                    rel material:binding = </World/Materials/RobotVisual>
+                }
+            }
+
+            over "collisions"
+            {
+                over "geom_45" (
+                    prepend apiSchemas = ["MaterialBindingAPI", "PhysxCollisionAPI"]
+                )
+                {
+                    rel material:binding:physics = </World/Materials/FootContact> (
+                        bindMaterialAs = "weakerThanDescendants"
+                    )
+                    float physxCollision:contactOffset = 0.002
+                    float physxCollision:restOffset = 0
+                }
+            }
+        }
+
+        over "RL_calf" (
+            prepend apiSchemas = ["PhysxRigidBodyAPI"]
+        )
+        {
+            float physxRigidBody:angularDamping = 0
+            bool physxRigidBody:disableGravity = 0
+            float physxRigidBody:linearDamping = 0
+            float physxRigidBody:maxDepenetrationVelocity = 1
+            float physxRigidBody:sleepThreshold = 0
+            quatf xformOp:orient = (0.93819875, 0.046949066, -0.34246927, -0.017137747)
+            double3 xformOp:translate = (-0.34619684258495076, 0.15633803086016346, -0.1381230629641474)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient"]
+
+            over "visuals"
+            {
+                over "geom_46" (
+                    prepend apiSchemas = ["MaterialBindingAPI"]
+                )
+                {
+                    rel material:binding = </World/Materials/RobotVisual>
+                }
+
+                over "geom_47" (
+                    prepend apiSchemas = ["MaterialBindingAPI"]
+                )
+                {
+                    rel material:binding = </World/Materials/RobotVisual>
+                }
+
+                over "geom_51" (
+                    prepend apiSchemas = ["MaterialBindingAPI"]
+                )
+                {
+                    rel material:binding = </World/Materials/RobotVisual>
+                }
+            }
+
+            over "collisions"
+            {
+                over "geom_48" (
+                    prepend apiSchemas = ["MaterialBindingAPI", "PhysxCollisionAPI"]
+                )
+                {
+                    rel material:binding:physics = </World/Materials/FootContact> (
+                        bindMaterialAs = "weakerThanDescendants"
+                    )
+                    float physxCollision:contactOffset = 0.002
+                    float physxCollision:restOffset = 0
+                }
+
+                over "geom_49" (
+                    prepend apiSchemas = ["MaterialBindingAPI", "PhysxCollisionAPI"]
+                )
+                {
+                    rel material:binding:physics = </World/Materials/FootContact> (
+                        bindMaterialAs = "weakerThanDescendants"
+                    )
+                    float physxCollision:contactOffset = 0.002
+                    float physxCollision:restOffset = 0
+                }
+
+                over "geom_50" (
+                    prepend apiSchemas = ["MaterialBindingAPI", "PhysxCollisionAPI"]
+                )
+                {
+                    rel material:binding:physics = </World/Materials/FootContact> (
+                        bindMaterialAs = "weakerThanDescendants"
+                    )
+                    float physxCollision:contactOffset = 0.002
+                    float physxCollision:restOffset = 0
+                }
+            }
+        }
+
+        over "RL_foot" (
+            prepend apiSchemas = ["PhysxRigidBodyAPI", "PhysxContactReportAPI"]
+        )
+        {
+            float physxContactReport:threshold = 0
+            float physxRigidBody:angularDamping = 0
+            bool physxRigidBody:disableGravity = 0
+            float physxRigidBody:linearDamping = 0
+            float physxRigidBody:maxDepenetrationVelocity = 1
+            float physxRigidBody:sleepThreshold = 0
+            quatf xformOp:orient = (0.93819875, 0.046949066, -0.34246927, -0.017137747)
+            double3 xformOp:translate = (-0.2105081599577346, 0.17273065999965367, -0.3015025687598043)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient"]
+
+            over "collisions"
+            {
+                over "RL" (
+                    prepend apiSchemas = ["MaterialBindingAPI", "PhysxCollisionAPI"]
+                )
+                {
+                    rel material:binding:physics = </World/Materials/FootContact> (
+                        bindMaterialAs = "weakerThanDescendants"
+                    )
+                    float physxCollision:contactOffset = 0.002
+                    float physxCollision:restOffset = 0
+                }
+            }
+        }
+
+        over "RR_hip" (
+            prepend apiSchemas = ["PhysxRigidBodyAPI"]
+        )
+        {
+            float physxRigidBody:angularDamping = 0
+            bool physxRigidBody:disableGravity = 0
+            float physxRigidBody:linearDamping = 0
+            float physxRigidBody:maxDepenetrationVelocity = 1
+            float physxRigidBody:sleepThreshold = 0
+            quatf xformOp:orient = (0.99875027, -0.04997917, 0, 0)
+            double3 xformOp:translate = (-0.19339999556541443, -0.04650000110268593, 0)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient"]
+
+            over "visuals"
+            {
+                over "geom_53" (
+                    prepend apiSchemas = ["MaterialBindingAPI"]
+                )
+                {
+                    rel material:binding = </World/Materials/RobotVisual>
+                }
+
+                over "geom_54" (
+                    prepend apiSchemas = ["MaterialBindingAPI"]
+                )
+                {
+                    rel material:binding = </World/Materials/RobotVisual>
+                }
+            }
+
+            over "collisions"
+            {
+                over "geom_55" (
+                    prepend apiSchemas = ["MaterialBindingAPI", "PhysxCollisionAPI"]
+                )
+                {
+                    rel material:binding:physics = </World/Materials/FootContact> (
+                        bindMaterialAs = "weakerThanDescendants"
+                    )
+                    float physxCollision:contactOffset = 0.002
+                    float physxCollision:restOffset = 0
+                }
+            }
+        }
+
+        over "RR_thigh" (
+            prepend apiSchemas = ["PhysxRigidBodyAPI"]
+        )
+        {
+            float physxRigidBody:angularDamping = 0
+            bool physxRigidBody:disableGravity = 0
+            float physxRigidBody:linearDamping = 0
+            float physxRigidBody:maxDepenetrationVelocity = 1
+            float physxRigidBody:sleepThreshold = 0
+            quatf xformOp:orient = (0.9199099, -0.046033863, 0.38893166, -0.019462805)
+            double3 xformOp:translate = (-0.19339999556541443, -0.1415228987088168, 0.009534091271920482)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient"]
+
+            over "visuals"
+            {
+                over "geom_56" (
+                    prepend apiSchemas = ["MaterialBindingAPI"]
+                )
+                {
+                    rel material:binding = </World/Materials/RobotVisual>
+                }
+
+                over "geom_57" (
+                    prepend apiSchemas = ["MaterialBindingAPI"]
+                )
+                {
+                    rel material:binding = </World/Materials/RobotVisual>
+                }
+            }
+
+            over "collisions"
+            {
+                over "geom_58" (
+                    prepend apiSchemas = ["MaterialBindingAPI", "PhysxCollisionAPI"]
+                )
+                {
+                    rel material:binding:physics = </World/Materials/FootContact> (
+                        bindMaterialAs = "weakerThanDescendants"
+                    )
+                    float physxCollision:contactOffset = 0.002
+                    float physxCollision:restOffset = 0
+                }
+            }
+        }
+
+        over "RR_calf" (
+            prepend apiSchemas = ["PhysxRigidBodyAPI"]
+        )
+        {
+            float physxRigidBody:angularDamping = 0
+            bool physxRigidBody:disableGravity = 0
+            float physxRigidBody:linearDamping = 0
+            float physxRigidBody:maxDepenetrationVelocity = 1
+            float physxRigidBody:sleepThreshold = 0
+            quatf xformOp:orient = (0.93819875, -0.046949066, -0.34246927, 0.017137747)
+            double3 xformOp:translate = (-0.34619684258495076, -0.15633803086016346, -0.1381230629641474)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient"]
+
+            over "visuals"
+            {
+                over "geom_59" (
+                    prepend apiSchemas = ["MaterialBindingAPI"]
+                )
+                {
+                    rel material:binding = </World/Materials/RobotVisual>
+                }
+
+                over "geom_60" (
+                    prepend apiSchemas = ["MaterialBindingAPI"]
+                )
+                {
+                    rel material:binding = </World/Materials/RobotVisual>
+                }
+
+                over "geom_64" (
+                    prepend apiSchemas = ["MaterialBindingAPI"]
+                )
+                {
+                    rel material:binding = </World/Materials/RobotVisual>
+                }
+            }
+
+            over "collisions"
+            {
+                over "geom_61" (
+                    prepend apiSchemas = ["MaterialBindingAPI", "PhysxCollisionAPI"]
+                )
+                {
+                    rel material:binding:physics = </World/Materials/FootContact> (
+                        bindMaterialAs = "weakerThanDescendants"
+                    )
+                    float physxCollision:contactOffset = 0.002
+                    float physxCollision:restOffset = 0
+                }
+
+                over "geom_62" (
+                    prepend apiSchemas = ["MaterialBindingAPI", "PhysxCollisionAPI"]
+                )
+                {
+                    rel material:binding:physics = </World/Materials/FootContact> (
+                        bindMaterialAs = "weakerThanDescendants"
+                    )
+                    float physxCollision:contactOffset = 0.002
+                    float physxCollision:restOffset = 0
+                }
+
+                over "geom_63" (
+                    prepend apiSchemas = ["MaterialBindingAPI", "PhysxCollisionAPI"]
+                )
+                {
+                    rel material:binding:physics = </World/Materials/FootContact> (
+                        bindMaterialAs = "weakerThanDescendants"
+                    )
+                    float physxCollision:contactOffset = 0.002
+                    float physxCollision:restOffset = 0
+                }
+            }
+        }
+
+        over "RR_foot" (
+            prepend apiSchemas = ["PhysxRigidBodyAPI", "PhysxContactReportAPI"]
+        )
+        {
+            float physxContactReport:threshold = 0
+            float physxRigidBody:angularDamping = 0
+            bool physxRigidBody:disableGravity = 0
+            float physxRigidBody:linearDamping = 0
+            float physxRigidBody:maxDepenetrationVelocity = 1
+            float physxRigidBody:sleepThreshold = 0
+            quatf xformOp:orient = (0.93819875, -0.046949066, -0.34246927, 0.017137747)
+            double3 xformOp:translate = (-0.2105081599577346, -0.17273065999965367, -0.3015025687598043)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient"]
+
+            over "collisions"
+            {
+                over "RR" (
+                    prepend apiSchemas = ["MaterialBindingAPI", "PhysxCollisionAPI"]
+                )
+                {
+                    rel material:binding:physics = </World/Materials/FootContact> (
+                        bindMaterialAs = "weakerThanDescendants"
+                    )
+                    float physxCollision:contactOffset = 0.002
+                    float physxCollision:restOffset = 0
+                }
+            }
+        }
+
+        over "link1" (
+            prepend apiSchemas = ["PhysxRigidBodyAPI"]
+        )
+        {
+            float physxRigidBody:angularDamping = 0
+            bool physxRigidBody:disableGravity = 0
+            float physxRigidBody:linearDamping = 0
+            float physxRigidBody:maxDepenetrationVelocity = 1
+            float physxRigidBody:sleepThreshold = 0
+            quatf xformOp:orient = (1, 0, 0, 0)
+            double3 xformOp:translate = (0, 0, 0.19300000369548798)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient"]
+
+            over "visuals"
+            {
+                over "geom_66" (
+                    prepend apiSchemas = ["MaterialBindingAPI"]
+                )
+                {
+                    rel material:binding = </World/Materials/RobotVisual>
+                }
+            }
+
+            over "collisions"
+            {
+                over "geom_66_urdf_hull" (
+                    prepend apiSchemas = ["MaterialBindingAPI", "PhysxCollisionAPI"]
+                )
+                {
+                    rel material:binding:physics = </World/Materials/FootContact> (
+                        bindMaterialAs = "weakerThanDescendants"
+                    )
+                    float physxCollision:contactOffset = 0.002
+                    float physxCollision:restOffset = 0
+                }
+            }
+        }
+
+        over "link2" (
+            prepend apiSchemas = ["PhysxRigidBodyAPI"]
+        )
+        {
+            float physxRigidBody:angularDamping = 0
+            bool physxRigidBody:disableGravity = 0
+            float physxRigidBody:linearDamping = 0
+            float physxRigidBody:maxDepenetrationVelocity = 1
+            float physxRigidBody:sleepThreshold = 0
+            quatf xformOp:orient = (-0.31894317, 0.31894857, 0.63108915, 0.6310892)
+            double3 xformOp:translate = (0, 0, 0.19300000369548798)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient"]
+
+            over "visuals"
+            {
+                over "geom_67" (
+                    prepend apiSchemas = ["MaterialBindingAPI"]
+                )
+                {
+                    rel material:binding = </World/Materials/RobotVisual>
+                }
+            }
+
+            over "collisions"
+            {
+                over "geom_68" (
+                    prepend apiSchemas = ["MaterialBindingAPI", "PhysxCollisionAPI"]
+                )
+                {
+                    rel material:binding:physics = </World/Materials/FootContact> (
+                        bindMaterialAs = "weakerThanDescendants"
+                    )
+                    float physxCollision:contactOffset = 0.002
+                    float physxCollision:restOffset = 0
+                }
+
+                over "geom_69" (
+                    prepend apiSchemas = ["MaterialBindingAPI", "PhysxCollisionAPI"]
+                )
+                {
+                    rel material:binding:physics = </World/Materials/FootContact> (
+                        bindMaterialAs = "weakerThanDescendants"
+                    )
+                    float physxCollision:contactOffset = 0.002
+                    float physxCollision:restOffset = 0
+                }
+            }
+        }
+
+        over "link3" (
+            prepend apiSchemas = ["PhysxRigidBodyAPI"]
+        )
+        {
+            float physxRigidBody:angularDamping = 0
+            bool physxRigidBody:disableGravity = 0
+            float physxRigidBody:linearDamping = 0
+            float physxRigidBody:maxDepenetrationVelocity = 1
+            float physxRigidBody:sleepThreshold = 0
+            quatf xformOp:orient = (0.61476344, -0.6147631, 0.3493823, 0.34937692)
+            double3 xformOp:translate = (-0.169049626731261, 0.0000019268732020336523, 0.42248710310479853)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient"]
+
+            over "visuals"
+            {
+                over "geom_70" (
+                    prepend apiSchemas = ["MaterialBindingAPI"]
+                )
+                {
+                    rel material:binding = </World/Materials/RobotVisual>
+                }
+            }
+
+            over "collisions"
+            {
+                over "geom_71" (
+                    prepend apiSchemas = ["MaterialBindingAPI", "PhysxCollisionAPI"]
+                )
+                {
+                    rel material:binding:physics = </World/Materials/FootContact> (
+                        bindMaterialAs = "weakerThanDescendants"
+                    )
+                    float physxCollision:contactOffset = 0.002
+                    float physxCollision:restOffset = 0
+                }
+
+                over "geom_72" (
+                    prepend apiSchemas = ["MaterialBindingAPI", "PhysxCollisionAPI"]
+                )
+                {
+                    rel material:binding:physics = </World/Materials/FootContact> (
+                        bindMaterialAs = "weakerThanDescendants"
+                    )
+                    float physxCollision:contactOffset = 0.002
+                    float physxCollision:restOffset = 0
+                }
+            }
+        }
+
+        over "link4" (
+            prepend apiSchemas = ["PhysxRigidBodyAPI"]
+        )
+        {
+            float physxRigidBody:angularDamping = 0
+            bool physxRigidBody:disableGravity = 0
+            float physxRigidBody:linearDamping = 0
+            float physxRigidBody:maxDepenetrationVelocity = 1
+            float physxRigidBody:sleepThreshold = 0
+            quatf xformOp:orient = (0.8694066, 0.000002076187, 0.49409738, -0.0000048503316)
+            double3 xformOp:translate = (0.035130493596751994, 0.0000010169146486857335, 0.5696921975746716)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient"]
+
+            over "visuals"
+            {
+                over "geom_73" (
+                    prepend apiSchemas = ["MaterialBindingAPI"]
+                )
+                {
+                    rel material:binding = </World/Materials/RobotVisual>
+                }
+            }
+
+            over "collisions"
+            {
+                over "geom_74" (
+                    prepend apiSchemas = ["MaterialBindingAPI", "PhysxCollisionAPI"]
+                )
+                {
+                    rel material:binding:physics = </World/Materials/FootContact> (
+                        bindMaterialAs = "weakerThanDescendants"
+                    )
+                    float physxCollision:contactOffset = 0.002
+                    float physxCollision:restOffset = 0
+                }
+            }
+        }
+
+        over "link5" (
+            prepend apiSchemas = ["PhysxRigidBodyAPI"]
+        )
+        {
+            float physxRigidBody:angularDamping = 0
+            bool physxRigidBody:disableGravity = 0
+            float physxRigidBody:linearDamping = 0
+            float physxRigidBody:maxDepenetrationVelocity = 1
+            float physxRigidBody:sleepThreshold = 0
+            quatf xformOp:orient = (0.52131957, -0.521318, 0.47773337, 0.4777282)
+            double3 xformOp:translate = (0.035130493596751994, 0.0000010169146486857335, 0.5696921975746716)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient"]
+
+            over "visuals"
+            {
+                over "geom_75" (
+                    prepend apiSchemas = ["MaterialBindingAPI"]
+                )
+                {
+                    rel material:binding = </World/Materials/RobotVisual>
+                }
+            }
+
+            over "collisions"
+            {
+                over "link5_source_mesh_hull" (
+                    prepend apiSchemas = ["MaterialBindingAPI", "PhysxCollisionAPI"]
+                )
+                {
+                    rel material:binding:physics = </World/Materials/FootContact> (
+                        bindMaterialAs = "weakerThanDescendants"
+                    )
+                    float physxCollision:contactOffset = 0.002
+                    float physxCollision:restOffset = 0
+                }
+            }
+        }
+
+        over "link6" (
+            prepend apiSchemas = ["PhysxRigidBodyAPI"]
+        )
+        {
+            float physxRigidBody:angularDamping = 0
+            bool physxRigidBody:disableGravity = 0
+            float physxRigidBody:linearDamping = 0
+            float physxRigidBody:maxDepenetrationVelocity = 1
+            float physxRigidBody:sleepThreshold = 0
+            quatf xformOp:orient = (0.7372561, 0.0000026413836, 0.67561334, -0.0000050823874)
+            double3 xformOp:translate = (0.12579239375779666, 4.2074347504776694e-7, 0.5775297553700279)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient"]
+
+            over "visuals"
+            {
+                over "geom_77" (
+                    prepend apiSchemas = ["MaterialBindingAPI"]
+                )
+                {
+                    rel material:binding = </World/Materials/RobotVisual>
+                }
+            }
+
+            over "collisions"
+            {
+                over "geom_78" (
+                    prepend apiSchemas = ["MaterialBindingAPI", "PhysxCollisionAPI"]
+                )
+                {
+                    rel material:binding:physics = </World/Materials/FootContact> (
+                        bindMaterialAs = "weakerThanDescendants"
+                    )
+                    float physxCollision:contactOffset = 0.002
+                    float physxCollision:restOffset = 0
+                }
+            }
+
+            over "camera_mounts"
+            {
+                over "wrist_d435"
+                {
+                    over "visual"
+                    {
+                        over "ID3" (
+                            prepend apiSchemas = ["MaterialBindingAPI"]
+                        )
+                        {
+                            rel material:binding = </World/Materials/RobotVisual>
+                        }
+
+                        over "ID11" (
+                            prepend apiSchemas = ["MaterialBindingAPI"]
+                        )
+                        {
+                            rel material:binding = </World/Materials/RobotVisual>
+                        }
+
+                        over "ID17" (
+                            prepend apiSchemas = ["MaterialBindingAPI"]
+                        )
+                        {
+                            rel material:binding = </World/Materials/RobotVisual>
+                        }
+
+                        over "ID23" (
+                            prepend apiSchemas = ["MaterialBindingAPI"]
+                        )
+                        {
+                            rel material:binding = </World/Materials/RobotVisual>
+                        }
+
+                        over "ID29" (
+                            prepend apiSchemas = ["MaterialBindingAPI"]
+                        )
+                        {
+                            rel material:binding = </World/Materials/RobotVisual>
+                        }
+
+                        over "ID35" (
+                            prepend apiSchemas = ["MaterialBindingAPI"]
+                        )
+                        {
+                            rel material:binding = </World/Materials/RobotVisual>
+                        }
+
+                        over "ID41" (
+                            prepend apiSchemas = ["MaterialBindingAPI"]
+                        )
+                        {
+                            rel material:binding = </World/Materials/RobotVisual>
+                        }
+
+                        over "ID47" (
+                            prepend apiSchemas = ["MaterialBindingAPI"]
+                        )
+                        {
+                            rel material:binding = </World/Materials/RobotVisual>
+                        }
+
+                        over "ID53" (
+                            prepend apiSchemas = ["MaterialBindingAPI"]
+                        )
+                        {
+                            rel material:binding = </World/Materials/RobotVisual>
+                        }
+
+                        over "ID59" (
+                            prepend apiSchemas = ["MaterialBindingAPI"]
+                        )
+                        {
+                            rel material:binding = </World/Materials/RobotVisual>
+                        }
+
+                        over "ID65" (
+                            prepend apiSchemas = ["MaterialBindingAPI"]
+                        )
+                        {
+                            rel material:binding = </World/Materials/RobotVisual>
+                        }
+
+                        over "ID71" (
+                            prepend apiSchemas = ["MaterialBindingAPI"]
+                        )
+                        {
+                            rel material:binding = </World/Materials/RobotVisual>
+                        }
+
+                        over "ID77" (
+                            prepend apiSchemas = ["MaterialBindingAPI"]
+                        )
+                        {
+                            rel material:binding = </World/Materials/RobotVisual>
+                        }
+
+                        over "ID83" (
+                            prepend apiSchemas = ["MaterialBindingAPI"]
+                        )
+                        {
+                            rel material:binding = </World/Materials/RobotVisual>
+                        }
+
+                        over "ID89" (
+                            prepend apiSchemas = ["MaterialBindingAPI"]
+                        )
+                        {
+                            rel material:binding = </World/Materials/RobotVisual>
+                        }
+
+                        over "ID95" (
+                            prepend apiSchemas = ["MaterialBindingAPI"]
+                        )
+                        {
+                            rel material:binding = </World/Materials/RobotVisual>
+                        }
+
+                        over "ID101" (
+                            prepend apiSchemas = ["MaterialBindingAPI"]
+                        )
+                        {
+                            rel material:binding = </World/Materials/RobotVisual>
+                        }
+
+                        over "ID107" (
+                            prepend apiSchemas = ["MaterialBindingAPI"]
+                        )
+                        {
+                            rel material:binding = </World/Materials/RobotVisual>
+                        }
+                    }
+                }
+
+                over "wrist_d435_collision" (
+                    prepend apiSchemas = ["MaterialBindingAPI", "PhysxCollisionAPI"]
+                )
+                {
+                    rel material:binding:physics = </World/Materials/FootContact> (
+                        bindMaterialAs = "weakerThanDescendants"
+                    )
+                    float physxCollision:contactOffset = 0.002
+                    float physxCollision:restOffset = 0
+                }
+
+                over "wrist_d435_bracket"
+                {
+                    over "visual" (
+                        prepend apiSchemas = ["MaterialBindingAPI"]
+                    )
+                    {
+                        rel material:binding = </World/Materials/RobotVisual>
+                    }
+
+                    over "collision" (
+                        prepend apiSchemas = ["MaterialBindingAPI", "PhysxCollisionAPI"]
+                    )
+                    {
+                        rel material:binding = </World/Materials/RobotVisual>
+                        rel material:binding:physics = </World/Materials/FootContact> (
+                            bindMaterialAs = "weakerThanDescendants"
+                        )
+                        float physxCollision:contactOffset = 0.002
+                        float physxCollision:restOffset = 0
+                    }
+                }
+            }
+
+            over "WristCameraOpticalFrame"
+            {
+                def Camera "Camera" (
+                    customData = {
+                        string sensor_model = "Ideal pinhole RGB + depth; nominal mount; no D435 noise model"
+                    }
+                )
+                {
+                    float2 clippingRange = (0.05, 30)
+                    float focalLength = 15.244857
+                    float horizontalAperture = 20.955
+                    float verticalAperture = 15.71625
+                    quatf xformOp:orient = (0, 1, 0, 0)
+                    double3 xformOp:translate = (0, 0, 0)
+                    uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient"]
+                }
+            }
+        }
+
+        over "link7" (
+            prepend apiSchemas = ["PhysxRigidBodyAPI", "PhysxContactReportAPI"]
+        )
+        {
+            float physxContactReport:threshold = 0
+            float physxRigidBody:angularDamping = 0
+            bool physxRigidBody:disableGravity = 0
+            float physxRigidBody:linearDamping = 0
+            float physxRigidBody:maxDepenetrationVelocity = 1
+            float physxRigidBody:sleepThreshold = 0
+            quatf xformOp:orient = (0.5213159, 0.5213218, 0.4777262, -0.47773537)
+            double3 xformOp:translate = (0.2603088459120325, -0.030001032474150185, 0.5892900290373634)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient"]
+
+            over "visuals"
+            {
+                over "geom_81" (
+                    prepend apiSchemas = ["MaterialBindingAPI"]
+                )
+                {
+                    rel material:binding = </World/Materials/RobotVisual>
+                }
+            }
+
+            over "collisions"
+            {
+                over "link7_contact_inner" (
+                    prepend apiSchemas = ["MaterialBindingAPI", "PhysxCollisionAPI"]
+                )
+                {
+                    rel material:binding:physics = </World/Materials/PadContact> (
+                        bindMaterialAs = "weakerThanDescendants"
+                    )
+                    float physxCollision:contactOffset = 0.002
+                    float physxCollision:restOffset = 0
+                }
+
+                over "link7_contact_outer" (
+                    prepend apiSchemas = ["MaterialBindingAPI", "PhysxCollisionAPI"]
+                )
+                {
+                    rel material:binding:physics = </World/Materials/PadContact> (
+                        bindMaterialAs = "weakerThanDescendants"
+                    )
+                    float physxCollision:contactOffset = 0.002
+                    float physxCollision:restOffset = 0
+                }
+            }
+        }
+
+        over "link8" (
+            prepend apiSchemas = ["PhysxRigidBodyAPI", "PhysxContactReportAPI"]
+        )
+        {
+            float physxContactReport:threshold = 0
+            float physxRigidBody:angularDamping = 0
+            bool physxRigidBody:disableGravity = 0
+            float physxRigidBody:linearDamping = 0
+            float physxRigidBody:maxDepenetrationVelocity = 1
+            float physxRigidBody:sleepThreshold = 0
+            quatf xformOp:orient = (-0.47772628, 0.47773528, 0.5213198, 0.52131784)
+            double3 xformOp:translate = (0.2603095288957147, 0.029998967519705433, 0.589289631120401)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient"]
+
+            over "visuals"
+            {
+                over "geom_84" (
+                    prepend apiSchemas = ["MaterialBindingAPI"]
+                )
+                {
+                    rel material:binding = </World/Materials/RobotVisual>
+                }
+            }
+
+            over "collisions"
+            {
+                over "link8_contact_inner" (
+                    prepend apiSchemas = ["MaterialBindingAPI", "PhysxCollisionAPI"]
+                )
+                {
+                    rel material:binding:physics = </World/Materials/PadContact> (
+                        bindMaterialAs = "weakerThanDescendants"
+                    )
+                    float physxCollision:contactOffset = 0.002
+                    float physxCollision:restOffset = 0
+                }
+
+                over "link8_contact_outer" (
+                    prepend apiSchemas = ["MaterialBindingAPI", "PhysxCollisionAPI"]
+                )
+                {
+                    rel material:binding:physics = </World/Materials/PadContact> (
+                        bindMaterialAs = "weakerThanDescendants"
+                    )
+                    float physxCollision:contactOffset = 0.002
+                    float physxCollision:restOffset = 0
+                }
+            }
+        }
+
+        over "joints"
+        {
+            over "FL_hip_joint" (
+                prepend apiSchemas = ["PhysicsDriveAPI:angular"]
+            )
+            {
+                float drive:angular:physics:damping = 0.06981317
+                float drive:angular:physics:maxForce = 23.7
+                float drive:angular:physics:stiffness = 1.3962634
+                float drive:angular:physics:targetPosition = 5.729578
+                float drive:angular:physics:targetVelocity = 0
+                uniform token drive:angular:physics:type = "force"
+            }
+
+            over "FL_thigh_joint" (
+                prepend apiSchemas = ["PhysicsDriveAPI:angular"]
+            )
+            {
+                float drive:angular:physics:damping = 0.06981317
+                float drive:angular:physics:maxForce = 23.7
+                float drive:angular:physics:stiffness = 1.3962634
+                float drive:angular:physics:targetPosition = 45.836624
+                float drive:angular:physics:targetVelocity = 0
+                uniform token drive:angular:physics:type = "force"
+            }
+
+            over "FL_calf_joint" (
+                prepend apiSchemas = ["PhysicsDriveAPI:angular"]
+            )
+            {
+                float drive:angular:physics:damping = 0.06981317
+                float drive:angular:physics:maxForce = 45.43
+                float drive:angular:physics:stiffness = 1.3962634
+                float drive:angular:physics:targetPosition = -85.94367
+                float drive:angular:physics:targetVelocity = 0
+                uniform token drive:angular:physics:type = "force"
+            }
+
+            over "FR_hip_joint" (
+                prepend apiSchemas = ["PhysicsDriveAPI:angular"]
+            )
+            {
+                float drive:angular:physics:damping = 0.06981317
+                float drive:angular:physics:maxForce = 23.7
+                float drive:angular:physics:stiffness = 1.3962634
+                float drive:angular:physics:targetPosition = -5.729578
+                float drive:angular:physics:targetVelocity = 0
+                uniform token drive:angular:physics:type = "force"
+            }
+
+            over "FR_thigh_joint" (
+                prepend apiSchemas = ["PhysicsDriveAPI:angular"]
+            )
+            {
+                float drive:angular:physics:damping = 0.06981317
+                float drive:angular:physics:maxForce = 23.7
+                float drive:angular:physics:stiffness = 1.3962634
+                float drive:angular:physics:targetPosition = 45.836624
+                float drive:angular:physics:targetVelocity = 0
+                uniform token drive:angular:physics:type = "force"
+            }
+
+            over "FR_calf_joint" (
+                prepend apiSchemas = ["PhysicsDriveAPI:angular"]
+            )
+            {
+                float drive:angular:physics:damping = 0.06981317
+                float drive:angular:physics:maxForce = 45.43
+                float drive:angular:physics:stiffness = 1.3962634
+                float drive:angular:physics:targetPosition = -85.94367
+                float drive:angular:physics:targetVelocity = 0
+                uniform token drive:angular:physics:type = "force"
+            }
+
+            over "RL_hip_joint" (
+                prepend apiSchemas = ["PhysicsDriveAPI:angular"]
+            )
+            {
+                float drive:angular:physics:damping = 0.06981317
+                float drive:angular:physics:maxForce = 23.7
+                float drive:angular:physics:stiffness = 1.3962634
+                float drive:angular:physics:targetPosition = 5.729578
+                float drive:angular:physics:targetVelocity = 0
+                uniform token drive:angular:physics:type = "force"
+            }
+
+            over "RL_thigh_joint" (
+                prepend apiSchemas = ["PhysicsDriveAPI:angular"]
+            )
+            {
+                float drive:angular:physics:damping = 0.06981317
+                float drive:angular:physics:maxForce = 23.7
+                float drive:angular:physics:stiffness = 1.3962634
+                float drive:angular:physics:targetPosition = 45.836624
+                float drive:angular:physics:targetVelocity = 0
+                uniform token drive:angular:physics:type = "force"
+            }
+
+            over "RL_calf_joint" (
+                prepend apiSchemas = ["PhysicsDriveAPI:angular"]
+            )
+            {
+                float drive:angular:physics:damping = 0.06981317
+                float drive:angular:physics:maxForce = 45.43
+                float drive:angular:physics:stiffness = 1.3962634
+                float drive:angular:physics:targetPosition = -85.94367
+                float drive:angular:physics:targetVelocity = 0
+                uniform token drive:angular:physics:type = "force"
+            }
+
+            over "RR_hip_joint" (
+                prepend apiSchemas = ["PhysicsDriveAPI:angular"]
+            )
+            {
+                float drive:angular:physics:damping = 0.06981317
+                float drive:angular:physics:maxForce = 23.7
+                float drive:angular:physics:stiffness = 1.3962634
+                float drive:angular:physics:targetPosition = -5.729578
+                float drive:angular:physics:targetVelocity = 0
+                uniform token drive:angular:physics:type = "force"
+            }
+
+            over "RR_thigh_joint" (
+                prepend apiSchemas = ["PhysicsDriveAPI:angular"]
+            )
+            {
+                float drive:angular:physics:damping = 0.06981317
+                float drive:angular:physics:maxForce = 23.7
+                float drive:angular:physics:stiffness = 1.3962634
+                float drive:angular:physics:targetPosition = 45.836624
+                float drive:angular:physics:targetVelocity = 0
+                uniform token drive:angular:physics:type = "force"
+            }
+
+            over "RR_calf_joint" (
+                prepend apiSchemas = ["PhysicsDriveAPI:angular"]
+            )
+            {
+                float drive:angular:physics:damping = 0.06981317
+                float drive:angular:physics:maxForce = 45.43
+                float drive:angular:physics:stiffness = 1.3962634
+                float drive:angular:physics:targetPosition = -85.94367
+                float drive:angular:physics:targetVelocity = 0
+                uniform token drive:angular:physics:type = "force"
+            }
+
+            over "joint1" (
+                prepend apiSchemas = ["PhysicsDriveAPI:angular"]
+            )
+            {
+                float drive:angular:physics:damping = 0.05235988
+                float drive:angular:physics:maxForce = 32
+                float drive:angular:physics:stiffness = 1.0471976
+                float drive:angular:physics:targetPosition = 0
+                float drive:angular:physics:targetVelocity = 0
+                uniform token drive:angular:physics:type = "force"
+            }
+
+            over "joint2" (
+                prepend apiSchemas = ["PhysicsDriveAPI:angular"]
+            )
+            {
+                float drive:angular:physics:damping = 0.34906584
+                float drive:angular:physics:maxForce = 32
+                float drive:angular:physics:stiffness = 6.2831855
+                float drive:angular:physics:targetPosition = 45.836624
+                float drive:angular:physics:targetVelocity = 0
+                uniform token drive:angular:physics:type = "force"
+            }
+
+            over "joint3" (
+                prepend apiSchemas = ["PhysicsDriveAPI:angular"]
+            )
+            {
+                float drive:angular:physics:damping = 0.34906584
+                float drive:angular:physics:maxForce = 32
+                float drive:angular:physics:stiffness = 6.2831855
+                float drive:angular:physics:targetPosition = -71.61973
+                float drive:angular:physics:targetVelocity = 0
+                uniform token drive:angular:physics:type = "force"
+            }
+
+            over "joint4" (
+                prepend apiSchemas = ["PhysicsDriveAPI:angular"]
+            )
+            {
+                float drive:angular:physics:damping = 0.05235988
+                float drive:angular:physics:maxForce = 8
+                float drive:angular:physics:stiffness = 1.0471976
+                float drive:angular:physics:targetPosition = 0
+                float drive:angular:physics:targetVelocity = 0
+                uniform token drive:angular:physics:type = "force"
+            }
+
+            over "joint5" (
+                prepend apiSchemas = ["PhysicsDriveAPI:angular"]
+            )
+            {
+                float drive:angular:physics:damping = 0.05235988
+                float drive:angular:physics:maxForce = 8
+                float drive:angular:physics:stiffness = 1.0471976
+                float drive:angular:physics:targetPosition = 25.7831
+                float drive:angular:physics:targetVelocity = 0
+                uniform token drive:angular:physics:type = "force"
+            }
+
+            over "joint6" (
+                prepend apiSchemas = ["PhysicsDriveAPI:angular"]
+            )
+            {
+                float drive:angular:physics:damping = 0.05235988
+                float drive:angular:physics:maxForce = 8
+                float drive:angular:physics:stiffness = 1.0471976
+                float drive:angular:physics:targetPosition = 0
+                float drive:angular:physics:targetVelocity = 0
+                uniform token drive:angular:physics:type = "force"
+            }
+
+            over "joint7" (
+                prepend apiSchemas = ["PhysicsDriveAPI:linear"]
+            )
+            {
+                float drive:linear:physics:damping = 5
+                float drive:linear:physics:maxForce = 10
+                float drive:linear:physics:stiffness = 800
+                float drive:linear:physics:targetPosition = 0.03
+                float drive:linear:physics:targetVelocity = 0
+                uniform token drive:linear:physics:type = "force"
+            }
+
+            over "joint8" (
+                prepend apiSchemas = ["PhysicsDriveAPI:linear"]
+            )
+            {
+                float drive:linear:physics:damping = 5
+                float drive:linear:physics:maxForce = 10
+                float drive:linear:physics:stiffness = 800
+                float drive:linear:physics:targetPosition = -0.03
+                float drive:linear:physics:targetVelocity = 0
+                uniform token drive:linear:physics:type = "force"
+            }
+        }
+    }
+
+    def Scope "Lights"
+    {
+        def DistantLight "Sun"
+        {
+            float inputs:angle = 0.53
+            color3f inputs:color = (1, 0.98, 0.95)
+            float inputs:intensity = 900
+            quatf xformOp:orient = (0.8571673, 0.33106008, 0.39454207, 0)
+            uniform token[] xformOpOrder = ["xformOp:orient"]
+        }
+
+        def DistantLight "ViewingFill"
+        {
+            float inputs:angle = 30
+            color3f inputs:color = (0.85, 0.9, 1)
+            float inputs:intensity = 35
+            float3 xformOp:rotateXYZ = (-20, -25, 0)
+            uniform token[] xformOpOrder = ["xformOp:rotateXYZ"]
+        }
+    }
+
+    def Scope "Cameras"
+    {
+        def Camera "Overview"
+        {
+            float2 clippingRange = (0.02, 500)
+            float focalLength = 25
+            float horizontalAperture = 36
+            float verticalAperture = 20.25
+            matrix4d xformOp:transform = ( (0.7592566023652966, 0.6507913734559685, 0, 0), (-0.27244596551189987, 0.3178536264305499, 0.9081532183729996, -0), (0.5910182802934226, -0.689521327008993, 0.4186379485411743, 0), (6.500000000000001, -7.000000000000001, 4.5, 1.0000000000000002) )
+            uniform token[] xformOpOrder = ["xformOp:transform"]
+        }
+
+        def Camera "Close"
+        {
+            float2 clippingRange = (0.02, 500)
+            float focalLength = 25
+            float horizontalAperture = 36
+            float verticalAperture = 20.25
+            matrix4d xformOp:transform = ( (0.7875050010075858, 0.6163082616581106, 0, 0), (-0.19063743581893108, 0.24359227910196746, 0.950957501482738, -0), (0.5860829646495667, -0.748883788163335, 0.3093215646761601, 0), (2, -2.3, 1.35, 1) )
+            uniform token[] xformOpOrder = ["xformOp:transform"]
+        }
+    }
+}
+

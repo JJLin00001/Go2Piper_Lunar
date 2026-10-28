@@ -1,0 +1,16 @@
+test_cli_names_and_variant_paths_do_not_overwrite_defaults (test_environments.EnvironmentTests.test_cli_names_and_variant_paths_do_not_overwrite_defaults) ... ok
+test_dem_keeps_native_relief_and_rejects_out_of_coverage (test_environments.EnvironmentTests.test_dem_keeps_native_relief_and_rejects_out_of_coverage) ... ok
+test_invalid_experiments_fail_before_starting_isaac (test_environments.EnvironmentTests.test_invalid_experiments_fail_before_starting_isaac) ... ok
+test_mass_and_foot_friction_do_not_change_terrain_or_gripper_contact (test_environments.EnvironmentTests.test_mass_and_foot_friction_do_not_change_terrain_or_gripper_contact) ... ok
+test_native_dem_matches_downloaded_geotiff_and_georeferencing (test_environments.EnvironmentTests.test_native_dem_matches_downloaded_geotiff_and_georeferencing) ... ok
+test_slope_is_additive_with_unchanged_dem_and_seed (test_environments.EnvironmentTests.test_slope_is_additive_with_unchanged_dem_and_seed) ... ok
+test_integrated_inertia_matches_known_box_and_mass_scaling (test_geometry.SceneGeometryTests.test_integrated_inertia_matches_known_box_and_mass_scaling) ... ok
+test_invalid_physics_and_joint_limits_are_rejected (test_geometry.SceneGeometryTests.test_invalid_physics_and_joint_limits_are_rejected) ... ok
+test_ore_is_closed_and_has_expected_dimensions (test_geometry.SceneGeometryTests.test_ore_is_closed_and_has_expected_dimensions) ... ok
+test_terrain_is_repeatable_and_mesh_faces_point_up (test_geometry.SceneGeometryTests.test_terrain_is_repeatable_and_mesh_faces_point_up) ... ok
+test_work_area_is_flat_and_slopes_match_requested_angle (test_geometry.SceneGeometryTests.test_work_area_is_flat_and_slopes_match_requested_angle) ... ok
+
+----------------------------------------------------------------------
+Ran 11 tests in 0.661s
+
+OK

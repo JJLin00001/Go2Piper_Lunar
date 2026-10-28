@@ -1,0 +1,86 @@
+{
+  "scene": "/home/jjlin/Go2Piper_Lunar/env/generated/Lunar_variant_4c6fbb36301c.usda",
+  "environment": "Lunar",
+  "experiment_parameters": {
+    "slope_deg": 5.0,
+    "slope_convention": "additive height tilt along projected/world +X; 0 preserves native DEM relief",
+    "foot_ground_static_friction": 0.6,
+    "foot_ground_dynamic_friction": 0.5,
+    "ore_mass_kg": 5.0
+  },
+  "physics_steps": 1200,
+  "simulated_time_s": 5.0,
+  "elapsed_wall_s": 3.0634127619996434,
+  "gravity_configured_m_s2": 1.62,
+  "gravity_measured_m_s2": 1.6200003027915955,
+  "joint_count": 20,
+  "joint_names": [
+    "FL_hip_joint",
+    "FR_hip_joint",
+    "RL_hip_joint",
+    "RR_hip_joint",
+    "joint1",
+    "FL_thigh_joint",
+    "FR_thigh_joint",
+    "RL_thigh_joint",
+    "RR_thigh_joint",
+    "joint2",
+    "FL_calf_joint",
+    "FR_calf_joint",
+    "RL_calf_joint",
+    "RR_calf_joint",
+    "joint3",
+    "joint4",
+    "joint5",
+    "joint6",
+    "joint7",
+    "joint8"
+  ],
+  "base_final_position_m": [
+    -0.057602908462285995,
+    -0.021825721487402916,
+    0.3159277141094208
+  ],
+  "base_peak_tilt_deg": 9.099000297539586,
+  "max_joint_speed_rad_or_m_s": 2.9780259132385254,
+  "max_joint_error_rad_or_m": 0.0874711275100708,
+  "foot_paths": [
+    "/World/Robot/FL_foot",
+    "/World/Robot/FR_foot",
+    "/World/Robot/RL_foot",
+    "/World/Robot/RR_foot"
+  ],
+  "mean_final_foot_force_world_N": [
+    [
+      -0.508208817243576,
+      -0.39619808197021483,
+      6.12527117729187
+    ],
+    [
+      -0.5802311658859253,
+      -0.45211836099624636,
+      6.874648952484131
+    ],
+    [
+      -0.6333095073699951,
+      -0.43390049040317535,
+      6.882262182235718
+    ],
+    [
+      -0.888032591342926,
+      -0.6896520972251892,
+      10.247134971618653
+    ]
+  ],
+  "base_ground_clearance_m": 0.32237250481163426,
+  "ore_lowest_ground_gap_m": 5.074826390415177e-06,
+  "ore_final_position_m": [
+    0.7023700475692749,
+    -0.093440942466259,
+    0.08414172381162643
+  ],
+  "ore_final_speed_m_s": 4.96321536047617e-06,
+  "control": "Bounded joint PD preview; no WBC or grasp execution",
+  "validation_passed": true,
+  "validation_failures": []
+}

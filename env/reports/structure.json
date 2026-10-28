@@ -1,0 +1,59 @@
+[
+  {
+    "scene": "env/generated/Lunar_baseline.usda",
+    "passed": true,
+    "rigid_bodies": 25,
+    "moving_joints": 20,
+    "floating_base": true,
+    "environment": "Lunar_baseline",
+    "mass_kg": 2.0,
+    "runtime_layers": 4,
+    "runtime_textures": 0,
+    "effective_foot_friction": [
+      0.8,
+      0.65
+    ],
+    "camera_optical_axes": "PASS",
+    "bounded_drives": "PASS",
+    "relocation": "PASS",
+    "unresolved_assets": []
+  },
+  {
+    "scene": "env/generated/Lunar.usda",
+    "passed": true,
+    "rigid_bodies": 25,
+    "moving_joints": 20,
+    "floating_base": true,
+    "environment": "Lunar",
+    "mass_kg": 2.0,
+    "runtime_layers": 4,
+    "runtime_textures": 3,
+    "effective_foot_friction": [
+      0.8,
+      0.65
+    ],
+    "camera_optical_axes": "PASS",
+    "bounded_drives": "PASS",
+    "relocation": "PASS",
+    "unresolved_assets": []
+  },
+  {
+    "scene": "env/generated/Lunar_variant_4c6fbb36301c.usda",
+    "passed": true,
+    "rigid_bodies": 25,
+    "moving_joints": 20,
+    "floating_base": true,
+    "environment": "Lunar",
+    "mass_kg": 5.0,
+    "runtime_layers": 4,
+    "runtime_textures": 3,
+    "effective_foot_friction": [
+      0.6,
+      0.5
+    ],
+    "camera_optical_axes": "PASS",
+    "bounded_drives": "PASS",
+    "relocation": "PASS",
+    "unresolved_assets": []
+  }
+]
