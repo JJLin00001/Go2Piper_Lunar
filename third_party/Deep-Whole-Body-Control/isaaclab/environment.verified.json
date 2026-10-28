@@ -1,0 +1,13 @@
+{
+  "verified_date": "2026-10-28",
+  "python": "3.11.15",
+  "isaac_sim": "5.1.0.0",
+  "isaac_lab_release": "2.3.2",
+  "isaaclab_distribution": "0.54.2",
+  "torch": "2.7.0+cu128",
+  "gymnasium": "1.2.1",
+  "rsl_rl": "vendored Deep-Whole-Body-Control, not global rsl-rl-lib",
+  "source_commit": "8159e4ed8695b2d3f62a40d2ab8d88205ac5021a",
+  "device": "NVIDIA GeForce RTX 3090 Ti",
+  "note": "Runtime inventory, not an installer. Use Isaac Lab's matching Isaac Sim 5.1 installation."
+}

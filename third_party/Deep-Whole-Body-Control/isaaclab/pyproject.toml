@@ -1,0 +1,14 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "dwbc-isaaclab-lunar"
+version = "0.1.0"
+description = "Deep Whole-Body Control on Isaac Sim 5.1 for Go2/Piper lunar tracking"
+requires-python = ">=3.11,<3.12"
+dependencies = ["gymnasium>=1.2,<1.3", "torch>=2.7,<2.8", "numpy", "tensorboard"]
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["dwbc_isaaclab*"]
